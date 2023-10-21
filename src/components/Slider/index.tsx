@@ -24,8 +24,9 @@ const Slider = ({ slideImages }: SlideImageProps) => {
     transitionDuration: slideImages.length > 1 ? 500 : 0,
     infinite: slideImages.length > 1 ? true : false,
     indicators: false,
-    autoPlay: true,
+    autoplay: true,
     canSwipe: false,
+    pauseOnHover: false,
     arrows: slideImages.length > 1 ? true : false,
     prevArrow: (
       <ArrowBackIosIcon
