@@ -13,6 +13,7 @@ import { SlideImageProps } from './types';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { RichTextRenderer } from '../RichText';
+import SocialLinks from '../SocialLinks';
 
 const Slider = ({
   slideImages,
@@ -174,6 +175,7 @@ const Slider = ({
         </Container>
       </div>
       <div className="apply-visa">
+        <SocialLinks />
         <ApplyVisa />
       </div>
     </div>
