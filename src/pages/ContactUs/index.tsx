@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from '../../components/Slider';
-import Image1 from '../../assets/images/contact-us/1.jpg';
+import Image1 from '../../assets/images/contact-us/1.jpeg';
 import { CustomColors } from '../../theme';
 
 const ContactUs = () => {
@@ -24,7 +24,7 @@ const ContactUs = () => {
       image: {
         url: Image1,
         size: 'cover',
-        position: 'center',
+        position: 'center center',
       },
     },
   ];
