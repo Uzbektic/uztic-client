@@ -28,6 +28,21 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
+              <a href={require('../../pdfs/sept-2022.pdf')} download>
+                <img
+                  src={NewsLetter3Image}
+                  alt="News Letter For September, 2022"
+                  style={styles.newsLetterImage}
+                />
+              </a>
+              <p>September, 2022</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <div
+              style={styles.newsLetterContainer}
+              className="animate__animated animate__fadeIn"
+            >
               <a href={require('../../pdfs/jan-2023.pdf')} download>
                 <img
                   src={NewsLetter2Image}
@@ -67,21 +82,6 @@ const NewsLetter = () => {
                 />
               </a>
               <p>August, 2023</p>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <a href={require('../../pdfs/sept-2023.pdf')} download>
-                <img
-                  src={NewsLetter3Image}
-                  alt="News Letter For September, 2023"
-                  style={styles.newsLetterImage}
-                />
-              </a>
-              <p>September, 2023</p>
             </div>
           </Grid>
         </Grid>

@@ -130,7 +130,7 @@ const Slider = ({
             </h1>
 
             {pageSubheading?.text && (
-              <p
+              <h3
                 className="animate__animated animate__slideInLeft"
                 style={{
                   color: pageSubheading?.color ? pageSubheading?.color : '#fff',
@@ -144,7 +144,7 @@ const Slider = ({
                 }}
               >
                 {pageSubheading?.text}
-              </p>
+              </h3>
             )}
 
             <Grid container justifyContent={'flex-start'}>

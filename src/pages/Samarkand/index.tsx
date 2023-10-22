@@ -54,7 +54,7 @@ const Samarkand = () => {
         text,
       }}
       pageSubheading={{
-        text: '- Crossroads of cultures',
+        text: 'Crossroads of cultures',
       }}
     />
   );

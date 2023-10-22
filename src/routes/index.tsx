@@ -11,6 +11,7 @@ import Bukhara from '../pages/Bukhara';
 import Khiva from '../pages/Khiva';
 import NotFound from '../pages/Errors/404';
 import Thanks from '../pages/Extras/Thanks';
+import ContactUs from '../pages/ContactUs';
 
 function RouteList() {
   return (
@@ -18,6 +19,7 @@ function RouteList() {
       <Routes>
         <Route index element={<Home />} />
         <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
+        <Route path={ROUTES.CONTACT_US} element={<ContactUs />} />
         <Route path={ROUTES.ABOUT_UZBEKISTAN} element={<AboutUzbekistan />} />
         <Route path={ROUTES.FOOD} element={<Food />} />
         <Route path={ROUTES.TASHKENT} element={<Tashkent />} />

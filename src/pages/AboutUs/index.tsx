@@ -38,11 +38,6 @@ const AboutUs = () => {
         size: 'cover',
         position: '100% 100%',
       },
-
-      title: {
-        text: 'About Us',
-        fontSize: '70px',
-      },
     },
   ];
 

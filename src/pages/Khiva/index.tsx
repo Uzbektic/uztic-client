@@ -49,7 +49,7 @@ const Khiva = () => {
         fontSize: '60px',
       }}
       pageText={{ text }}
-      pageSubheading={{ text: '- The capital of the Turkic world' }}
+      pageSubheading={{ text: 'The capital of the Turkic world' }}
     />
   );
 };

@@ -57,7 +57,7 @@ const Tashkent = () => {
       }}
       pageText={{ text }}
       pageSubheading={{
-        text: '– The modern metropolis',
+        text: 'The modern metropolis',
       }}
     />
   );

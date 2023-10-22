@@ -116,6 +116,19 @@ const Navbar = ({ bgPrimary = false }: NavbarProps) => {
                   {'About Us'}
                 </Typography>
               </MenuItem>
+              <MenuItem onClick={handlePageChange(ROUTES.CONTACT_US)}>
+                <Typography
+                  textAlign="center"
+                  sx={{
+                    color:
+                      currentPath === ROUTES.CONTACT_US
+                        ? CustomColors.primary
+                        : 'inherit',
+                  }}
+                >
+                  {'Contact Us'}
+                </Typography>
+              </MenuItem>
               <MenuItem onClick={handlePageChange(ROUTES.ABOUT_UZBEKISTAN)}>
                 <Typography
                   textAlign="center"
@@ -202,6 +215,20 @@ const Navbar = ({ bgPrimary = false }: NavbarProps) => {
               }}
             >
               {'About Us'}
+            </Button>
+            <Button
+              onClick={handlePageChange(ROUTES.CONTACT_US)}
+              sx={{
+                my: 2,
+                background:
+                  currentPath === ROUTES.CONTACT_US
+                    ? CustomColors.primary
+                    : 'inherit',
+                display: 'block',
+                color: 'white',
+              }}
+            >
+              {'Contact Us'}
             </Button>
             <Button
               onClick={handlePageChange(ROUTES.ABOUT_UZBEKISTAN)}

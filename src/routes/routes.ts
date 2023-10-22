@@ -9,4 +9,5 @@ export const ROUTES = {
   KHIVA: '/khiva',
   BUKHARA: '/bukhara',
   THANKS: '/thanks',
+  CONTACT_US: '/contact-us',
 };

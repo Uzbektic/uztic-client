@@ -52,7 +52,7 @@ const Bukhara = () => {
         text,
       }}
       pageSubheading={{
-        text: '- The Capital of Islamic Culture',
+        text: 'The Capital of Islamic Culture',
       }}
     />
   );
