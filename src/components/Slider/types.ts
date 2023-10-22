@@ -2,7 +2,6 @@ export interface Text {
   text: string;
   color?: string;
   fontSize?: string;
-  textAlign?: any;
 }
 
 export interface Image {
@@ -12,15 +11,17 @@ export interface Image {
 }
 
 export interface SlideImage {
-  padding?: string;
+  padding?: string; //remove
   image: Image;
-  title?: Text;
-  justifyContent?: string;
-  leftParagraph?: Text;
-  centerParagraph?: Text;
-  rightParagraph?: Text;
+  title?: Text; //remove
+  justifyContent?: string; // remove
+  leftParagraph?: Text; // remove
+  centerParagraph?: Text; // remove
+  rightParagraph?: Text; //remove
 }
 
 export interface SlideImageProps {
   slideImages: SlideImage[];
+  pageText?: Text;
+  pageHeading?: Text;
 }

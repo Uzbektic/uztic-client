@@ -14,9 +14,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { RichTextRenderer } from '../RichText';
 
-const Slider = ({ slideImages }: SlideImageProps) => {
-  const isSmallScreen = useMediaQuery('(max-width: 700px)');
-  const showSlider = useMediaQuery('(max-width: 1200px)');
+const Slider = ({ slideImages, pageHeading, pageText }: SlideImageProps) => {
+  const isSmallScreen = useMediaQuery('(max-width: 1200px)');
+
   const deviceHeight = window.innerHeight;
 
   const properties = {
@@ -74,138 +74,82 @@ const Slider = ({ slideImages }: SlideImageProps) => {
               }}
               className="container slide-content"
             >
-              <Navbar />
               <div className="slide-overlay"></div>
-              <Grid container justifyContent={'space-between'}>
-                <Grid item>{/* <ActionSpeedDial /> */}</Grid>
-                <Grid item>
-                  <div className="logo">
-                    <img
-                      src={Logo}
-                      alt="UzebikTIC Logo"
-                      style={{ width: '200px' }}
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-
-              <Container maxWidth="xl">
-                <div
-                  style={{
-                    padding: slideImage?.padding
-                      ? slideImage?.padding
-                      : isSmallScreen
-                      ? '70px 30px'
-                      : '70px 0',
-                  }}
-                >
-                  <h1
-                    className="animate__animated animate__slideInLeft"
-                    style={{
-                      color: slideImage.title?.color
-                        ? slideImage.title?.color
-                        : '#fff',
-                      textAlign: isSmallScreen
-                        ? 'left'
-                        : slideImage.title?.textAlign
-                        ? slideImage?.title?.textAlign
-                        : 'left',
-                      fontSize: isSmallScreen
-                        ? '50px'
-                        : slideImage.title?.fontSize
-                        ? slideImage.title?.fontSize
-                        : '120px',
-                    }}
-                  >
-                    {slideImage.title?.text}
-                  </h1>
-
-                  <PerfectScrollbar>
-                    <Grid
-                      container
-                      justifyContent={
-                        slideImage?.justifyContent
-                          ? slideImage?.justifyContent
-                          : 'flex-start'
-                      }
-                      spacing={2}
-                      sx={{
-                        height: showSlider ? deviceHeight - 300 : 'auto',
-                      }}
-                    >
-                      {slideImage?.leftParagraph?.text && (
-                        <Grid item xs={12} md={4}>
-                          <RichTextRenderer
-                            htmlContent={slideImage?.leftParagraph?.text}
-                            style={{
-                              color: slideImage.leftParagraph?.color
-                                ? slideImage.leftParagraph?.color
-                                : '#fff',
-                              textAlign: slideImage.leftParagraph?.textAlign
-                                ? slideImage?.leftParagraph?.textAlign
-                                : 'left',
-                              fontSize: slideImage.leftParagraph?.fontSize
-                                ? slideImage.leftParagraph?.fontSize
-                                : isSmallScreen
-                                ? '20px'
-                                : '25px',
-                            }}
-                            classNames="animate__animated animate__slideInLeft"
-                          />
-                        </Grid>
-                      )}
-
-                      {slideImage?.centerParagraph?.text && (
-                        <Grid item xs={12} md={4}>
-                          <RichTextRenderer
-                            htmlContent={slideImage?.centerParagraph?.text}
-                            style={{
-                              color: slideImage.centerParagraph?.color
-                                ? slideImage.centerParagraph?.color
-                                : '#fff',
-                              textAlign: slideImage.centerParagraph?.textAlign
-                                ? slideImage?.centerParagraph?.textAlign
-                                : 'left',
-                              fontSize: slideImage.centerParagraph?.fontSize
-                                ? slideImage.centerParagraph?.fontSize
-                                : isSmallScreen
-                                ? '20px'
-                                : '25px',
-                            }}
-                            classNames="animate__animated animate__slideInLeft"
-                          />
-                        </Grid>
-                      )}
-
-                      {slideImage?.rightParagraph?.text && (
-                        <Grid item xs={12} md={4}>
-                          <RichTextRenderer
-                            htmlContent={slideImage?.rightParagraph?.text}
-                            style={{
-                              color: slideImage.rightParagraph?.color
-                                ? slideImage.rightParagraph?.color
-                                : '#fff',
-                              textAlign: slideImage.rightParagraph?.textAlign
-                                ? slideImage?.rightParagraph?.textAlign
-                                : 'left',
-                              fontSize: slideImage.rightParagraph?.fontSize
-                                ? slideImage.rightParagraph?.fontSize
-                                : isSmallScreen
-                                ? '20px'
-                                : '25px',
-                            }}
-                            classNames="animate__animated animate__slideInLeft"
-                          />
-                        </Grid>
-                      )}
-                    </Grid>
-                  </PerfectScrollbar>
-                </div>
-              </Container>
             </div>
           </div>
         ))}
       </Slide>
+      <div
+        style={{
+          position: 'absolute',
+          top: '0%',
+          width: '100%',
+        }}
+      >
+        <Navbar />
+        <Grid container justifyContent={'flex-end'}>
+          <Grid item>
+            <div className="logo">
+              <img src={Logo} alt="UzebikTIC Logo" style={{ width: '200px' }} />
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: isSmallScreen ? '10%' : '10%',
+          left: isSmallScreen ? '10%' : '5%',
+        }}
+      >
+        <Container maxWidth="xl">
+          <div
+            style={{
+              padding: isSmallScreen ? '10px 10px 10px 0px' : '60px 0 0 0',
+            }}
+          >
+            <h1
+              className="animate__animated animate__slideInLeft"
+              style={{
+                color: pageHeading?.color ? pageHeading?.color : '#fff',
+                textAlign: 'left',
+                fontSize: isSmallScreen
+                  ? '30px'
+                  : pageHeading?.fontSize
+                  ? pageHeading?.fontSize
+                  : '120px',
+              }}
+            >
+              {pageHeading?.text}
+            </h1>
+
+            <Grid container justifyContent={'flex-start'}>
+              {pageText?.text && (
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  sx={{
+                    height: isSmallScreen ? deviceHeight - 300 : 300,
+                  }}
+                >
+                  <PerfectScrollbar>
+                    <RichTextRenderer
+                      htmlContent={pageText?.text}
+                      style={{
+                        color: '#fff',
+                        textAlign: 'left',
+                        fontSize: isSmallScreen ? '20px' : '25px',
+                      }}
+                      classNames="animate__animated animate__slideInLeft"
+                    />
+                  </PerfectScrollbar>
+                </Grid>
+              )}
+            </Grid>
+          </div>
+        </Container>
+      </div>
       <div className="apply-visa">
         <ApplyVisa />
       </div>
