@@ -52,10 +52,13 @@ const Tashkent = () => {
     <Slider
       slideImages={slideImages}
       pageHeading={{
-        text: 'Tashkent – The modern metropolis',
+        text: 'Tashkent',
         fontSize: '60px',
       }}
       pageText={{ text }}
+      pageSubheading={{
+        text: '– The modern metropolis',
+      }}
     />
   );
 };

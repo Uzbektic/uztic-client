@@ -45,11 +45,14 @@ const Bukhara = () => {
     <Slider
       slideImages={slideImages}
       pageHeading={{
-        text: 'Bukhara - The Capital of Islamic Culture',
+        text: 'Bukhara',
         fontSize: '60px',
       }}
       pageText={{
         text,
+      }}
+      pageSubheading={{
+        text: '- The Capital of Islamic Culture',
       }}
     />
   );

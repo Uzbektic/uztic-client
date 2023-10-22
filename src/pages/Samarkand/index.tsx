@@ -47,11 +47,14 @@ const Samarkand = () => {
     <Slider
       slideImages={slideImages}
       pageHeading={{
-        text: 'Samarkand - Crossroads of cultures',
+        text: 'Samarkand',
         fontSize: '60px',
       }}
       pageText={{
         text,
+      }}
+      pageSubheading={{
+        text: '- Crossroads of cultures',
       }}
     />
   );

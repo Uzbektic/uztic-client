@@ -45,10 +45,11 @@ const Khiva = () => {
     <Slider
       slideImages={slideImages}
       pageHeading={{
-        text: 'Khiva - The capital of the Turkic world',
+        text: 'Khiva',
         fontSize: '60px',
       }}
       pageText={{ text }}
+      pageSubheading={{ text: '- The capital of the Turkic world' }}
     />
   );
 };

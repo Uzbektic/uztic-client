@@ -14,7 +14,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { RichTextRenderer } from '../RichText';
 
-const Slider = ({ slideImages, pageHeading, pageText }: SlideImageProps) => {
+const Slider = ({
+  slideImages,
+  pageHeading,
+  pageText,
+  pageSubheading,
+}: SlideImageProps) => {
   const isSmallScreen = useMediaQuery('(max-width: 1200px)');
 
   const deviceHeight = window.innerHeight;
@@ -122,6 +127,24 @@ const Slider = ({ slideImages, pageHeading, pageText }: SlideImageProps) => {
             >
               {pageHeading?.text}
             </h1>
+
+            {pageSubheading?.text && (
+              <p
+                className="animate__animated animate__slideInLeft"
+                style={{
+                  color: pageSubheading?.color ? pageSubheading?.color : '#fff',
+                  textAlign: 'left',
+                  fontSize: isSmallScreen
+                    ? '25px'
+                    : pageSubheading?.fontSize
+                    ? pageSubheading?.fontSize
+                    : '30px',
+                  marginBottom: 20,
+                }}
+              >
+                {pageSubheading?.text}
+              </p>
+            )}
 
             <Grid container justifyContent={'flex-start'}>
               {pageText?.text && (
