@@ -5,7 +5,7 @@ import { CustomColors } from '../../theme';
 
 const ContactUs = () => {
   let text = `<strong>Uzbekistan Tourist Information Center Head Office.</strong>
-  <br />
+  <br /> 
   55 Silk Tower, Civic Center Bahria Town Phase 4 Islamabad. <strong>Tel</strong> +92 300 9745458 & +92 300 9745456, <strong>Email</strong>: <a href="mailto:tic.uzbek@gmail.com" style="color: ${CustomColors.offWhite}" target="_blank">tic.uzbek@gmail.com</a>
   <br /><br />
   <strong>Lahore Office </strong>
