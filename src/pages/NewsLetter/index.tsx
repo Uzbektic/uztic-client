@@ -5,6 +5,7 @@ import NewsLetter1Image from '../../assets/images/news-letters/1.png';
 import NewsLetter2Image from '../../assets/images/news-letters/2.png';
 import NewsLetter3Image from '../../assets/images/news-letters/3.png';
 import NewsLetter4Image from '../../assets/images/news-letters/4.png';
+import NewsLetter5Image from '../../assets/images/news-letters/5.png';
 import Navbar from '../../components/Navbar';
 
 const NewsLetter = () => {
@@ -82,6 +83,21 @@ const NewsLetter = () => {
                 />
               </a>
               <p>August, 2023</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <div
+              style={styles.newsLetterContainer}
+              className="animate__animated animate__fadeIn"
+            >
+              <a href={require('../../pdfs/nov-2023.pdf')} download>
+                <img
+                  src={NewsLetter5Image}
+                  alt="News Letter For November, 2023"
+                  style={styles.newsLetterImage}
+                />
+              </a>
+              <p>November, 2023</p>
             </div>
           </Grid>
         </Grid>
