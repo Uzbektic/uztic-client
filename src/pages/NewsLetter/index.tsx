@@ -30,7 +30,7 @@ const NewsLetter = () => {
               className="animate__animated animate__fadeIn"
             >
               <a
-                href={require('../../pdfs/sept-2022.pdf')}
+                href={'https://heyzine.com/flip-book/8f94c75977.html'}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -62,7 +62,7 @@ const NewsLetter = () => {
               className="animate__animated animate__fadeIn"
             >
               <a
-                href={require('../../pdfs/jan-2023.pdf')}
+                href={'https://heyzine.com/flip-book/050666db91.html'}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -94,7 +94,7 @@ const NewsLetter = () => {
               className="animate__animated animate__fadeIn"
             >
               <a
-                href={require('../../pdfs/apr-2023.pdf')}
+                href={'https://heyzine.com/flip-book/8cd5716351.html'}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -125,7 +125,7 @@ const NewsLetter = () => {
               className="animate__animated animate__fadeIn"
             >
               <a
-                href={require('../../pdfs/aug-2023.pdf')}
+                href={'https://heyzine.com/flip-book/d1995bc809.html'}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -156,7 +156,7 @@ const NewsLetter = () => {
               className="animate__animated animate__fadeIn"
             >
               <a
-                href={require('../../pdfs/nov-2023.pdf')}
+                href={'https://heyzine.com/flip-book/b719e491c5.html'}
                 rel="noreferrer"
                 target="_blank"
               >
