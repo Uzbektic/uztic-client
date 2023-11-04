@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Button, Container, Grid } from '@mui/material';
 import React from 'react';
 import { CustomColors } from '../../theme';
 import NewsLetter1Image from '../../assets/images/news-letters/1.png';
@@ -29,14 +29,31 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a href={require('../../pdfs/sept-2022.pdf')} download>
+              <a
+                href={require('../../pdfs/sept-2022.pdf')}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <img
                   src={NewsLetter3Image}
                   alt="News Letter For September, 2022"
                   style={styles.newsLetterImage}
                 />
               </a>
+
               <p>September, 2022</p>
+              <a
+                href={require('../../pdfs/sept-2022.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
             </div>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -44,7 +61,11 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a href={require('../../pdfs/jan-2023.pdf')} download>
+              <a
+                href={require('../../pdfs/jan-2023.pdf')}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <img
                   src={NewsLetter2Image}
                   alt="News Letter For January, 2023"
@@ -53,6 +74,18 @@ const NewsLetter = () => {
               </a>
 
               <p>January, 2023</p>
+              <a
+                href={require('../../pdfs/jan-2023.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
             </div>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -60,7 +93,11 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a href={require('../../pdfs/apr-2023.pdf')} download>
+              <a
+                href={require('../../pdfs/apr-2023.pdf')}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <img
                   src={NewsLetter1Image}
                   alt="News Letter For April, 2023"
@@ -68,6 +105,18 @@ const NewsLetter = () => {
                 />
               </a>
               <p>April, 2023</p>
+              <a
+                href={require('../../pdfs/apr-2023.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
             </div>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -75,7 +124,11 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a href={require('../../pdfs/aug-2023.pdf')} download>
+              <a
+                href={require('../../pdfs/aug-2023.pdf')}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <img
                   src={NewsLetter4Image}
                   alt="News Letter For August, 2023"
@@ -83,6 +136,18 @@ const NewsLetter = () => {
                 />
               </a>
               <p>August, 2023</p>
+              <a
+                href={require('../../pdfs/aug-2023.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
             </div>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -90,7 +155,11 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a href={require('../../pdfs/nov-2023.pdf')} download>
+              <a
+                href={require('../../pdfs/nov-2023.pdf')}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <img
                   src={NewsLetter5Image}
                   alt="News Letter For November, 2023"
@@ -98,6 +167,18 @@ const NewsLetter = () => {
                 />
               </a>
               <p>November, 2023</p>
+              <a
+                href={require('../../pdfs/nov-2023.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
             </div>
           </Grid>
         </Grid>
