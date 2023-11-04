@@ -7,8 +7,10 @@ import NewsLetter3Image from '../../assets/images/news-letters/3.png';
 import NewsLetter4Image from '../../assets/images/news-letters/4.png';
 import NewsLetter5Image from '../../assets/images/news-letters/5.png';
 import Navbar from '../../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const NewsLetter = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar bgPrimary={true} />
@@ -29,17 +31,12 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a
-                href={'https://heyzine.com/flip-book/8f94c75977.html'}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <img
-                  src={NewsLetter3Image}
-                  alt="News Letter For September, 2022"
-                  style={styles.newsLetterImage}
-                />
-              </a>
+              <img
+                src={NewsLetter3Image}
+                alt="News Letter For September, 2022"
+                style={styles.newsLetterImage}
+                onClick={() => navigate('/view-pdf/0')}
+              />
 
               <p>September, 2022</p>
               <a
@@ -61,17 +58,12 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a
-                href={'https://heyzine.com/flip-book/050666db91.html'}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <img
-                  src={NewsLetter2Image}
-                  alt="News Letter For January, 2023"
-                  style={styles.newsLetterImage}
-                />
-              </a>
+              <img
+                src={NewsLetter2Image}
+                alt="News Letter For January, 2023"
+                style={styles.newsLetterImage}
+                onClick={() => navigate('/view-pdf/1')}
+              />
 
               <p>January, 2023</p>
               <a
@@ -93,17 +85,13 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a
-                href={'https://heyzine.com/flip-book/8cd5716351.html'}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <img
-                  src={NewsLetter1Image}
-                  alt="News Letter For April, 2023"
-                  style={styles.newsLetterImage}
-                />
-              </a>
+              <img
+                src={NewsLetter1Image}
+                alt="News Letter For April, 2023"
+                style={styles.newsLetterImage}
+                onClick={() => navigate('/view-pdf/2')}
+              />
+
               <p>April, 2023</p>
               <a
                 href={require('../../pdfs/apr-2023.pdf')}
@@ -124,17 +112,13 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a
-                href={'https://heyzine.com/flip-book/d1995bc809.html'}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <img
-                  src={NewsLetter4Image}
-                  alt="News Letter For August, 2023"
-                  style={styles.newsLetterImage}
-                />
-              </a>
+              <img
+                src={NewsLetter4Image}
+                alt="News Letter For August, 2023"
+                style={styles.newsLetterImage}
+                onClick={() => navigate('/view-pdf/3')}
+              />
+
               <p>August, 2023</p>
               <a
                 href={require('../../pdfs/aug-2023.pdf')}
@@ -155,17 +139,13 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <a
-                href={'https://heyzine.com/flip-book/b719e491c5.html'}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <img
-                  src={NewsLetter5Image}
-                  alt="News Letter For November, 2023"
-                  style={styles.newsLetterImage}
-                />
-              </a>
+              <img
+                src={NewsLetter5Image}
+                alt="News Letter For November, 2023"
+                style={styles.newsLetterImage}
+                onClick={() => navigate('/view-pdf/4')}
+              />
+
               <p>November, 2023</p>
               <a
                 href={require('../../pdfs/nov-2023.pdf')}

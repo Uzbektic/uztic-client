@@ -10,4 +10,5 @@ export const ROUTES = {
   BUKHARA: '/bukhara',
   THANKS: '/thanks',
   CONTACT_US: '/contact-us',
+  PDF_VIEW: '/view-pdf/:newsletter',
 };

@@ -12,6 +12,7 @@ import Khiva from '../pages/Khiva';
 import NotFound from '../pages/Errors/404';
 import Thanks from '../pages/Extras/Thanks';
 import ContactUs from '../pages/ContactUs';
+import ViewPdf from '../pages/ViewPdf';
 
 function RouteList() {
   return (
@@ -27,6 +28,7 @@ function RouteList() {
         <Route path={ROUTES.BUKHARA} element={<Bukhara />} />
         <Route path={ROUTES.KHIVA} element={<Khiva />} />
         <Route path={ROUTES.NEWS_LETTERS} element={<NewsLetter />} />
+        <Route path={ROUTES.PDF_VIEW} element={<ViewPdf />} />
         <Route path={ROUTES.THANKS} element={<Thanks />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
