@@ -8,6 +8,7 @@ import NewsLetter4Image from '../../assets/images/news-letters/4.png';
 import NewsLetter5Image from '../../assets/images/news-letters/5.png';
 import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import InteractiveTooltip from '../../components/Tooltip';
 
 const NewsLetter = () => {
   const navigate = useNavigate();
@@ -31,14 +32,16 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <img
-                src={NewsLetter3Image}
-                alt="News Letter For September, 2022"
-                style={styles.newsLetterImage}
-                onClick={() => navigate('/view-pdf/0')}
-              />
-
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter3Image}
+                  alt="News Letter For September, 2022"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/0')}
+                />
+              </InteractiveTooltip>
               <p>September, 2022</p>
+
               <a
                 href={require('../../pdfs/sept-2022.pdf')}
                 rel="noreferrer"
@@ -58,12 +61,14 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <img
-                src={NewsLetter2Image}
-                alt="News Letter For January, 2023"
-                style={styles.newsLetterImage}
-                onClick={() => navigate('/view-pdf/1')}
-              />
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter2Image}
+                  alt="News Letter For January, 2023"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/1')}
+                />
+              </InteractiveTooltip>
 
               <p>January, 2023</p>
               <a
@@ -85,12 +90,14 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <img
-                src={NewsLetter1Image}
-                alt="News Letter For April, 2023"
-                style={styles.newsLetterImage}
-                onClick={() => navigate('/view-pdf/2')}
-              />
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter1Image}
+                  alt="News Letter For April, 2023"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/2')}
+                />
+              </InteractiveTooltip>
 
               <p>April, 2023</p>
               <a
@@ -112,12 +119,14 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <img
-                src={NewsLetter4Image}
-                alt="News Letter For August, 2023"
-                style={styles.newsLetterImage}
-                onClick={() => navigate('/view-pdf/3')}
-              />
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter4Image}
+                  alt="News Letter For August, 2023"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/3')}
+                />
+              </InteractiveTooltip>
 
               <p>August, 2023</p>
               <a
@@ -139,12 +148,14 @@ const NewsLetter = () => {
               style={styles.newsLetterContainer}
               className="animate__animated animate__fadeIn"
             >
-              <img
-                src={NewsLetter5Image}
-                alt="News Letter For November, 2023"
-                style={styles.newsLetterImage}
-                onClick={() => navigate('/view-pdf/4')}
-              />
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter5Image}
+                  alt="News Letter For November, 2023"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/4')}
+                />
+              </InteractiveTooltip>
 
               <p>November, 2023</p>
               <a

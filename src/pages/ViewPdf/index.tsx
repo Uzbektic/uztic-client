@@ -22,7 +22,7 @@ const PDF = () => {
         style={{
           position: 'relative',
           width: '100%',
-          height: '92vh',
+          height: '93vh',
         }}
       >
         <iframe
