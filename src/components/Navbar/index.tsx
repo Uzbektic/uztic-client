@@ -171,19 +171,19 @@ const Navbar = ({ bgPrimary = false }: NavbarProps) => {
                 >
                   {'News Letters'}
                 </Typography>
-                <MenuItem onClick={handlePageChange(ROUTES.CONTACT_US)}>
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      color:
-                        currentPath === ROUTES.CONTACT_US
-                          ? CustomColors.primary
-                          : 'inherit',
-                    }}
-                  >
-                    {'Contact Us'}
-                  </Typography>
-                </MenuItem>
+              </MenuItem>
+              <MenuItem onClick={handlePageChange(ROUTES.CONTACT_US)}>
+                <Typography
+                  textAlign="center"
+                  sx={{
+                    color:
+                      currentPath === ROUTES.CONTACT_US
+                        ? CustomColors.primary
+                        : 'inherit',
+                  }}
+                >
+                  {'Contact Us'}
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>
