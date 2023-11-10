@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 const listings: { [key: string]: string } = {
   '0': 'https://online.fliphtml5.com/xjgcf/erhs',
   '1': 'https://online.fliphtml5.com/xjgcf/gtiy',
-  '2': 'https://online.fliphtml5.com/xjgcf/yfgk',
-  '3': 'https://online.fliphtml5.com/xjgcf/ukxg',
-  '4': 'https://online.fliphtml5.com/xjgcf/nznw',
+  '2': 'https://online.fliphtml5.com/xjgcf/ukxg',
+  '3': 'https://online.fliphtml5.com/xjgcf/yfgk',
+  '4': 'https://online.fliphtml5.com/xjgcf/ikcv',
 };
 
 const PDF = () => {

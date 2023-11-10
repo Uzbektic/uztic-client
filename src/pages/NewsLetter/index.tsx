@@ -92,7 +92,7 @@ const NewsLetter = () => {
             >
               <InteractiveTooltip title="Click to view">
                 <img
-                  src={NewsLetter1Image}
+                  src={NewsLetter4Image}
                   alt="News Letter For April, 2023"
                   style={styles.newsLetterImage}
                   onClick={() => navigate('/view-pdf/2')}
@@ -121,13 +121,12 @@ const NewsLetter = () => {
             >
               <InteractiveTooltip title="Click to view">
                 <img
-                  src={NewsLetter4Image}
+                  src={NewsLetter1Image}
                   alt="News Letter For August, 2023"
                   style={styles.newsLetterImage}
                   onClick={() => navigate('/view-pdf/3')}
                 />
               </InteractiveTooltip>
-
               <p>August, 2023</p>
               <a
                 href={require('../../pdfs/aug-2023.pdf')}
