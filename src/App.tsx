@@ -7,7 +7,6 @@ import { Mixpanel } from './services/mixpanel';
 
 function App() {
   useEffect(() => {
-    console.log('useEffect is running');
     Mixpanel.track_pageview();
   }, []);
 
