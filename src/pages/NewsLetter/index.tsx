@@ -6,6 +6,7 @@ import NewsLetter2Image from '../../assets/images/news-letters/2.png';
 import NewsLetter3Image from '../../assets/images/news-letters/3.png';
 import NewsLetter4Image from '../../assets/images/news-letters/4.png';
 import NewsLetter5Image from '../../assets/images/news-letters/5.png';
+import NewsLetter6Image from '../../assets/images/news-letters/6.png';
 import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import InteractiveTooltip from '../../components/Tooltip';
@@ -159,6 +160,36 @@ const NewsLetter = () => {
               <p>November, 2023</p>
               <a
                 href={require('../../pdfs/nov-2023.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
+            </div>
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={3}>
+            <div
+              style={styles.newsLetterContainer}
+              className="animate__animated animate__fadeIn"
+            >
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter6Image}
+                  alt="News Letter For November, 2024"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/5')}
+                />
+              </InteractiveTooltip>
+
+              <p>March, 2024</p>
+              <a
+                href={require('../../pdfs/mar-2024.pdf')}
                 rel="noreferrer"
                 download
               >
