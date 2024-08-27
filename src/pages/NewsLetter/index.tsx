@@ -8,6 +8,8 @@ import NewsLetter4Image from '../../assets/images/news-letters/4.png';
 import NewsLetter5Image from '../../assets/images/news-letters/5.png';
 import NewsLetter6Image from '../../assets/images/news-letters/6.png';
 import NewsLetter7Image from '../../assets/images/news-letters/7.png';
+import NewsLetter8Image from '../../assets/images/news-letters/8.png';
+import NewsLetter9Image from '../../assets/images/news-letters/9.png';
 import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import InteractiveTooltip from '../../components/Tooltip';
@@ -221,6 +223,66 @@ const NewsLetter = () => {
               <p>June, 2024</p>
               <a
                 href={require('../../pdfs/june-2024.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
+            </div>
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={3}>
+            <div
+              style={styles.newsLetterContainer}
+              className="animate__animated animate__fadeIn"
+            >
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter8Image}
+                  alt="Special Edition"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/7')}
+                />
+              </InteractiveTooltip>
+
+              <p>Special Edition</p>
+              <a
+                href={require('../../pdfs/special.pdf')}
+                rel="noreferrer"
+                download
+              >
+                <Button
+                  variant="contained"
+                  style={{ width: '100%', marginTop: 10 }}
+                >
+                  Download
+                </Button>
+              </a>
+            </div>
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={3}>
+            <div
+              style={styles.newsLetterContainer}
+              className="animate__animated animate__fadeIn"
+            >
+              <InteractiveTooltip title="Click to view">
+                <img
+                  src={NewsLetter9Image}
+                  alt="Food Tourism"
+                  style={styles.newsLetterImage}
+                  onClick={() => navigate('/view-pdf/8')}
+                />
+              </InteractiveTooltip>
+
+              <p>Food Tourism</p>
+              <a
+                href={require('../../pdfs/food.pdf')}
                 rel="noreferrer"
                 download
               >

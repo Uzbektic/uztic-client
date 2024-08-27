@@ -10,6 +10,8 @@ const listings: { [key: string]: string } = {
   '4': 'https://online.fliphtml5.com/xjgcf/ikcv',
   '5': 'https://online.fliphtml5.com/xjgcf/fjyj/',
   '6': 'https://online.fliphtml5.com/xjgcf/rlby/',
+  '7': 'https://online.fliphtml5.com/xjgcf/vxmy/',
+  '8': 'https://online.fliphtml5.com/xjgcf/ofqz/',
 };
 
 const PDF = () => {
