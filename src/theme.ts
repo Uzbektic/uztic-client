@@ -13,6 +13,9 @@ export const CustomColors = {
   lightBorder: '#D1CECE',
   error: '#ff1744',
   disabled: '#E8EAED;',
+  success: '#00783B',
+  warning: '#ff9800',
+  fog: '#DBD9DE',
 };
 
 export const theme = createTheme({
@@ -41,7 +44,7 @@ export const theme = createTheme({
     },
     text: {
       primary: CustomColors.black,
-      secondary: CustomColors.white,
+      secondary: CustomColors.black,
       secondaryDarker: CustomColors.grey,
     },
     border: {

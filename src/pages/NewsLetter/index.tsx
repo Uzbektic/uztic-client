@@ -1,4 +1,4 @@
-import { Button, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import React from 'react';
 import { CustomColors } from '../../theme';
 import NewsLetter1Image from '../../assets/images/news-letters/1.png';
@@ -11,11 +11,75 @@ import NewsLetter7Image from '../../assets/images/news-letters/7.png';
 import NewsLetter8Image from '../../assets/images/news-letters/8.png';
 import NewsLetter9Image from '../../assets/images/news-letters/9.png';
 import Navbar from '../../components/Navbar';
-import { useNavigate } from 'react-router-dom';
-import InteractiveTooltip from '../../components/Tooltip';
+import NewsLetterItem from '../../components/NewsLetterItem';
+
+const newsletters = [
+  {
+    image: NewsLetter1Image,
+    title: 'News Letter For August, 2023',
+    date: 'August, 2023',
+    pdfPath: require('../../pdfs/aug-2023.pdf'),
+    viewLink: '/view-pdf/3',
+  },
+  {
+    image: NewsLetter2Image,
+    title: 'News Letter For January, 2023',
+    date: 'January, 2023',
+    pdfPath: require('../../pdfs/jan-2023.pdf'),
+    viewLink: '/view-pdf/1',
+  },
+  {
+    image: NewsLetter3Image,
+    title: 'News Letter For September, 2022',
+    date: 'September, 2022',
+    pdfPath: require('../../pdfs/sept-2022.pdf'),
+    viewLink: '/view-pdf/0',
+  },
+  {
+    image: NewsLetter4Image,
+    title: 'News Letter For April, 2023',
+    date: 'April, 2023',
+    pdfPath: require('../../pdfs/apr-2023.pdf'),
+    viewLink: '/view-pdf/2',
+  },
+  {
+    image: NewsLetter5Image,
+    title: 'News Letter For November, 2023',
+    date: 'November, 2023',
+    pdfPath: require('../../pdfs/nov-2023.pdf'),
+    viewLink: '/view-pdf/4',
+  },
+  {
+    image: NewsLetter6Image,
+    title: 'News Letter For March, 2024',
+    date: 'March, 2024',
+    pdfPath: require('../../pdfs/mar-2024.pdf'),
+    viewLink: '/view-pdf/5',
+  },
+  {
+    image: NewsLetter7Image,
+    title: 'News Letter For June, 2024',
+    date: 'June, 2024',
+    pdfPath: require('../../pdfs/june-2024.pdf'),
+    viewLink: '/view-pdf/6',
+  },
+  {
+    image: NewsLetter8Image,
+    title: 'Special Edition',
+    date: 'Special Edition',
+    pdfPath: require('../../pdfs/special.pdf'),
+    viewLink: '/view-pdf/7',
+  },
+  {
+    image: NewsLetter9Image,
+    title: 'Food Tourism',
+    date: 'Food Tourism',
+    pdfPath: require('../../pdfs/food.pdf'),
+    viewLink: '/view-pdf/8',
+  },
+];
 
 const NewsLetter = () => {
-  const navigate = useNavigate();
   return (
     <>
       <Navbar bgPrimary={true} />
@@ -29,272 +93,11 @@ const NewsLetter = () => {
           </h1>
         </Container>
       </div>
-      <Container maxWidth="xl" sx={{ mt: 2 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter3Image}
-                  alt="News Letter For September, 2022"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/0')}
-                />
-              </InteractiveTooltip>
-              <p>September, 2022</p>
-
-              <a
-                href={require('../../pdfs/sept-2022.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter2Image}
-                  alt="News Letter For January, 2023"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/1')}
-                />
-              </InteractiveTooltip>
-
-              <p>January, 2023</p>
-              <a
-                href={require('../../pdfs/jan-2023.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter4Image}
-                  alt="News Letter For April, 2023"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/2')}
-                />
-              </InteractiveTooltip>
-
-              <p>April, 2023</p>
-              <a
-                href={require('../../pdfs/apr-2023.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter1Image}
-                  alt="News Letter For August, 2023"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/3')}
-                />
-              </InteractiveTooltip>
-              <p>August, 2023</p>
-              <a
-                href={require('../../pdfs/aug-2023.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter5Image}
-                  alt="News Letter For November, 2023"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/4')}
-                />
-              </InteractiveTooltip>
-
-              <p>November, 2023</p>
-              <a
-                href={require('../../pdfs/nov-2023.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter6Image}
-                  alt="News Letter For November, 2024"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/5')}
-                />
-              </InteractiveTooltip>
-
-              <p>March, 2024</p>
-              <a
-                href={require('../../pdfs/mar-2024.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter7Image}
-                  alt="News Letter For Jun2, 2024"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/6')}
-                />
-              </InteractiveTooltip>
-
-              <p>June, 2024</p>
-              <a
-                href={require('../../pdfs/june-2024.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter8Image}
-                  alt="Special Edition"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/7')}
-                />
-              </InteractiveTooltip>
-
-              <p>Special Edition</p>
-              <a
-                href={require('../../pdfs/special.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3}>
-            <div
-              style={styles.newsLetterContainer}
-              className="animate__animated animate__fadeIn"
-            >
-              <InteractiveTooltip title="Click to view">
-                <img
-                  src={NewsLetter9Image}
-                  alt="Food Tourism"
-                  style={styles.newsLetterImage}
-                  onClick={() => navigate('/view-pdf/8')}
-                />
-              </InteractiveTooltip>
-
-              <p>Food Tourism</p>
-              <a
-                href={require('../../pdfs/food.pdf')}
-                rel="noreferrer"
-                download
-              >
-                <Button
-                  variant="contained"
-                  style={{ width: '100%', marginTop: 10 }}
-                >
-                  Download
-                </Button>
-              </a>
-            </div>
-          </Grid>
+      <Container maxWidth="xl">
+        <Grid container spacing={2} sx={{ mt: 2 }}>
+          {newsletters.map((newsletter, index) => (
+            <NewsLetterItem key={index} {...newsletter} />
+          ))}
         </Grid>
       </Container>
     </>

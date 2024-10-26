@@ -4,7 +4,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Logo from '../../assets/images/logo.jpeg';
 import { Container, Grid } from '@mui/material';
-import ApplyVisa from '../ApplyVisa';
 import 'react-slideshow-image/dist/styles.css';
 import './Slider.css';
 import { CustomColors } from '../../theme';
@@ -13,7 +12,6 @@ import { SlideImageProps } from './types';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { RichTextRenderer } from '../RichText';
-import SocialLinks from '../SocialLinks';
 
 const Slider = ({
   slideImages,
@@ -173,10 +171,6 @@ const Slider = ({
             </Grid>
           </div>
         </Container>
-      </div>
-      <div className="apply-visa">
-        <SocialLinks />
-        <ApplyVisa />
       </div>
     </div>
   );

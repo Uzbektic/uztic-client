@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'animate.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const root = ReactDOM.createRoot(
