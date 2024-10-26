@@ -1,6 +1,18 @@
 import React from 'react';
 import { Divider, Grid } from '@mui/material';
 import { styles } from '../../styles';
+import MalikaBukharaHotel from './MalikaBukhara';
+import GardenPlazaHotel from './GardenPlaza';
+import MercureHotel from './Mercure';
+import OmarKhayamHotel from './OmarKhayam';
+import ParadiseHotel from './Paradise';
+import RoyalHotel from './Royal';
+import ShahidZarafshanHotel from './ShahidZarafshan';
+import TuronCityHotel from './TuronCity';
+import WyndhamHotel from './Wyndham';
+import DunyoHotel from './Dunyo';
+import GumbazHotel from './Gumbaz';
+import LyabiHotel from './Lyabi';
 
 const BukharaHotels = () => {
   return (
@@ -18,6 +30,19 @@ const BukharaHotels = () => {
 
         <Divider />
       </Grid>
+
+      <MalikaBukharaHotel />
+      <GardenPlazaHotel />
+      <MercureHotel />
+      <OmarKhayamHotel />
+      <ParadiseHotel />
+      <RoyalHotel />
+      <ShahidZarafshanHotel />
+      <TuronCityHotel />
+      <WyndhamHotel />
+      <DunyoHotel />
+      <GumbazHotel />
+      <LyabiHotel />
     </>
   );
 };

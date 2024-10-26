@@ -168,4 +168,83 @@ export interface CalculatorFormData {
   samarkandHotel__eastStar__standard__room: boolean | undefined | string;
   samarkandHotel__eastStar__deluxe: boolean;
   samarkandHotel__eastStar__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__malikaBukhara__standard: boolean;
+  bukharaHotel__malikaBukhara__standard__room: boolean | undefined | string;
+  bukharaHotel__malikaBukhara__triple: boolean;
+  bukharaHotel__malikaBukhara__triple__room: boolean | undefined | string;
+
+  bukharaHotel__gardenPlaza__standard: boolean;
+  bukharaHotel__gardenPlaza__standard__room: boolean | undefined | string;
+  bukharaHotel__gardenPlaza__triple: boolean;
+  bukharaHotel__gardenPlaza__triple__room: boolean | undefined | string;
+  bukharaHotel__gardenPlaza__deluxe: boolean;
+  bukharaHotel__gardenPlaza__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__mercure__classic: boolean;
+  bukharaHotel__mercure__classic__room: boolean | undefined | string;
+  bukharaHotel__mercure__superior: boolean;
+  bukharaHotel__mercure__superior__room: boolean | undefined | string;
+  bukharaHotel__mercure__privilege: boolean;
+  bukharaHotel__mercure__privilege__room: boolean | undefined | string;
+
+  bukharaHotel__omarKhayam__standard: boolean;
+  bukharaHotel__omarKhayam__standard__room: boolean | undefined | string;
+  bukharaHotel__omarKhayam__triple: boolean;
+  bukharaHotel__omarKhayam__triple__room: boolean | undefined | string;
+
+  bukharaHotel__paradise__standard: boolean;
+  bukharaHotel__paradise__standard__room: boolean | undefined | string;
+  bukharaHotel__paradise__triple: boolean;
+  bukharaHotel__paradise__triple__room: boolean | undefined | string;
+  bukharaHotel__paradise__deluxe: boolean;
+  bukharaHotel__paradise__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__royal__standard: boolean;
+  bukharaHotel__royal__standard__room: boolean | undefined | string;
+  bukharaHotel__royal__triple: boolean;
+  bukharaHotel__royal__triple__room: boolean | undefined | string;
+
+  bukharaHotel__shahidZarafshan__standard: boolean;
+  bukharaHotel__shahidZarafshan__standard__room: boolean | undefined | string;
+  bukharaHotel__shahidZarafshan__deluxe: boolean;
+  bukharaHotel__shahidZarafshan__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__turonCity__standard: boolean;
+  bukharaHotel__turonCity__standard__room: boolean | undefined | string;
+  bukharaHotel__turonCity__deluxe: boolean;
+  bukharaHotel__turonCity__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__wyndham__standard: boolean;
+  bukharaHotel__wyndham__standard__room: boolean | undefined | string;
+  bukharaHotel__wyndham__deluxe: boolean;
+  bukharaHotel__wyndham__deluxe__room: boolean | undefined | string;
+
+  bukharaHotel__dunyo__standard: boolean;
+  bukharaHotel__dunyo__standard__room: boolean | undefined | string;
+  bukharaHotel__dunyo__triple: boolean;
+  bukharaHotel__dunyo__triple__room: boolean | undefined | string;
+
+  bukharaHotel__gumbaz__standard: boolean;
+  bukharaHotel__gumbaz__standard__room: boolean | undefined | string;
+  bukharaHotel__gumbaz__triple: boolean;
+  bukharaHotel__gumbaz__triple__room: boolean | undefined | string;
+
+  bukharaHotel__lyabi__standard: boolean;
+  bukharaHotel__lyabi__standard__room: boolean | undefined | string;
+
+  khivaHotel__asia__standard: boolean;
+  khivaHotel__asia__standard__room: boolean | undefined | string;
+  khivaHotel__asia__triple: boolean;
+  khivaHotel__asia__triple__room: boolean | undefined | string;
+
+  khivaHotel__bankir__standard: boolean;
+  khivaHotel__bankir__standard__room: boolean | undefined | string;
+  khivaHotel__bankir__triple: boolean;
+  khivaHotel__bankir__triple__room: boolean | undefined | string;
+
+  khivaHotel__orientStar__standard: boolean;
+  khivaHotel__orientStar__standard__room: boolean | undefined | string;
+  khivaHotel__orientStar__triple: boolean;
+  khivaHotel__orientStar__triple__room: boolean | undefined | string;
 }

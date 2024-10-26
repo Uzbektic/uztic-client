@@ -1,6 +1,9 @@
 import React from 'react';
 import { Divider, Grid } from '@mui/material';
 import { styles } from '../../styles';
+import AsiaHotel from './Asia';
+import BankirHotel from './Bankir';
+import OrientStarHotel from './OrientStar';
 
 const KhivaHotels = () => {
   return (
@@ -18,6 +21,10 @@ const KhivaHotels = () => {
 
         <Divider />
       </Grid>
+
+      <AsiaHotel />
+      <BankirHotel />
+      <OrientStarHotel />
     </>
   );
 };

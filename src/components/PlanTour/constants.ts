@@ -323,3 +323,167 @@ export const SAMARKAND_HOTEL_RATES = {
     },
   },
 };
+
+export const BUKHARA_HOTEL_RATES = {
+  malikaBukhara: {
+    standard: {
+      single: 80,
+      double: 100,
+    },
+    triple: {
+      single: 130,
+      double: 130,
+    },
+  },
+  gardenPlaza: {
+    standard: {
+      single: 55,
+      double: 85,
+    },
+    triple: {
+      single: 125,
+      double: 125,
+    },
+    deluxe: {
+      single: 125,
+      double: 125,
+    },
+  },
+  mercure: {
+    classic: {
+      single: 125,
+      double: 145,
+    },
+    superior: {
+      single: 135,
+      double: 155,
+    },
+    privilege: {
+      single: 160,
+      double: 180,
+    },
+  },
+  omarKhayam: {
+    standard: {
+      single: 80,
+      double: 100,
+    },
+    triple: {
+      single: 130,
+      double: 130,
+    },
+  },
+  paradise: {
+    standard: {
+      single: 80,
+      double: 110,
+    },
+    triple: {
+      single: 155,
+      double: 155,
+    },
+    deluxe: {
+      single: 85,
+      double: 125,
+    },
+  },
+  royal: {
+    standard: {
+      single: 65,
+      double: 95,
+    },
+    triple: {
+      single: 145,
+      double: 145,
+    },
+  },
+  shahidZarafshan: {
+    standard: {
+      single: 75,
+      double: 95,
+    },
+    deluxe: {
+      single: 100,
+      double: 135,
+    },
+  },
+  turonCity: {
+    standard: {
+      single: 60,
+      double: 85,
+    },
+    deluxe: {
+      single: 115,
+      double: 155,
+    },
+  },
+  wyndham: {
+    standard: {
+      single: 95,
+      double: 120,
+    },
+    deluxe: {
+      single: 250,
+      double: 250,
+    },
+  },
+  dunyo: {
+    standard: {
+      single: 50,
+      double: 75,
+    },
+    triple: {
+      single: 100,
+      double: 100,
+    },
+  },
+  gumbaz: {
+    standard: {
+      single: 40,
+      double: 60,
+    },
+    triple: {
+      single: 110,
+      double: 110,
+    },
+  },
+  lyabi: {
+    standard: {
+      single: 50,
+      double: 80,
+    },
+  },
+};
+
+export const KHIVA_HOTEL_RATES = {
+  asia: {
+    standard: {
+      single: 65,
+      double: 85,
+    },
+    triple: {
+      single: 145,
+      double: 145,
+    },
+  },
+  bankir: {
+    standard: {
+      single: 65,
+      double: 95,
+    },
+    triple: {
+      single: 120,
+      double: 120,
+    },
+  },
+  orientStar: {
+    standard: {
+      single: 65,
+      double: 75,
+    },
+    triple: {
+      single: 130,
+      double: 130,
+    },
+  },
+};
