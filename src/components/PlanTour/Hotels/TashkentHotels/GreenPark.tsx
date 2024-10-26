@@ -13,12 +13,11 @@ import {
 } from '@mui/material';
 import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
 
-const GabrielleHotel = () => {
+const GreenParkHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__gabrielle__standard: 0,
-    tashkentHotel__gabrielle__panoramic: 0,
-    tashkentHotel__gabrielle__royal: 0,
-    tashkentHotel__gabrielle__apartment: 0,
+    tashkentHotel__greenPark__standard: 0,
+    tashkentHotel__greenPark__junior: 0,
+    tashkentHotel__greenPark__executive: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -31,10 +30,9 @@ const GabrielleHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__gabrielle__standard'
-          | 'tashkentHotel__gabrielle__panoramic'
-          | 'tashkentHotel__gabrielle__royal'
-          | 'tashkentHotel__gabrielle__apartment',
+          | 'tashkentHotel__greenPark__standard'
+          | 'tashkentHotel__greenPark__junior'
+          | 'tashkentHotel__greenPark__executive',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -55,39 +53,32 @@ const GabrielleHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__gabrielle__standard',
-        TASHKENT_HOTEL_RATES.gabrielle.standard
+        'tashkentHotel__greenPark__standard',
+        TASHKENT_HOTEL_RATES.greenPark.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__gabrielle__panoramic',
-        TASHKENT_HOTEL_RATES.gabrielle.panoramic
+        'tashkentHotel__greenPark__junior',
+        TASHKENT_HOTEL_RATES.greenPark.juniorSuite
       );
 
       updateRoomCharge(
-        'tashkentHotel__gabrielle__royal',
-        TASHKENT_HOTEL_RATES.gabrielle.royal
+        'tashkentHotel__greenPark__executive',
+        TASHKENT_HOTEL_RATES.greenPark.executiveSuite
       );
 
-      updateRoomCharge(
-        'tashkentHotel__gabrielle__apartment',
-        TASHKENT_HOTEL_RATES.gabrielle.apartment
-      );
-
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalTashkent || 0;
+      setValue('hotelTotalTashkent', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__gabrielle__standard,
-    formData.tashkentHotel__gabrielle__standard__room,
-    formData.tashkentHotel__gabrielle__panoramic,
-    formData.tashkentHotel__gabrielle__panoramic__room,
-    formData.tashkentHotel__gabrielle__royal,
-    formData.tashkentHotel__gabrielle__royal__room,
-    formData.tashkentHotel__gabrielle__apartment,
-    formData.tashkentHotel__gabrielle__apartment__room,
+    formData.tashkentHotel__greenPark__standard,
+    formData.tashkentHotel__greenPark__standard__room,
+    formData.tashkentHotel__greenPark__junior,
+    formData.tashkentHotel__greenPark__junior__room,
+    formData.tashkentHotel__greenPark__executive,
+    formData.tashkentHotel__greenPark__executive__room,
     setValue,
   ]);
 
@@ -95,10 +86,10 @@ const GabrielleHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Gabrielle International Hotel</Typography>
+          <Typography variant="h4">Green Park</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__gabrielle__standard"
+              name="tashkentHotel__greenPark__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -114,12 +105,12 @@ const GabrielleHotel = () => {
               )}
             />
 
-            {formData.tashkentHotel__gabrielle__standard && (
+            {formData.tashkentHotel__greenPark__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__gabrielle__standard__room"
+                    name="tashkentHotel__greenPark__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -128,12 +119,12 @@ const GabrielleHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.gabrielle.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.greenPark.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.gabrielle.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.greenPark.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -144,7 +135,7 @@ const GabrielleHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__gabrielle__panoramic"
+              name="tashkentHotel__greenPark__junior"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -155,17 +146,17 @@ const GabrielleHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Panoramic Suite"
+                  label="Junior Suite"
                 />
               )}
             />
 
-            {formData.tashkentHotel__gabrielle__panoramic && (
+            {formData.tashkentHotel__greenPark__junior && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__gabrielle__panoramic__room"
+                    name="tashkentHotel__greenPark__junior__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -174,12 +165,12 @@ const GabrielleHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.gabrielle.panoramic.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.greenPark.juniorSuite.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.gabrielle.panoramic.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.greenPark.juniorSuite.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -190,7 +181,7 @@ const GabrielleHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__gabrielle__royal"
+              name="tashkentHotel__greenPark__executive"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -201,17 +192,17 @@ const GabrielleHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Royal Suite"
+                  label="Executive Suite"
                 />
               )}
             />
 
-            {formData.tashkentHotel__gabrielle__royal && (
+            {formData.tashkentHotel__greenPark__executive && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__gabrielle__royal__room"
+                    name="tashkentHotel__greenPark__executive__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -220,58 +211,12 @@ const GabrielleHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.gabrielle.royal.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.greenPark.executiveSuite.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.gabrielle.royal.double}`}
-                          />
-                        </RadioGroup>
-                      </div>
-                    )}
-                  />
-                </div>
-              </Grid>
-            )}
-
-            <Controller
-              name="tashkentHotel__gabrielle__apartment"
-              control={control}
-              defaultValue={false}
-              render={({ field: { onChange, value } }) => (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
-                    />
-                  }
-                  label="Apartment Suite"
-                />
-              )}
-            />
-
-            {formData.tashkentHotel__gabrielle__apartment && (
-              <Grid xs={12} item>
-                <div style={styles.input}>
-                  <Typography variant="h4">Room Size</Typography>
-                  <Controller
-                    name="tashkentHotel__gabrielle__apartment__room"
-                    control={control}
-                    defaultValue={false}
-                    render={({ field }) => (
-                      <div style={{ paddingLeft: 20 }}>
-                        <RadioGroup {...field}>
-                          <FormControlLabel
-                            value={ROOM_SIZES.SINGLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.gabrielle.apartment.single}`}
-                          />
-                          <FormControlLabel
-                            value={ROOM_SIZES.DOUBLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.gabrielle.apartment.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.greenPark.executiveSuite.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -287,4 +232,4 @@ const GabrielleHotel = () => {
   );
 };
 
-export default GabrielleHotel;
+export default GreenParkHotel;

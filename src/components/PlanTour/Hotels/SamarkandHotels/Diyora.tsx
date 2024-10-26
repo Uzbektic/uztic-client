@@ -11,12 +11,12 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import { ROOM_SIZES, SAMARKAND_HOTEL_RATES } from '../../constants';
 
-const WyndhamHotel = () => {
+const DiyoraHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__wyndham__standard: 0,
-    tashkentHotel__wyndham__deluxe: 0,
+    samarkandHotel__diyora__standard: 0,
+    samarkandHotel__diyora__triple: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -29,8 +29,8 @@ const WyndhamHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__wyndham__standard'
-          | 'tashkentHotel__wyndham__deluxe',
+          | 'samarkandHotel__diyora__standard'
+          | 'samarkandHotel__diyora__triple',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -51,26 +51,25 @@ const WyndhamHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__wyndham__standard',
-        TASHKENT_HOTEL_RATES.wyndham.standard
+        'samarkandHotel__diyora__standard',
+        SAMARKAND_HOTEL_RATES.diyora.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__wyndham__deluxe',
-        TASHKENT_HOTEL_RATES.wyndham.deluxe
+        'samarkandHotel__diyora__triple',
+        SAMARKAND_HOTEL_RATES.diyora.triple
       );
 
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalSamarkand || 0;
+      setValue('hotelTotalSamarkand', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__wyndham__standard,
-    formData.tashkentHotel__wyndham__standard__room,
-    formData.tashkentHotel__wyndham__deluxe,
-    formData.tashkentHotel__wyndham__deluxe__room,
-
+    formData.samarkandHotel__diyora__standard,
+    formData.samarkandHotel__diyora__standard__room,
+    formData.samarkandHotel__diyora__triple,
+    formData.samarkandHotel__diyora__triple__room,
     setValue,
   ]);
 
@@ -78,10 +77,10 @@ const WyndhamHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Wyndham</Typography>
+          <Typography variant="h4">Hotel Diyora</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__wyndham__standard"
+              name="samarkandHotel__diyora__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -92,17 +91,17 @@ const WyndhamHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Standard"
+                  label="Standard Room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__wyndham__standard && (
+            {formData.samarkandHotel__diyora__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__wyndham__standard__room"
+                    name="samarkandHotel__diyora__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -111,12 +110,12 @@ const WyndhamHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.wyndham.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.diyora.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.wyndham.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${SAMARKAND_HOTEL_RATES.diyora.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -127,7 +126,7 @@ const WyndhamHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__wyndham__deluxe"
+              name="samarkandHotel__diyora__triple"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -138,17 +137,17 @@ const WyndhamHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Deluxe"
+                  label="Triple"
                 />
               )}
             />
 
-            {formData.tashkentHotel__wyndham__deluxe && (
+            {formData.samarkandHotel__diyora__triple && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__wyndham__deluxe__room"
+                    name="samarkandHotel__diyora__triple__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -157,12 +156,7 @@ const WyndhamHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.wyndham.deluxe.single}`}
-                          />
-                          <FormControlLabel
-                            value={ROOM_SIZES.DOUBLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.wyndham.deluxe.double}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.diyora.triple.single}`}
                           />
                         </RadioGroup>
                       </div>
@@ -178,4 +172,4 @@ const WyndhamHotel = () => {
   );
 };
 
-export default WyndhamHotel;
+export default DiyoraHotel;

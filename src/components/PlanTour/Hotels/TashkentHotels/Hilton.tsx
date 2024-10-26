@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { CalculatorFormData } from '../../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
-import { styles } from '../../styles';
+import { CalculatorFormData } from '../../../../types/calculator';
+import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
 import {
   Checkbox,
   FormControlLabel,
@@ -11,13 +11,13 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import { styles } from '../../styles';
 
-const MercureHotel = () => {
+const HiltonHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__mercure__superiorKing: 0,
-    tashkentHotel__mercure__superior: 0,
-    tashkentHotel__mercure__prestige: 0,
+    tashkentHotel__hilton__guestRoom: 0,
+    tashkentHotel__hilton__executiveRoom: 0,
+    tashkentHotel__hilton__cornerSuite: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -30,9 +30,9 @@ const MercureHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__mercure__superiorKing'
-          | 'tashkentHotel__mercure__superior'
-          | 'tashkentHotel__mercure__prestige',
+          | 'tashkentHotel__hilton__guestRoom'
+          | 'tashkentHotel__hilton__executiveRoom'
+          | 'tashkentHotel__hilton__cornerSuite',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -53,32 +53,32 @@ const MercureHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__mercure__superiorKing',
-        TASHKENT_HOTEL_RATES.mercure.superiorKing
+        'tashkentHotel__hilton__guestRoom',
+        TASHKENT_HOTEL_RATES.hilton.guestRoom
       );
 
       updateRoomCharge(
-        'tashkentHotel__mercure__superior',
-        TASHKENT_HOTEL_RATES.mercure.superior
+        'tashkentHotel__hilton__executiveRoom',
+        TASHKENT_HOTEL_RATES.hilton.executiveRoom
       );
 
       updateRoomCharge(
-        'tashkentHotel__mercure__prestige',
-        TASHKENT_HOTEL_RATES.mercure.prestige
+        'tashkentHotel__hilton__cornerSuite',
+        TASHKENT_HOTEL_RATES.hilton.cornerSuite
       );
 
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalTashkent || 0;
+      setValue('hotelTotalTashkent', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__mercure__superiorKing,
-    formData.tashkentHotel__mercure__superiorKing__room,
-    formData.tashkentHotel__mercure__superior,
-    formData.tashkentHotel__mercure__superior__room,
-    formData.tashkentHotel__mercure__prestige,
-    formData.tashkentHotel__mercure__prestige__room,
+    formData.tashkentHotel__hilton__guestRoom,
+    formData.tashkentHotel__hilton__guestRoom__room,
+    formData.tashkentHotel__hilton__executiveRoom,
+    formData.tashkentHotel__hilton__executiveRoom__room,
+    formData.tashkentHotel__hilton__cornerSuite,
+    formData.tashkentHotel__hilton__cornerSuite__room,
     setValue,
   ]);
 
@@ -86,10 +86,10 @@ const MercureHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Mercure Hotel</Typography>
+          <Typography variant="h4">Hilton</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__mercure__superiorKing"
+              name="tashkentHotel__hilton__guestRoom"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -100,17 +100,17 @@ const MercureHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Superior room King Size"
+                  label="Guest room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__mercure__superiorKing && (
+            {formData.tashkentHotel__hilton__guestRoom && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__mercure__superiorKing__room"
+                    name="tashkentHotel__hilton__guestRoom__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -119,12 +119,12 @@ const MercureHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.mercure.superiorKing.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.guestRoom.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.mercure.superiorKing.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.guestRoom.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -135,7 +135,7 @@ const MercureHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__mercure__superior"
+              name="tashkentHotel__hilton__executiveRoom"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -146,17 +146,17 @@ const MercureHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Superior Twin"
+                  label="Executive room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__mercure__superior && (
+            {formData.tashkentHotel__hilton__executiveRoom && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__mercure__superior__room"
+                    name="tashkentHotel__hilton__executiveRoom__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -165,12 +165,12 @@ const MercureHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.mercure.superior.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.executiveRoom.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.mercure.superior.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.executiveRoom.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -181,7 +181,7 @@ const MercureHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__mercure__prestige"
+              name="tashkentHotel__hilton__cornerSuite"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -192,17 +192,17 @@ const MercureHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Prestige Room"
+                  label="Corner Suite"
                 />
               )}
             />
 
-            {formData.tashkentHotel__mercure__prestige && (
+            {formData.tashkentHotel__hilton__cornerSuite && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__mercure__prestige__room"
+                    name="tashkentHotel__hilton__cornerSuite__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -211,12 +211,12 @@ const MercureHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.mercure.prestige.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.cornerSuite.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.mercure.prestige.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.cornerSuite.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -232,4 +232,4 @@ const MercureHotel = () => {
   );
 };
 
-export default MercureHotel;
+export default HiltonHotel;

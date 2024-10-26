@@ -1,6 +1,10 @@
 export interface CalculatorFormData {
   grandTotal: number;
   hotelTotal: number;
+  hotelTotalTashkent: number;
+  hotelTotalSamarkand: number;
+  hotelTotalBukhara: number;
+  hotelTotalKhiva: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -98,4 +102,70 @@ export interface CalculatorFormData {
   tashkentHotel__dsfGarden__standard__room: boolean | undefined | string;
   tashkentHotel__dsfGarden__triple: boolean;
   tashkentHotel__dsfGarden__triple__room: boolean | undefined | string;
+
+  samarkandHotel__movenPick__standard: boolean;
+  samarkandHotel__movenPick__standard__room: boolean | undefined | string;
+  samarkandHotel__movenPick__executive: boolean;
+  samarkandHotel__movenPick__executive__room: boolean | undefined | string;
+
+  samarkandHotel__alexander__standardSingle: boolean;
+  samarkandHotel__alexander__standardSingle__room: boolean | undefined | string;
+  samarkandHotel__alexander__standardDouble: boolean;
+  samarkandHotel__alexander__standardDouble__room: boolean | undefined | string;
+  samarkandHotel__alexander__standardTwin: boolean;
+  samarkandHotel__alexander__standardTwin__room: boolean | undefined | string;
+  samarkandHotel__alexander__standardTriple: boolean;
+  samarkandHotel__alexander__standardTriple__room: boolean | undefined | string;
+  samarkandHotel__alexander__luxTwin: boolean;
+  samarkandHotel__alexander__luxTwin__room: boolean | undefined | string;
+
+  samarkandHotel__dilimah__standard: boolean;
+  samarkandHotel__dilimah__standard__room: boolean | undefined | string;
+  samarkandHotel__dilimah__superior: boolean;
+  samarkandHotel__dilimah__superior__room: boolean | undefined | string;
+
+  samarkandHotel__diyora__standard: boolean;
+  samarkandHotel__diyora__standard__room: boolean | undefined | string;
+  samarkandHotel__diyora__triple: boolean;
+  samarkandHotel__diyora__triple__room: boolean | undefined | string;
+
+  samarkandHotel__malikaPrime__standard: boolean;
+  samarkandHotel__malikaPrime__standard__room: boolean | undefined | string;
+  samarkandHotel__malikaPrime__triple: boolean;
+  samarkandHotel__malikaPrime__triple__room: boolean | undefined | string;
+
+  samarkandHotel__malikaClassic__standard: boolean;
+  samarkandHotel__malikaClassic__standard__room: boolean | undefined | string;
+  samarkandHotel__malikaClassic__triple: boolean;
+  samarkandHotel__malikaClassic__triple__room: boolean | undefined | string;
+
+  samarkandHotel__orientStar__standard: boolean;
+  samarkandHotel__orientStar__standard__room: boolean | undefined | string;
+  samarkandHotel__orientStar__lux: boolean;
+  samarkandHotel__orientStar__lux__room: boolean | undefined | string;
+  samarkandHotel__orientStar__family: boolean;
+  samarkandHotel__orientStar__family__room: boolean | undefined | string;
+
+  samarkandHotel__qosh__standard: boolean;
+  samarkandHotel__qosh__standard__room: boolean | undefined | string;
+  samarkandHotel__qosh__triple: boolean;
+  samarkandHotel__qosh__triple__room: boolean | undefined | string;
+
+  samarkandHotel__dilshoda__standard: boolean;
+  samarkandHotel__dilshoda__standard__room: boolean | undefined | string;
+  samarkandHotel__dilshoda__triple: boolean;
+  samarkandHotel__dilshoda__triple__room: boolean | undefined | string;
+
+  samarkandHotel__wellfort__standard: boolean;
+  samarkandHotel__wellfort__standard__room: boolean | undefined | string;
+  samarkandHotel__wellfort__triple: boolean;
+  samarkandHotel__wellfort__triple__room: boolean | undefined | string;
+
+  samarkandHotel__bravo__standard: boolean;
+  samarkandHotel__bravo__standard__room: boolean | undefined | string;
+
+  samarkandHotel__eastStar__standard: boolean;
+  samarkandHotel__eastStar__standard__room: boolean | undefined | string;
+  samarkandHotel__eastStar__deluxe: boolean;
+  samarkandHotel__eastStar__deluxe__room: boolean | undefined | string;
 }

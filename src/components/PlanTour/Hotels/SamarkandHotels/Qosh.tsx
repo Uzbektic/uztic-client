@@ -11,12 +11,12 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import { ROOM_SIZES, SAMARKAND_HOTEL_RATES } from '../../constants';
 
-const RamadaHotel = () => {
+const QoshHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__ramada__standard: 0,
-    tashkentHotel__ramada__premium: 0,
+    samarkandHotel__qosh__standard: 0,
+    samarkandHotel__qosh__triple: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -29,8 +29,8 @@ const RamadaHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__ramada__standard'
-          | 'tashkentHotel__ramada__premium',
+          | 'samarkandHotel__qosh__standard'
+          | 'samarkandHotel__qosh__triple',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -51,26 +51,25 @@ const RamadaHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__ramada__standard',
-        TASHKENT_HOTEL_RATES.ramada.standard
+        'samarkandHotel__qosh__standard',
+        SAMARKAND_HOTEL_RATES.qosh.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__ramada__premium',
-        TASHKENT_HOTEL_RATES.ramada.premium
+        'samarkandHotel__qosh__triple',
+        SAMARKAND_HOTEL_RATES.qosh.triple
       );
 
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalSamarkand || 0;
+      setValue('hotelTotalSamarkand', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__ramada__standard,
-    formData.tashkentHotel__ramada__standard__room,
-    formData.tashkentHotel__ramada__premium,
-    formData.tashkentHotel__ramada__premium__room,
-
+    formData.samarkandHotel__qosh__standard,
+    formData.samarkandHotel__qosh__standard__room,
+    formData.samarkandHotel__qosh__triple,
+    formData.samarkandHotel__qosh__triple__room,
     setValue,
   ]);
 
@@ -78,10 +77,10 @@ const RamadaHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Hotel Ramada</Typography>
+          <Typography variant="h4">Hotel Qosh Hauz</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__ramada__standard"
+              name="samarkandHotel__qosh__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -92,17 +91,17 @@ const RamadaHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Standard"
+                  label="Standard Room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__ramada__standard && (
+            {formData.samarkandHotel__qosh__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__ramada__standard__room"
+                    name="samarkandHotel__qosh__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -111,12 +110,12 @@ const RamadaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.ramada.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.qosh.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.ramada.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${SAMARKAND_HOTEL_RATES.qosh.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -127,7 +126,7 @@ const RamadaHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__ramada__premium"
+              name="samarkandHotel__qosh__triple"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -138,17 +137,17 @@ const RamadaHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Premium room"
+                  label="Triple"
                 />
               )}
             />
 
-            {formData.tashkentHotel__ramada__premium && (
+            {formData.samarkandHotel__qosh__triple && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__ramada__premium__room"
+                    name="samarkandHotel__qosh__triple__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -157,12 +156,7 @@ const RamadaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.ramada.premium.single}`}
-                          />
-                          <FormControlLabel
-                            value={ROOM_SIZES.DOUBLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.ramada.premium.double}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.qosh.triple.single}`}
                           />
                         </RadioGroup>
                       </div>
@@ -178,4 +172,4 @@ const RamadaHotel = () => {
   );
 };
 
-export default RamadaHotel;
+export default QoshHotel;

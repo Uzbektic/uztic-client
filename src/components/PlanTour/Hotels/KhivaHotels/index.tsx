@@ -2,7 +2,7 @@ import React from 'react';
 import { Divider, Grid } from '@mui/material';
 import { styles } from '../../styles';
 
-const SamarkandHotels = () => {
+const KhivaHotels = () => {
   return (
     <>
       <Grid xs={12} item>
@@ -13,7 +13,7 @@ const SamarkandHotels = () => {
             marginBottom: 10,
           }}
         >
-          Samarkand Hotels
+          Khiva Hotels
         </h2>
 
         <Divider />
@@ -22,4 +22,4 @@ const SamarkandHotels = () => {
   );
 };
 
-export default SamarkandHotels;
+export default KhivaHotels;

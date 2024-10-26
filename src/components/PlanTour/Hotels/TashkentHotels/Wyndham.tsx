@@ -13,11 +13,10 @@ import {
 } from '@mui/material';
 import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
 
-const NovzaHotel = () => {
+const WyndhamHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__novza__standard: 0,
-    tashkentHotel__novza__deluxe: 0,
-    tashkentHotel__novza__superior: 0,
+    tashkentHotel__wyndham__standard: 0,
+    tashkentHotel__wyndham__deluxe: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -30,9 +29,8 @@ const NovzaHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__novza__standard'
-          | 'tashkentHotel__novza__deluxe'
-          | 'tashkentHotel__novza__superior',
+          | 'tashkentHotel__wyndham__standard'
+          | 'tashkentHotel__wyndham__deluxe',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -53,32 +51,26 @@ const NovzaHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__novza__standard',
-        TASHKENT_HOTEL_RATES.novza.standard
+        'tashkentHotel__wyndham__standard',
+        TASHKENT_HOTEL_RATES.wyndham.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__novza__deluxe',
-        TASHKENT_HOTEL_RATES.novza.deluxe
+        'tashkentHotel__wyndham__deluxe',
+        TASHKENT_HOTEL_RATES.wyndham.deluxe
       );
 
-      updateRoomCharge(
-        'tashkentHotel__novza__superior',
-        TASHKENT_HOTEL_RATES.novza.superior
-      );
-
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalTashkent || 0;
+      setValue('hotelTotalTashkent', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__novza__standard,
-    formData.tashkentHotel__novza__standard__room,
-    formData.tashkentHotel__novza__deluxe,
-    formData.tashkentHotel__novza__deluxe__room,
-    formData.tashkentHotel__novza__superior,
-    formData.tashkentHotel__novza__superior__room,
+    formData.tashkentHotel__wyndham__standard,
+    formData.tashkentHotel__wyndham__standard__room,
+    formData.tashkentHotel__wyndham__deluxe,
+    formData.tashkentHotel__wyndham__deluxe__room,
+
     setValue,
   ]);
 
@@ -86,10 +78,10 @@ const NovzaHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Novza Palace</Typography>
+          <Typography variant="h4">Wyndham</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__novza__standard"
+              name="tashkentHotel__wyndham__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -100,17 +92,17 @@ const NovzaHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Standard Twin"
+                  label="Standard"
                 />
               )}
             />
 
-            {formData.tashkentHotel__novza__standard && (
+            {formData.tashkentHotel__wyndham__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__novza__standard__room"
+                    name="tashkentHotel__wyndham__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -119,12 +111,12 @@ const NovzaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.wyndham.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.wyndham.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -135,7 +127,7 @@ const NovzaHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__novza__deluxe"
+              name="tashkentHotel__wyndham__deluxe"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -146,17 +138,17 @@ const NovzaHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Deluxe Double"
+                  label="Deluxe"
                 />
               )}
             />
 
-            {formData.tashkentHotel__novza__deluxe && (
+            {formData.tashkentHotel__wyndham__deluxe && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__novza__deluxe__room"
+                    name="tashkentHotel__wyndham__deluxe__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -165,58 +157,12 @@ const NovzaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.deluxe.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.wyndham.deluxe.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.deluxe.double}`}
-                          />
-                        </RadioGroup>
-                      </div>
-                    )}
-                  />
-                </div>
-              </Grid>
-            )}
-
-            <Controller
-              name="tashkentHotel__novza__superior"
-              control={control}
-              defaultValue={false}
-              render={({ field: { onChange, value } }) => (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
-                    />
-                  }
-                  label="Superior Double"
-                />
-              )}
-            />
-
-            {formData.tashkentHotel__novza__superior && (
-              <Grid xs={12} item>
-                <div style={styles.input}>
-                  <Typography variant="h4">Room Size</Typography>
-                  <Controller
-                    name="tashkentHotel__novza__superior__room"
-                    control={control}
-                    defaultValue={false}
-                    render={({ field }) => (
-                      <div style={{ paddingLeft: 20 }}>
-                        <RadioGroup {...field}>
-                          <FormControlLabel
-                            value={ROOM_SIZES.SINGLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.superior.single}`}
-                          />
-                          <FormControlLabel
-                            value={ROOM_SIZES.DOUBLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.superior.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.wyndham.deluxe.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -232,4 +178,4 @@ const NovzaHotel = () => {
   );
 };
 
-export default NovzaHotel;
+export default WyndhamHotel;

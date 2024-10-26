@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Checkbox,
   FormControlLabel,
@@ -5,21 +6,45 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import React from 'react';
 import { styles } from '../styles';
 import { CalculatorFormData } from '../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 import TashkentHotels from '../Hotels/TashkentHotels';
 import SamarkandHotels from '../Hotels/SamarkandHotels';
+import BukharaHotels from '../Hotels/BukharaHotels';
+import KhivaHotels from '../Hotels/KhivaHotels';
+import { HOTEL_CITIES } from '../constants';
 
 const Step2 = () => {
-  const {
-    control,
-    formState: { errors },
-    watch,
-  } = useFormContext<CalculatorFormData>();
+  const { control, watch, setValue } = useFormContext<CalculatorFormData>();
 
   const formData = watch();
+
+  const clearHotelSelections = (cityKey: string) => {
+    const cityHotelKeys = Object.keys(formData).filter((key) =>
+      key.startsWith(`${cityKey}Hotel__`)
+    );
+
+    if (cityKey === HOTEL_CITIES.TASHKENT) {
+      setValue('hotelTotalTashkent', 0);
+    }
+
+    if (cityKey === HOTEL_CITIES.SAMARKAND) {
+      setValue('hotelTotalSamarkand', 0);
+    }
+
+    if (cityKey === HOTEL_CITIES.BUKHARA) {
+      setValue('hotelTotalBukhara', 0);
+    }
+
+    if (cityKey === HOTEL_CITIES.KHIVA) {
+      setValue('hotelTotalKhiva', 0);
+    }
+
+    cityHotelKeys.forEach((key) => {
+      setValue(key as keyof CalculatorFormData, false);
+    });
+  };
 
   return (
     <Grid container spacing={2}>
@@ -36,7 +61,12 @@ const Step2 = () => {
                   control={
                     <Checkbox
                       checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        onChange(isChecked);
+                        if (!isChecked)
+                          clearHotelSelections(HOTEL_CITIES.TASHKENT);
+                      }}
                     />
                   }
                   label="Tashkent"
@@ -53,7 +83,12 @@ const Step2 = () => {
                   control={
                     <Checkbox
                       checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        onChange(isChecked);
+                        if (!isChecked)
+                          clearHotelSelections(HOTEL_CITIES.SAMARKAND);
+                      }}
                     />
                   }
                   label="Samarkand"
@@ -70,7 +105,12 @@ const Step2 = () => {
                   control={
                     <Checkbox
                       checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        onChange(isChecked);
+                        if (!isChecked)
+                          clearHotelSelections(HOTEL_CITIES.BUKHARA);
+                      }}
                     />
                   }
                   label="Bukhara"
@@ -87,7 +127,12 @@ const Step2 = () => {
                   control={
                     <Checkbox
                       checked={value}
-                      onChange={(e) => onChange(e.target.checked)}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        onChange(isChecked);
+                        if (!isChecked)
+                          clearHotelSelections(HOTEL_CITIES.KHIVA);
+                      }}
                     />
                   }
                   label="Khiva"
@@ -100,6 +145,8 @@ const Step2 = () => {
 
       {formData.tashkent && <TashkentHotels />}
       {formData.samarkand && <SamarkandHotels />}
+      {formData.bukhara && <BukharaHotels />}
+      {formData.khiva && <KhivaHotels />}
     </Grid>
   );
 };

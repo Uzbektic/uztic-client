@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,7 +8,6 @@ import { IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CalculatorFormData } from '../../types/calculator';
-import { toast } from 'react-toastify';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
@@ -45,7 +44,7 @@ const CustomStepIcon: React.FC<StepIconProps> = (props) => {
   );
 };
 
-const CalculateCost = () => {
+const PlanTour = () => {
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -69,6 +68,7 @@ const CalculateCost = () => {
     formState: { isSubmitting },
     watch,
     reset,
+    setValue,
   } = methods;
 
   const handleBack = () => {
@@ -115,7 +115,6 @@ const CalculateCost = () => {
 
       reset();
       setCurrentStep(0);
-      toast.success('Application Saved Successfully');
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -145,6 +144,35 @@ const CalculateCost = () => {
   };
 
   console.log(formData);
+
+  useEffect(() => {
+    let total = 0;
+
+    if (formData.hotelTotalTashkent) {
+      total += formData.hotelTotalTashkent;
+    }
+
+    if (formData.hotelTotalSamarkand) {
+      total += formData.hotelTotalSamarkand;
+    }
+
+    if (formData.hotelTotalBukhara) {
+      total += formData.hotelTotalBukhara;
+    }
+
+    if (formData.hotelTotalKhiva) {
+      total += formData.hotelTotalKhiva;
+    }
+
+    setValue('hotelTotal', total);
+  }, [
+    formData.hotelTotalTashkent,
+    formData.hotelTotalSamarkand,
+    formData.hotelTotalKhiva,
+    formData.hotelTotalBukhara,
+    setValue,
+  ]);
+
   return (
     <>
       <Button
@@ -153,7 +181,7 @@ const CalculateCost = () => {
         style={{ marginRight: 2 }}
         onClick={handleClickOpen}
       >
-        Calculate Tour
+        Plan Tour
       </Button>
 
       <Dialog fullWidth={true} maxWidth={'lg'} open={open}>
@@ -232,4 +260,4 @@ const CalculateCost = () => {
   );
 };
 
-export default CalculateCost;
+export default PlanTour;

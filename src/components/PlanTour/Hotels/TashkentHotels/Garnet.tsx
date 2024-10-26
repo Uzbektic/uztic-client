@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../../types/calculator';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import { Controller, useFormContext } from 'react-hook-form';
+import { styles } from '../../styles';
 import {
   Checkbox,
   FormControlLabel,
@@ -11,13 +11,14 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { styles } from '../../styles';
+import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
 
-const HamptonHotel = () => {
+const GarnetHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__hampton__superFlex: 0,
-    tashkentHotel__hampton__queenKing: 0,
-    tashkentHotel__hampton__deluxe: 0,
+    tashkentHotel__garnet__standard: 0,
+    tashkentHotel__garnet__deluxe: 0,
+    tashkentHotel__garnet__triple: 0,
+    tashkentHotel__garnet__suite: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -30,9 +31,10 @@ const HamptonHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__hampton__superFlex'
-          | 'tashkentHotel__hampton__queenKing'
-          | 'tashkentHotel__hampton__deluxe',
+          | 'tashkentHotel__garnet__standard'
+          | 'tashkentHotel__garnet__deluxe'
+          | 'tashkentHotel__garnet__triple'
+          | 'tashkentHotel__garnet__suite',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -53,32 +55,39 @@ const HamptonHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__hampton__superFlex',
-        TASHKENT_HOTEL_RATES.hampton.superFlex
+        'tashkentHotel__garnet__standard',
+        TASHKENT_HOTEL_RATES.garnet.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__hampton__queenKing',
-        TASHKENT_HOTEL_RATES.hampton.queenKing
+        'tashkentHotel__garnet__deluxe',
+        TASHKENT_HOTEL_RATES.garnet.deluxe
       );
 
       updateRoomCharge(
-        'tashkentHotel__hampton__deluxe',
-        TASHKENT_HOTEL_RATES.hampton.deluxe
+        'tashkentHotel__garnet__triple',
+        TASHKENT_HOTEL_RATES.garnet.triple
       );
 
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      updateRoomCharge(
+        'tashkentHotel__garnet__suite',
+        TASHKENT_HOTEL_RATES.garnet.suite
+      );
+
+      const currentTotal = formData.hotelTotalTashkent || 0;
+      setValue('hotelTotalTashkent', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__hampton__superFlex,
-    formData.tashkentHotel__hampton__superFlex__room,
-    formData.tashkentHotel__hampton__queenKing,
-    formData.tashkentHotel__hampton__queenKing__room,
-    formData.tashkentHotel__hampton__deluxe,
-    formData.tashkentHotel__hampton__deluxe__room,
+    formData.tashkentHotel__garnet__standard,
+    formData.tashkentHotel__garnet__standard__room,
+    formData.tashkentHotel__garnet__deluxe,
+    formData.tashkentHotel__garnet__deluxe__room,
+    formData.tashkentHotel__garnet__triple,
+    formData.tashkentHotel__garnet__triple__room,
+    formData.tashkentHotel__garnet__suite,
+    formData.tashkentHotel__garnet__suite__room,
     setValue,
   ]);
 
@@ -86,10 +95,10 @@ const HamptonHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Hampton by Hilton Tashkent</Typography>
+          <Typography variant="h4">Gabrielle International Hotel</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__hampton__superFlex"
+              name="tashkentHotel__garnet__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -100,17 +109,17 @@ const HamptonHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Super Flex,Twin"
+                  label="Standard room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__hampton__superFlex && (
+            {formData.tashkentHotel__garnet__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__hampton__superFlex__room"
+                    name="tashkentHotel__garnet__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -119,12 +128,12 @@ const HamptonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hampton.superFlex.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hampton.superFlex.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -135,7 +144,7 @@ const HamptonHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__hampton__queenKing"
+              name="tashkentHotel__garnet__deluxe"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -146,17 +155,17 @@ const HamptonHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Queen, King"
+                  label="Deluxe room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__hampton__queenKing && (
+            {formData.tashkentHotel__garnet__deluxe && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__hampton__queenKing__room"
+                    name="tashkentHotel__garnet__deluxe__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -165,12 +174,12 @@ const HamptonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hampton.queenKing.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.deluxe.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hampton.queenKing.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.deluxe.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -181,7 +190,7 @@ const HamptonHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__hampton__deluxe"
+              name="tashkentHotel__garnet__triple"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -192,17 +201,17 @@ const HamptonHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Deluxe"
+                  label="Triple room"
                 />
               )}
             />
 
-            {formData.tashkentHotel__hampton__deluxe && (
+            {formData.tashkentHotel__garnet__triple && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__hampton__deluxe__room"
+                    name="tashkentHotel__garnet__triple__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -211,12 +220,53 @@ const HamptonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hampton.deluxe.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.triple.single}`}
+                          />
+                        </RadioGroup>
+                      </div>
+                    )}
+                  />
+                </div>
+              </Grid>
+            )}
+
+            <Controller
+              name="tashkentHotel__garnet__suite"
+              control={control}
+              defaultValue={false}
+              render={({ field: { onChange, value } }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => onChange(e.target.checked)}
+                    />
+                  }
+                  label="Suite"
+                />
+              )}
+            />
+
+            {formData.tashkentHotel__garnet__suite && (
+              <Grid xs={12} item>
+                <div style={styles.input}>
+                  <Typography variant="h4">Room Size</Typography>
+                  <Controller
+                    name="tashkentHotel__garnet__suite__room"
+                    control={control}
+                    defaultValue={false}
+                    render={({ field }) => (
+                      <div style={{ paddingLeft: 20 }}>
+                        <RadioGroup {...field}>
+                          <FormControlLabel
+                            value={ROOM_SIZES.SINGLE}
+                            control={<Radio />}
+                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.suite.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hampton.deluxe.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.suite.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -232,4 +282,4 @@ const HamptonHotel = () => {
   );
 };
 
-export default HamptonHotel;
+export default GarnetHotel;

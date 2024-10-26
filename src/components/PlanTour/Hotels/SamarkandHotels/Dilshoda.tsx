@@ -11,12 +11,12 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import { ROOM_SIZES, SAMARKAND_HOTEL_RATES } from '../../constants';
 
-const StayInnHotel = () => {
+const DilshodaHotel = () => {
   const previousChargesRef = useRef({
-    tashkentHotel__stayInn__standard: 0,
-    tashkentHotel__stayInn__superior: 0,
+    samarkandHotel__dilshoda__standard: 0,
+    samarkandHotel__dilshoda__triple: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -29,8 +29,8 @@ const StayInnHotel = () => {
 
       const updateRoomCharge = (
         hotelKey:
-          | 'tashkentHotel__stayInn__standard'
-          | 'tashkentHotel__stayInn__superior',
+          | 'samarkandHotel__dilshoda__standard'
+          | 'samarkandHotel__dilshoda__triple',
         rates: { single: number; double: number }
       ) => {
         if (formData[hotelKey]) {
@@ -51,25 +51,25 @@ const StayInnHotel = () => {
       };
 
       updateRoomCharge(
-        'tashkentHotel__stayInn__standard',
-        TASHKENT_HOTEL_RATES.stayInn.standard
+        'samarkandHotel__dilshoda__standard',
+        SAMARKAND_HOTEL_RATES.dilshoda.standard
       );
 
       updateRoomCharge(
-        'tashkentHotel__stayInn__superior',
-        TASHKENT_HOTEL_RATES.stayInn.superior
+        'samarkandHotel__dilshoda__triple',
+        SAMARKAND_HOTEL_RATES.dilshoda.triple
       );
 
-      const currentTotal = formData.hotelTotal || 0;
-      setValue('hotelTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.hotelTotalSamarkand || 0;
+      setValue('hotelTotalSamarkand', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
   }, [
-    formData.tashkentHotel__stayInn__standard,
-    formData.tashkentHotel__stayInn__standard__room,
-    formData.tashkentHotel__stayInn__superior,
-    formData.tashkentHotel__stayInn__superior__room,
+    formData.samarkandHotel__dilshoda__standard,
+    formData.samarkandHotel__dilshoda__standard__room,
+    formData.samarkandHotel__dilshoda__triple,
+    formData.samarkandHotel__dilshoda__triple__room,
     setValue,
   ]);
 
@@ -77,10 +77,10 @@ const StayInnHotel = () => {
     <>
       <Grid xs={12} item>
         <div style={styles.input}>
-          <Typography variant="h4">Stay Inn</Typography>
+          <Typography variant="h4">Dilshoda Prime</Typography>
           <FormGroup>
             <Controller
-              name="tashkentHotel__stayInn__standard"
+              name="samarkandHotel__dilshoda__standard"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -96,12 +96,12 @@ const StayInnHotel = () => {
               )}
             />
 
-            {formData.tashkentHotel__stayInn__standard && (
+            {formData.samarkandHotel__dilshoda__standard && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__stayInn__standard__room"
+                    name="samarkandHotel__dilshoda__standard__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -110,12 +110,12 @@ const StayInnHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.stayInn.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.dilshoda.standard.single}`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.stayInn.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${SAMARKAND_HOTEL_RATES.dilshoda.standard.double}`}
                           />
                         </RadioGroup>
                       </div>
@@ -126,7 +126,7 @@ const StayInnHotel = () => {
             )}
 
             <Controller
-              name="tashkentHotel__stayInn__superior"
+              name="samarkandHotel__dilshoda__triple"
               control={control}
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
@@ -137,17 +137,17 @@ const StayInnHotel = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label="Superior Room"
+                  label="Triple"
                 />
               )}
             />
 
-            {formData.tashkentHotel__stayInn__superior && (
+            {formData.samarkandHotel__dilshoda__triple && (
               <Grid xs={12} item>
                 <div style={styles.input}>
                   <Typography variant="h4">Room Size</Typography>
                   <Controller
-                    name="tashkentHotel__stayInn__superior__room"
+                    name="samarkandHotel__dilshoda__triple__room"
                     control={control}
                     defaultValue={false}
                     render={({ field }) => (
@@ -156,12 +156,7 @@ const StayInnHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.stayInn.superior.single}`}
-                          />
-                          <FormControlLabel
-                            value={ROOM_SIZES.DOUBLE}
-                            control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.stayInn.superior.double}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.dilshoda.triple.single}`}
                           />
                         </RadioGroup>
                       </div>
@@ -177,4 +172,4 @@ const StayInnHotel = () => {
   );
 };
 
-export default StayInnHotel;
+export default DilshodaHotel;
