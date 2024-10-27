@@ -5,17 +5,25 @@ export interface CalculatorFormData {
   hotelTotalSamarkand: number;
   hotelTotalBukhara: number;
   hotelTotalKhiva: number;
+  additionalTrainsTotal: number;
+  additionalServicesTotal: number;
+
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  numberOfTourists: string;
-  nights: string;
+
+  numberOfNightsInTashkent: number;
+  numberOfNightsInSamarkand: number;
+  numberOfNightsInBukhara: number;
+  numberOfNightsInKhiva: number;
+
   tashkent: boolean;
   samarkand: boolean;
   bukhara: boolean;
   khiva: boolean;
 
+  // HOTELS
   tashkentHotel__hyattRegency__standardKing: boolean;
   tashkentHotel__hyattRegency__standardKing__room: boolean | undefined | string;
   tashkentHotel__hyattRegency__deluxeKing: boolean;
@@ -247,4 +255,34 @@ export interface CalculatorFormData {
   khivaHotel__orientStar__standard__room: boolean | undefined | string;
   khivaHotel__orientStar__triple: boolean;
   khivaHotel__orientStar__triple__room: boolean | undefined | string;
+
+  // ADDITIONAL SERVICES
+  // Speed Trains
+  tashkentToSamarkandSpeedTrain: boolean;
+  tashkentToSamarkandSpeedTrain__class: boolean | undefined | string;
+  tashkentToBukharaSpeedTrain: boolean;
+  tashkentToBukharaSpeedTrain__class: boolean | undefined | string;
+  samarkandToBukharaSpeedTrain: boolean;
+  samarkandToBukharaSpeedTrain__class: boolean | undefined | string;
+
+  // Regular Trains
+  tashkentToSamarkandRegularTrain: boolean;
+  tashkentToSamarkandRegularTrain__class: boolean | undefined | string;
+  tashkentToBukharaRegularTrain: boolean;
+  tashkentToBukharaRegularTrain__class: boolean | undefined | string;
+  samarkandToBukharaRegularTrain: boolean;
+  samarkandToBukharaRegularTrain__class: boolean | undefined | string;
+
+  // Guide
+  englishSpeakingGuide: boolean;
+
+  // Car
+  carOneDay: boolean;
+  carMountain: boolean;
+  carAirport: boolean;
+
+  // MiniBus
+  miniBusOneDay: boolean;
+  miniBusMountain: boolean;
+  miniBusAirport: boolean;
 }

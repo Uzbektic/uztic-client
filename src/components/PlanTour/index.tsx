@@ -12,18 +12,35 @@ import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
 import { Container, Step, StepLabel, Stepper } from '@mui/material';
-import { steps } from './constants';
+import {
+  BUKHARA_HOTEL_RATES,
+  CAR_RATES,
+  GUIDE_RATE,
+  HOTEL_CITIES,
+  KHIVA_HOTEL_RATES,
+  MINI_BUS_RATES,
+  REGULAR_TRAIN_RATES,
+  SAMARKAND_HOTEL_RATES,
+  SPEED_TRAIN_RATES,
+  steps,
+  TASHKENT_HOTEL_RATES,
+} from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { CustomColors } from '../../theme';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import HotelIcon from '@mui/icons-material/Hotel';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import Step4 from './Steps/Step4';
+import { HotelRates, RoomType, SelectedHotel } from '../../types/hotels';
+import { TrainClass, TrainRoute, TrainService } from '../../types/trains';
 
 const stepIcons: { [key: number]: JSX.Element } = {
   1: <ContentPasteIcon />,
   2: <HotelIcon />,
   3: <DirectionsCarIcon />,
+  4: <CalculateIcon />,
 };
 
 const CustomStepIcon: React.FC<StepIconProps> = (props) => {
@@ -53,12 +70,12 @@ const PlanTour = () => {
     defaultValues: {
       grandTotal: 0,
       hotelTotal: 0,
-      firstName: 'dsasad',
-      lastName: 'dsasad',
-      email: 'dsasad@sdsda.sda',
-      phone: 'dsasad',
-      numberOfTourists: '21',
-      nights: '12',
+      additionalTrainsTotal: 0,
+      additionalServicesTotal: 0,
+      hotelTotalTashkent: 0,
+      hotelTotalSamarkand: 0,
+      hotelTotalBukhara: 0,
+      hotelTotalKhiva: 0,
     },
   });
 
@@ -82,16 +99,6 @@ const PlanTour = () => {
     const isValid = await trigger();
 
     if (isValid) {
-      if (currentStep === 0) {
-        // if (!formData?.company_name?.name) {
-        //   setError('company_name.name', {
-        //     type: 'manual',
-        //     message: 'Company Name is required',
-        //   });
-        //   return;
-        // }
-      }
-
       if (currentStep === 2) {
         // if (formData?.organisation_structure) {
         //   setValue('organisation_structure_image', '');
@@ -101,6 +108,15 @@ const PlanTour = () => {
         // setValue('isDraft', false);
         // handleSubmit(onSubmit)();
         // return;
+
+        console.log('WILL SUBMIT HERE');
+      }
+
+      if (currentStep === steps.length - 1) {
+        setOpen(false);
+        setCurrentStep(0);
+        reset();
+        return;
       }
       setCurrentStep(currentStep + 1);
     }
@@ -110,28 +126,12 @@ const PlanTour = () => {
     try {
       setLoading(true);
       // await createNewApplication(data, user?.sub);
-
       setLoading(false);
-
       reset();
       setCurrentStep(0);
     } catch (error) {
       setLoading(false);
       console.log(error);
-    }
-  };
-
-  const renderStepContent = (step: number) => {
-    switch (step) {
-      case 0:
-        return <Step1 />;
-      case 1:
-        return <Step2 />;
-      case 2:
-        return <Step3 />;
-
-      default:
-        return null;
     }
   };
 
@@ -143,35 +143,213 @@ const PlanTour = () => {
     setOpen(false);
   };
 
-  console.log(formData);
+  const getSelectedHotelsAndRooms = (): SelectedHotel[] => {
+    const selectedHotels: SelectedHotel[] = [];
+
+    for (const key in formData) {
+      if (key.endsWith('__room')) {
+        const [city, hotel, roomType] = key.split('__');
+        const hotelKey = `${city}__${hotel}__${roomType}`;
+        // @ts-ignore
+        const hotelSelected = formData[hotelKey];
+        // @ts-ignore
+        const roomValue = formData[key];
+
+        if (hotelSelected) {
+          const price = getRoomPrice(city, hotel, roomType, roomValue);
+
+          selectedHotels.push({
+            city,
+            hotel,
+            roomType: roomType.replace('_', ' '),
+            roomValue,
+            price,
+          });
+        }
+      }
+    }
+
+    return selectedHotels;
+  };
+
+  const getSelectedTrains = (): TrainService[] => {
+    const selectedTrains: TrainService[] = [];
+
+    for (const key in formData) {
+      if (key.endsWith('__class')) {
+        const routeKey = key.split('__class')[0];
+        // @ts-ignore
+        const classType = formData[key] as TrainClass;
+        const isSpeedTrain = routeKey.endsWith('SpeedTrain');
+        const route = routeKey
+          .replace('SpeedTrain', '')
+          .replace('RegularTrain', '') as TrainRoute;
+
+        // @ts-ignore
+        const isRouteSelected = formData[routeKey.replace('__class', '')];
+        if (isRouteSelected && classType) {
+          let lowerClassType = classType?.toLowerCase();
+          const price = isSpeedTrain
+            ? SPEED_TRAIN_RATES[route]
+            : REGULAR_TRAIN_RATES[route];
+          // @ts-ignore
+          let priceCalculates = price[lowerClassType];
+          if (price) {
+            selectedTrains.push({
+              route,
+              classType,
+              type: isSpeedTrain ? 'speedTrain' : 'regularTrain',
+              price: priceCalculates,
+            });
+          }
+        }
+      }
+    }
+
+    return selectedTrains;
+  };
+
+  const getRoomPrice = (
+    city: string,
+    hotel: string,
+    roomType: string,
+    roomValue: RoomType
+  ): number => {
+    let rates: HotelRates;
+    city = city.replace('Hotel', '');
+
+    switch (city) {
+      case HOTEL_CITIES.TASHKENT:
+        rates = TASHKENT_HOTEL_RATES;
+        break;
+      case HOTEL_CITIES.SAMARKAND:
+        rates = SAMARKAND_HOTEL_RATES;
+        break;
+      case HOTEL_CITIES.BUKHARA:
+        rates = BUKHARA_HOTEL_RATES;
+        break;
+      case HOTEL_CITIES.KHIVA:
+        rates = KHIVA_HOTEL_RATES;
+        break;
+      default:
+        return 0;
+    }
+
+    const hotelRates = rates[hotel];
+
+    if (hotelRates) {
+      const roomRates = hotelRates[roomType];
+      if (roomRates && roomValue) {
+        let lowerCaseValue = roomValue?.toLowerCase();
+        //@ts-ignore
+        return roomRates[lowerCaseValue] || 0;
+      }
+    }
+    return 0;
+  };
+
+  const selectedHotels = getSelectedHotelsAndRooms();
+  let selectedTrains = getSelectedTrains();
 
   useEffect(() => {
     let total = 0;
+    let additionalTotal = 0;
 
-    if (formData.hotelTotalTashkent) {
-      total += formData.hotelTotalTashkent;
+    if (formData.hotelTotalTashkent && formData.numberOfNightsInTashkent) {
+      let value =
+        formData.hotelTotalTashkent * formData.numberOfNightsInTashkent;
+      total += value;
     }
 
-    if (formData.hotelTotalSamarkand) {
-      total += formData.hotelTotalSamarkand;
+    if (formData.hotelTotalSamarkand && formData.numberOfNightsInSamarkand) {
+      let value =
+        formData.hotelTotalSamarkand * formData.numberOfNightsInSamarkand;
+      total += value;
     }
 
-    if (formData.hotelTotalBukhara) {
-      total += formData.hotelTotalBukhara;
+    if (formData.hotelTotalBukhara && formData.numberOfNightsInBukhara) {
+      let value = formData.hotelTotalBukhara * formData.numberOfNightsInBukhara;
+      total += value;
     }
 
-    if (formData.hotelTotalKhiva) {
-      total += formData.hotelTotalKhiva;
+    if (formData.hotelTotalKhiva && formData.numberOfNightsInKhiva) {
+      let value = formData.hotelTotalKhiva * formData.numberOfNightsInKhiva;
+      total += value;
+    }
+
+    if (formData.additionalTrainsTotal) {
+      additionalTotal += formData.additionalTrainsTotal;
+    }
+
+    if (formData.englishSpeakingGuide) {
+      additionalTotal += GUIDE_RATE;
+    }
+
+    if (formData.carOneDay) {
+      additionalTotal += CAR_RATES.oneDay;
+    }
+
+    if (formData.carMountain) {
+      additionalTotal += CAR_RATES.mountain;
+    }
+
+    if (formData.carAirport) {
+      additionalTotal += CAR_RATES.airport;
+    }
+
+    if (formData.miniBusOneDay) {
+      additionalTotal += MINI_BUS_RATES.oneDay;
+    }
+
+    if (formData.miniBusMountain) {
+      additionalTotal += MINI_BUS_RATES.mountain;
+    }
+
+    if (formData.miniBusAirport) {
+      additionalTotal += MINI_BUS_RATES.airport;
     }
 
     setValue('hotelTotal', total);
+    setValue('additionalServicesTotal', additionalTotal);
   }, [
     formData.hotelTotalTashkent,
+    formData.numberOfNightsInTashkent,
     formData.hotelTotalSamarkand,
+    formData.numberOfNightsInSamarkand,
     formData.hotelTotalKhiva,
+    formData.numberOfNightsInKhiva,
     formData.hotelTotalBukhara,
+    formData.numberOfNightsInBukhara,
+    formData.additionalTrainsTotal,
+    formData.englishSpeakingGuide,
+    formData.carOneDay,
+    formData.carMountain,
+    formData.carAirport,
+    formData.miniBusOneDay,
+    formData.miniBusMountain,
+    formData.miniBusAirport,
     setValue,
   ]);
+
+  const renderStepContent = (step: number) => {
+    switch (step) {
+      case 0:
+        return <Step1 />;
+      case 1:
+        return <Step2 />;
+      case 2:
+        return <Step3 />;
+      case 3:
+        return (
+          <Step4
+            selectedHotels={selectedHotels}
+            selectedTrains={selectedTrains}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -202,24 +380,22 @@ const PlanTour = () => {
           <DialogContent>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Container maxWidth="lg">
-                {formData.hotelTotal > 0 && (
-                  <>
-                    <Typography
-                      variant="h4"
-                      textAlign={'center'}
-                      style={{ marginBottom: 20 }}
-                    >
-                      Grand Total
-                    </Typography>
-                    <Typography
-                      variant="h2"
-                      textAlign={'center'}
-                      style={{ marginBottom: 50 }}
-                    >
-                      $ {formData.hotelTotal}
-                    </Typography>
-                  </>
-                )}
+                <>
+                  <Typography
+                    variant="h4"
+                    textAlign={'center'}
+                    style={{ marginBottom: 20 }}
+                  >
+                    Grand Total
+                  </Typography>
+                  <Typography
+                    variant="h2"
+                    textAlign={'center'}
+                    style={{ marginBottom: 50 }}
+                  >
+                    $ {formData.hotelTotal + formData.additionalServicesTotal}
+                  </Typography>
+                </>
 
                 <Stepper activeStep={currentStep} alternativeLabel>
                   {steps.map((label, index) => (
@@ -251,7 +427,7 @@ const PlanTour = () => {
               disabled={isSubmitting || loading}
               onClick={handleNext}
             >
-              {currentStep === steps.length - 1 ? 'Submit' : 'Next'}
+              {currentStep === steps.length - 1 ? 'Done' : 'Next'}
             </Button>
           </DialogActions>
         </FormProvider>

@@ -8,10 +8,7 @@ const Step1 = () => {
   const {
     control,
     formState: { errors },
-    watch,
   } = useFormContext<CalculatorFormData>();
-
-  const formData = watch();
 
   return (
     <Grid container spacing={2}>
@@ -106,55 +103,6 @@ const Step1 = () => {
                 fullWidth
                 error={!!errors?.phone}
                 helperText={errors?.phone?.message}
-              />
-            )}
-          />
-        </div>
-      </Grid>
-      <Grid style={styles.item} xs={12} sm={6} item>
-        <div style={styles.input}>
-          <Typography variant="h4">Number of Tourists</Typography>
-          <Controller
-            name="numberOfTourists"
-            control={control}
-            rules={{
-              required: 'Number of Tourists is required',
-            }}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Number of Tourists"
-                variant="outlined"
-                fullWidth
-                type="number"
-                error={!!errors?.numberOfTourists}
-                helperText={errors?.numberOfTourists?.message}
-              />
-            )}
-          />
-        </div>
-      </Grid>
-
-      <Grid style={styles.item} xs={12} sm={6} item>
-        <div style={styles.input}>
-          <Typography variant="h4">Nights</Typography>
-          <Controller
-            name="nights"
-            control={control}
-            rules={{
-              required: 'Nights are required',
-            }}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Nights"
-                variant="outlined"
-                fullWidth
-                type="number"
-                error={!!errors?.nights}
-                helperText={errors?.nights?.message}
               />
             )}
           />

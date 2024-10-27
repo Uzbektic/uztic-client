@@ -1,4 +1,17 @@
-export const steps = ['Basic Details', 'Choose Hotel', 'Additional Services'];
+import { HotelRates } from '../../types/hotels';
+import { TrainClass, TrainRoute } from '../../types/trains';
+
+export const steps = [
+  'Basic Details',
+  'Choose Hotel',
+  'Additional Services',
+  'Calculate',
+];
+
+export const TRAIN_CLASSES = {
+  ECONOMY: 'Economy',
+  BUSINESS: 'Business',
+};
 
 export const ROOM_SIZES = {
   SINGLE: 'Single',
@@ -12,7 +25,7 @@ export const HOTEL_CITIES = {
   KHIVA: 'khiva',
 };
 
-export const TASHKENT_HOTEL_RATES = {
+export const TASHKENT_HOTEL_RATES: HotelRates = {
   hyattRegency: {
     standardKing: {
       single: 190,
@@ -189,7 +202,7 @@ export const TASHKENT_HOTEL_RATES = {
   },
 };
 
-export const SAMARKAND_HOTEL_RATES = {
+export const SAMARKAND_HOTEL_RATES: HotelRates = {
   movenPick: {
     standard: {
       single: 130,
@@ -324,7 +337,7 @@ export const SAMARKAND_HOTEL_RATES = {
   },
 };
 
-export const BUKHARA_HOTEL_RATES = {
+export const BUKHARA_HOTEL_RATES: HotelRates = {
   malikaBukhara: {
     standard: {
       single: 80,
@@ -455,7 +468,7 @@ export const BUKHARA_HOTEL_RATES = {
   },
 };
 
-export const KHIVA_HOTEL_RATES = {
+export const KHIVA_HOTEL_RATES: HotelRates = {
   asia: {
     standard: {
       single: 65,
@@ -486,4 +499,36 @@ export const KHIVA_HOTEL_RATES = {
       double: 130,
     },
   },
+};
+
+export const SPEED_TRAIN_RATES: Record<
+  TrainRoute,
+  Record<TrainClass, number>
+> = {
+  tashkentToSamarkand: { economy: 30, business: 40 },
+  tashkentToBukhara: { economy: 40, business: 60 },
+  samarkandToBukhara: { economy: 30, business: 40 },
+};
+
+export const REGULAR_TRAIN_RATES: Record<
+  TrainRoute,
+  Record<TrainClass, number>
+> = {
+  tashkentToSamarkand: { economy: 20, business: 30 },
+  tashkentToBukhara: { economy: 25, business: 40 },
+  samarkandToBukhara: { economy: 20, business: 30 },
+};
+
+export const GUIDE_RATE = 70;
+
+export const CAR_RATES = {
+  oneDay: 60,
+  mountain: 100,
+  airport: 20,
+};
+
+export const MINI_BUS_RATES = {
+  oneDay: 100,
+  mountain: 150,
+  airport: 30,
 };
