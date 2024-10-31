@@ -2,9 +2,15 @@ import { HotelRates } from '../../types/hotels';
 import { TrainClass, TrainRoute } from '../../types/trains';
 import { applyRateIncreaseForHotel } from './helpers';
 
+export const OPTIONS = {
+  YES: 'Yes',
+  NO: 'No',
+};
+
 export const INCREASE_HOTEL_RATES_BY = 5;
 export const INCREASE_SERVICES_RATES_BY = 5;
 export const VISA_FEE = 90;
+export const visaOptions = [OPTIONS.YES, OPTIONS.NO];
 
 export const steps = [
   'Basic Details',

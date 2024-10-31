@@ -290,4 +290,7 @@ export interface CalculatorFormData {
   miniBusOneDay: boolean;
   miniBusMountain: boolean;
   miniBusAirport: boolean;
+
+  // Visa
+  visa: string;
 }

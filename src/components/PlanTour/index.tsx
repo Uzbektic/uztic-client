@@ -19,11 +19,13 @@ import {
   HOTEL_CITIES,
   KHIVA_HOTEL_RATES,
   MINI_BUS_RATES,
+  OPTIONS,
   REGULAR_TRAIN_RATES,
   SAMARKAND_HOTEL_RATES,
   SPEED_TRAIN_RATES,
   steps,
   TASHKENT_HOTEL_RATES,
+  VISA_FEE,
 } from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { CustomColors } from '../../theme';
@@ -315,6 +317,12 @@ const PlanTour = () => {
       additionalTotal += CAR_RATES.oneDay;
     }
 
+    if (formData.visa) {
+      if (formData.visa === OPTIONS.YES) {
+        additionalTotal += VISA_FEE;
+      }
+    }
+
     if (formData.carMountain) {
       additionalTotal += CAR_RATES.mountain;
     }
@@ -358,6 +366,7 @@ const PlanTour = () => {
     formData.miniBusOneDay,
     formData.miniBusMountain,
     formData.miniBusAirport,
+    formData.visa,
     setValue,
   ]);
 
