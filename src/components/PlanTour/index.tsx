@@ -255,25 +255,51 @@ const PlanTour = () => {
     let total = 0;
     let additionalTotal = 0;
 
-    if (formData.hotelTotalTashkent && formData.numberOfNightsInTashkent) {
+    if (
+      formData.hotelTotalTashkent &&
+      formData.numberOfNightsInTashkent &&
+      formData.numberOfRoomsInTashkent
+    ) {
       let value =
-        formData.hotelTotalTashkent * formData.numberOfNightsInTashkent;
+        formData.hotelTotalTashkent *
+        formData.numberOfNightsInTashkent *
+        formData.numberOfRoomsInTashkent;
       total += value;
     }
 
-    if (formData.hotelTotalSamarkand && formData.numberOfNightsInSamarkand) {
+    if (
+      formData.hotelTotalSamarkand &&
+      formData.numberOfNightsInSamarkand &&
+      formData.numberOfRoomsInSamarkand
+    ) {
       let value =
-        formData.hotelTotalSamarkand * formData.numberOfNightsInSamarkand;
+        formData.hotelTotalSamarkand *
+        formData.numberOfNightsInSamarkand *
+        formData.numberOfRoomsInSamarkand;
       total += value;
     }
 
-    if (formData.hotelTotalBukhara && formData.numberOfNightsInBukhara) {
-      let value = formData.hotelTotalBukhara * formData.numberOfNightsInBukhara;
+    if (
+      formData.hotelTotalBukhara &&
+      formData.numberOfNightsInBukhara &&
+      formData.numberOfRoomsInBukhara
+    ) {
+      let value =
+        formData.hotelTotalBukhara *
+        formData.numberOfNightsInBukhara *
+        formData.numberOfRoomsInBukhara;
       total += value;
     }
 
-    if (formData.hotelTotalKhiva && formData.numberOfNightsInKhiva) {
-      let value = formData.hotelTotalKhiva * formData.numberOfNightsInKhiva;
+    if (
+      formData.hotelTotalKhiva &&
+      formData.numberOfNightsInKhiva &&
+      formData.numberOfRoomsInKhiva
+    ) {
+      let value =
+        formData.hotelTotalKhiva *
+        formData.numberOfNightsInKhiva *
+        formData.numberOfRoomsInKhiva;
       total += value;
     }
 
@@ -314,12 +340,16 @@ const PlanTour = () => {
   }, [
     formData.hotelTotalTashkent,
     formData.numberOfNightsInTashkent,
+    formData.numberOfRoomsInTashkent,
     formData.hotelTotalSamarkand,
     formData.numberOfNightsInSamarkand,
+    formData.numberOfRoomsInSamarkand,
     formData.hotelTotalKhiva,
     formData.numberOfNightsInKhiva,
+    formData.numberOfRoomsInKhiva,
     formData.hotelTotalBukhara,
     formData.numberOfNightsInBukhara,
+    formData.numberOfRoomsInBukhara,
     formData.additionalTrainsTotal,
     formData.englishSpeakingGuide,
     formData.carOneDay,
@@ -364,7 +394,7 @@ const PlanTour = () => {
 
       <Dialog fullWidth={true} maxWidth={'lg'} open={open}>
         <FormProvider {...methods}>
-          <DialogTitle variant="h4">Plan your tour</DialogTitle>
+          <DialogTitle variant="h3">Plan your tour</DialogTitle>
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -427,7 +457,9 @@ const PlanTour = () => {
               disabled={isSubmitting || loading}
               onClick={handleNext}
             >
-              {currentStep === steps.length - 1 ? 'Done' : 'Next'}
+              {currentStep === steps.length - 1
+                ? 'Confirm your reservation'
+                : 'Next'}
             </Button>
           </DialogActions>
         </FormProvider>

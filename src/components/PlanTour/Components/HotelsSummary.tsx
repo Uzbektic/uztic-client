@@ -42,9 +42,13 @@ const HotelsSummary = ({
                 Number of nights: {formData.numberOfNightsInTashkent}
               </Typography>
               <Typography variant="body1">
+                Number of rooms: {formData.numberOfRoomsInTashkent}
+              </Typography>
+              <Typography variant="body1">
                 Total cost: $
                 {formData.hotelTotalTashkent *
-                  formData.numberOfNightsInTashkent}
+                  formData.numberOfNightsInTashkent *
+                  formData.numberOfRoomsInTashkent}
               </Typography>
             </div>
           )}
@@ -57,9 +61,13 @@ const HotelsSummary = ({
                 Number of nights: {formData.numberOfNightsInSamarkand}
               </Typography>
               <Typography variant="body1">
+                Number of rooms: {formData.numberOfRoomsInSamarkand}
+              </Typography>
+              <Typography variant="body1">
                 Total cost: $
                 {formData.hotelTotalSamarkand *
-                  formData.numberOfNightsInSamarkand}
+                  formData.numberOfNightsInSamarkand *
+                  formData.numberOfRoomsInSamarkand}
               </Typography>
             </div>
           )}
@@ -72,8 +80,13 @@ const HotelsSummary = ({
                 Number of nights: {formData.numberOfNightsInBukhara}
               </Typography>
               <Typography variant="body1">
+                Number of rooms: {formData.numberOfRoomsInBukhara}
+              </Typography>
+              <Typography variant="body1">
                 Total cost: $
-                {formData.hotelTotalBukhara * formData.numberOfNightsInBukhara}
+                {formData.hotelTotalBukhara *
+                  formData.numberOfNightsInBukhara *
+                  formData.numberOfRoomsInBukhara}
               </Typography>
             </div>
           )}
@@ -86,8 +99,13 @@ const HotelsSummary = ({
                 Number of nights: {formData.numberOfNightsInKhiva}
               </Typography>
               <Typography variant="body1">
+                Number of rooms: {formData.numberOfRoomsInKhiva}
+              </Typography>
+              <Typography variant="body1">
                 Total cost: $
-                {formData.hotelTotalKhiva * formData.numberOfNightsInKhiva}
+                {formData.hotelTotalKhiva *
+                  formData.numberOfNightsInKhiva *
+                  formData.numberOfRoomsInKhiva}
               </Typography>
             </div>
           )}

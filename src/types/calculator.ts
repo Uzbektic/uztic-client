@@ -18,6 +18,11 @@ export interface CalculatorFormData {
   numberOfNightsInBukhara: number;
   numberOfNightsInKhiva: number;
 
+  numberOfRoomsInTashkent: number;
+  numberOfRoomsInSamarkand: number;
+  numberOfRoomsInBukhara: number;
+  numberOfRoomsInKhiva: number;
+
   tashkent: boolean;
   samarkand: boolean;
   bukhara: boolean;

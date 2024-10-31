@@ -1,5 +1,10 @@
 import { HotelRates } from '../../types/hotels';
 import { TrainClass, TrainRoute } from '../../types/trains';
+import { applyRateIncreaseForHotel } from './helpers';
+
+export const INCREASE_HOTEL_RATES_BY = 5;
+export const INCREASE_SERVICES_RATES_BY = 5;
+export const VISA_FEE = 90;
 
 export const steps = [
   'Basic Details',
@@ -25,510 +30,540 @@ export const HOTEL_CITIES = {
   KHIVA: 'khiva',
 };
 
-export const TASHKENT_HOTEL_RATES: HotelRates = {
-  hyattRegency: {
-    standardKing: {
-      single: 190,
-      double: 225,
+export const TASHKENT_HOTEL_RATES: HotelRates = applyRateIncreaseForHotel(
+  {
+    hyattRegency: {
+      standardKing: {
+        single: 190,
+        double: 225,
+      },
+      deluxeKing: {
+        single: 215,
+        double: 250,
+      },
+      clubKing: {
+        single: 235,
+        double: 270,
+      },
     },
-    deluxeKing: {
-      single: 215,
-      double: 250,
+    hilton: {
+      guestRoom: {
+        single: 210,
+        double: 240,
+      },
+      executiveRoom: {
+        single: 260,
+        double: 295,
+      },
+      cornerSuite: {
+        single: 401,
+        double: 435,
+      },
     },
-    clubKing: {
-      single: 235,
-      double: 270,
+    wyndham: {
+      standard: {
+        single: 120,
+        double: 145,
+      },
+      deluxe: {
+        single: 125,
+        double: 150,
+      },
+    },
+    hampton: {
+      superFlex: {
+        single: 115,
+        double: 155,
+      },
+      queenKing: {
+        single: 125,
+        double: 165,
+      },
+      deluxe: {
+        single: 165,
+        double: 200,
+      },
+    },
+    ramada: {
+      standard: {
+        single: 95,
+        double: 120,
+      },
+      premium: {
+        single: 130,
+        double: 160,
+      },
+    },
+    gabrielle: {
+      standard: {
+        single: 75,
+        double: 105,
+      },
+      panoramic: {
+        single: 95,
+        double: 125,
+      },
+      royal: {
+        single: 115,
+        double: 145,
+      },
+      apartment: {
+        single: 135,
+        double: 165,
+      },
+    },
+    novza: {
+      standard: {
+        single: 75,
+        double: 95,
+      },
+      deluxe: {
+        single: 80,
+        double: 105,
+      },
+      superior: {
+        single: 90,
+        double: 110,
+      },
+    },
+    mercure: {
+      superiorKing: {
+        single: 116,
+        double: 145,
+      },
+      superior: {
+        single: 145,
+        double: 145,
+      },
+      prestige: {
+        single: 155,
+        double: 185,
+      },
+    },
+    garnet: {
+      standard: {
+        single: 70,
+        double: 85,
+      },
+      deluxe: {
+        single: 80,
+        double: 95,
+      },
+      triple: {
+        single: 140,
+        double: 145,
+      },
+      suite: {
+        single: 140,
+        double: 145,
+      },
+    },
+    greenPark: {
+      standard: {
+        single: 85,
+        double: 110,
+      },
+      juniorSuite: {
+        single: 96,
+        double: 122,
+      },
+      executiveSuite: {
+        single: 155,
+        double: 170,
+      },
+    },
+    stayInn: {
+      standard: {
+        single: 50,
+        double: 70,
+      },
+      superior: {
+        single: 70,
+        double: 90,
+      },
+    },
+    krokus: {
+      standard: {
+        single: 75,
+        double: 120,
+      },
+      deluxe: {
+        single: 85,
+        double: 130,
+      },
+      studio: {
+        single: 100,
+        double: 150,
+      },
+    },
+    dsfGarden: {
+      standard: {
+        single: 50,
+        double: 70,
+      },
+      triple: {
+        single: 105,
+        double: 130,
+      },
     },
   },
-  hilton: {
-    guestRoom: {
-      single: 210,
-      double: 240,
+  INCREASE_HOTEL_RATES_BY
+);
+
+export const SAMARKAND_HOTEL_RATES: HotelRates = applyRateIncreaseForHotel(
+  {
+    movenPick: {
+      standard: {
+        single: 130,
+        double: 155,
+      },
+      executive: {
+        single: 200,
+        double: 225,
+      },
     },
-    executiveRoom: {
-      single: 260,
-      double: 295,
+    alexander: {
+      standardSingle: {
+        single: 80,
+        double: 80,
+      },
+      standardDouble: {
+        single: 100,
+        double: 100,
+      },
+      standardTwin: {
+        single: 120,
+        double: 120,
+      },
+      standardTriple: {
+        single: 160,
+        double: 160,
+      },
+      luxTwin: {
+        single: 140,
+        double: 140,
+      },
     },
-    cornerSuite: {
-      single: 401,
-      double: 435,
+    dilimahPremium: {
+      standard: {
+        single: 80,
+        double: 130,
+      },
+      superior: {
+        single: 95,
+        double: 130,
+      },
+    },
+    diyora: {
+      standard: {
+        single: 70,
+        double: 105,
+      },
+      triple: {
+        single: 135,
+        double: 135,
+      },
+    },
+    malikaPrime: {
+      standard: {
+        single: 65,
+        double: 95,
+      },
+      triple: {
+        single: 135,
+        double: 135,
+      },
+    },
+    malikaClassic: {
+      standard: {
+        single: 55,
+        double: 90,
+      },
+      triple: {
+        single: 120,
+        double: 120,
+      },
+    },
+    orientStar: {
+      standard: {
+        single: 65,
+        double: 95,
+      },
+      lux: {
+        single: 80,
+        double: 115,
+      },
+      family: {
+        single: 130,
+        double: 130,
+      },
+    },
+    qosh: {
+      standard: {
+        single: 80,
+        double: 115,
+      },
+      triple: {
+        single: 150,
+        double: 150,
+      },
+    },
+    dilshoda: {
+      standard: {
+        single: 55,
+        double: 80,
+      },
+      triple: {
+        single: 105,
+        double: 105,
+      },
+    },
+    wellfort: {
+      standard: {
+        single: 80,
+        double: 115,
+      },
+      triple: {
+        single: 140,
+        double: 140,
+      },
+    },
+    bravo: {
+      standard: {
+        single: 60,
+        double: 90,
+      },
+    },
+    eastStar: {
+      standard: {
+        single: 75,
+        double: 110,
+      },
+      deluxe: {
+        single: 80,
+        double: 115,
+      },
     },
   },
-  wyndham: {
-    standard: {
-      single: 120,
-      double: 145,
+  INCREASE_HOTEL_RATES_BY
+);
+
+export const BUKHARA_HOTEL_RATES: HotelRates = applyRateIncreaseForHotel(
+  {
+    malikaBukhara: {
+      standard: {
+        single: 80,
+        double: 100,
+      },
+      triple: {
+        single: 130,
+        double: 130,
+      },
     },
-    deluxe: {
-      single: 125,
-      double: 150,
+    gardenPlaza: {
+      standard: {
+        single: 55,
+        double: 85,
+      },
+      triple: {
+        single: 125,
+        double: 125,
+      },
+      deluxe: {
+        single: 125,
+        double: 125,
+      },
     },
-  },
-  hampton: {
-    superFlex: {
-      single: 115,
-      double: 155,
+    mercure: {
+      classic: {
+        single: 125,
+        double: 145,
+      },
+      superior: {
+        single: 135,
+        double: 155,
+      },
+      privilege: {
+        single: 160,
+        double: 180,
+      },
     },
-    queenKing: {
-      single: 125,
-      double: 165,
+    omarKhayam: {
+      standard: {
+        single: 80,
+        double: 100,
+      },
+      triple: {
+        single: 130,
+        double: 130,
+      },
     },
-    deluxe: {
-      single: 165,
-      double: 200,
-    },
-  },
-  ramada: {
-    standard: {
-      single: 95,
-      double: 120,
-    },
-    premium: {
-      single: 130,
-      double: 160,
-    },
-  },
-  gabrielle: {
-    standard: {
-      single: 75,
-      double: 105,
-    },
-    panoramic: {
-      single: 95,
-      double: 125,
+    paradise: {
+      standard: {
+        single: 80,
+        double: 110,
+      },
+      triple: {
+        single: 155,
+        double: 155,
+      },
+      deluxe: {
+        single: 85,
+        double: 125,
+      },
     },
     royal: {
-      single: 115,
-      double: 145,
+      standard: {
+        single: 65,
+        double: 95,
+      },
+      triple: {
+        single: 145,
+        double: 145,
+      },
     },
-    apartment: {
-      single: 135,
-      double: 165,
+    shahidZarafshan: {
+      standard: {
+        single: 75,
+        double: 95,
+      },
+      deluxe: {
+        single: 100,
+        double: 135,
+      },
     },
-  },
-  novza: {
-    standard: {
-      single: 75,
-      double: 95,
+    turonCity: {
+      standard: {
+        single: 60,
+        double: 85,
+      },
+      deluxe: {
+        single: 115,
+        double: 155,
+      },
     },
-    deluxe: {
-      single: 80,
-      double: 105,
+    wyndham: {
+      standard: {
+        single: 95,
+        double: 120,
+      },
+      deluxe: {
+        single: 250,
+        double: 250,
+      },
     },
-    superior: {
-      single: 90,
-      double: 110,
+    dunyo: {
+      standard: {
+        single: 50,
+        double: 75,
+      },
+      triple: {
+        single: 100,
+        double: 100,
+      },
     },
-  },
-  mercure: {
-    superiorKing: {
-      single: 116,
-      double: 145,
+    gumbaz: {
+      standard: {
+        single: 40,
+        double: 60,
+      },
+      triple: {
+        single: 110,
+        double: 110,
+      },
     },
-    superior: {
-      single: 145,
-      double: 145,
-    },
-    prestige: {
-      single: 155,
-      double: 185,
-    },
-  },
-  garnet: {
-    standard: {
-      single: 70,
-      double: 85,
-    },
-    deluxe: {
-      single: 80,
-      double: 95,
-    },
-    triple: {
-      single: 140,
-      double: 145,
-    },
-    suite: {
-      single: 140,
-      double: 145,
-    },
-  },
-  greenPark: {
-    standard: {
-      single: 85,
-      double: 110,
-    },
-    juniorSuite: {
-      single: 96,
-      double: 122,
-    },
-    executiveSuite: {
-      single: 155,
-      double: 170,
+    lyabi: {
+      standard: {
+        single: 50,
+        double: 80,
+      },
     },
   },
-  stayInn: {
-    standard: {
-      single: 50,
-      double: 70,
-    },
-    superior: {
-      single: 70,
-      double: 90,
-    },
-  },
-  krokus: {
-    standard: {
-      single: 75,
-      double: 120,
-    },
-    deluxe: {
-      single: 85,
-      double: 130,
-    },
-    studio: {
-      single: 100,
-      double: 150,
-    },
-  },
-  dsfGarden: {
-    standard: {
-      single: 50,
-      double: 70,
-    },
-    triple: {
-      single: 105,
-      double: 130,
-    },
-  },
-};
+  INCREASE_HOTEL_RATES_BY
+);
 
-export const SAMARKAND_HOTEL_RATES: HotelRates = {
-  movenPick: {
-    standard: {
-      single: 130,
-      double: 155,
+export const KHIVA_HOTEL_RATES: HotelRates = applyRateIncreaseForHotel(
+  {
+    asia: {
+      standard: {
+        single: 65,
+        double: 85,
+      },
+      triple: {
+        single: 145,
+        double: 145,
+      },
     },
-    executive: {
-      single: 200,
-      double: 225,
+    bankir: {
+      standard: {
+        single: 65,
+        double: 95,
+      },
+      triple: {
+        single: 120,
+        double: 120,
+      },
     },
-  },
-  alexander: {
-    standardSingle: {
-      single: 80,
-      double: 80,
-    },
-    standardDouble: {
-      single: 100,
-      double: 100,
-    },
-    standardTwin: {
-      single: 120,
-      double: 120,
-    },
-    standardTriple: {
-      single: 160,
-      double: 160,
-    },
-    luxTwin: {
-      single: 140,
-      double: 140,
-    },
-  },
-  dilimahPremium: {
-    standard: {
-      single: 80,
-      double: 130,
-    },
-    superior: {
-      single: 95,
-      double: 130,
+    orientStar: {
+      standard: {
+        single: 65,
+        double: 75,
+      },
+      triple: {
+        single: 130,
+        double: 130,
+      },
     },
   },
-  diyora: {
-    standard: {
-      single: 70,
-      double: 105,
-    },
-    triple: {
-      single: 135,
-      double: 135,
-    },
-  },
-  malikaPrime: {
-    standard: {
-      single: 65,
-      double: 95,
-    },
-    triple: {
-      single: 135,
-      double: 135,
-    },
-  },
-  malikaClassic: {
-    standard: {
-      single: 55,
-      double: 90,
-    },
-    triple: {
-      single: 120,
-      double: 120,
-    },
-  },
-  orientStar: {
-    standard: {
-      single: 65,
-      double: 95,
-    },
-    lux: {
-      single: 80,
-      double: 115,
-    },
-    family: {
-      single: 130,
-      double: 130,
-    },
-  },
-  qosh: {
-    standard: {
-      single: 80,
-      double: 115,
-    },
-    triple: {
-      single: 150,
-      double: 150,
-    },
-  },
-  dilshoda: {
-    standard: {
-      single: 55,
-      double: 80,
-    },
-    triple: {
-      single: 105,
-      double: 105,
-    },
-  },
-  wellfort: {
-    standard: {
-      single: 80,
-      double: 115,
-    },
-    triple: {
-      single: 140,
-      double: 140,
-    },
-  },
-  bravo: {
-    standard: {
-      single: 60,
-      double: 90,
-    },
-  },
-  eastStar: {
-    standard: {
-      single: 75,
-      double: 110,
-    },
-    deluxe: {
-      single: 80,
-      double: 115,
-    },
-  },
-};
-
-export const BUKHARA_HOTEL_RATES: HotelRates = {
-  malikaBukhara: {
-    standard: {
-      single: 80,
-      double: 100,
-    },
-    triple: {
-      single: 130,
-      double: 130,
-    },
-  },
-  gardenPlaza: {
-    standard: {
-      single: 55,
-      double: 85,
-    },
-    triple: {
-      single: 125,
-      double: 125,
-    },
-    deluxe: {
-      single: 125,
-      double: 125,
-    },
-  },
-  mercure: {
-    classic: {
-      single: 125,
-      double: 145,
-    },
-    superior: {
-      single: 135,
-      double: 155,
-    },
-    privilege: {
-      single: 160,
-      double: 180,
-    },
-  },
-  omarKhayam: {
-    standard: {
-      single: 80,
-      double: 100,
-    },
-    triple: {
-      single: 130,
-      double: 130,
-    },
-  },
-  paradise: {
-    standard: {
-      single: 80,
-      double: 110,
-    },
-    triple: {
-      single: 155,
-      double: 155,
-    },
-    deluxe: {
-      single: 85,
-      double: 125,
-    },
-  },
-  royal: {
-    standard: {
-      single: 65,
-      double: 95,
-    },
-    triple: {
-      single: 145,
-      double: 145,
-    },
-  },
-  shahidZarafshan: {
-    standard: {
-      single: 75,
-      double: 95,
-    },
-    deluxe: {
-      single: 100,
-      double: 135,
-    },
-  },
-  turonCity: {
-    standard: {
-      single: 60,
-      double: 85,
-    },
-    deluxe: {
-      single: 115,
-      double: 155,
-    },
-  },
-  wyndham: {
-    standard: {
-      single: 95,
-      double: 120,
-    },
-    deluxe: {
-      single: 250,
-      double: 250,
-    },
-  },
-  dunyo: {
-    standard: {
-      single: 50,
-      double: 75,
-    },
-    triple: {
-      single: 100,
-      double: 100,
-    },
-  },
-  gumbaz: {
-    standard: {
-      single: 40,
-      double: 60,
-    },
-    triple: {
-      single: 110,
-      double: 110,
-    },
-  },
-  lyabi: {
-    standard: {
-      single: 50,
-      double: 80,
-    },
-  },
-};
-
-export const KHIVA_HOTEL_RATES: HotelRates = {
-  asia: {
-    standard: {
-      single: 65,
-      double: 85,
-    },
-    triple: {
-      single: 145,
-      double: 145,
-    },
-  },
-  bankir: {
-    standard: {
-      single: 65,
-      double: 95,
-    },
-    triple: {
-      single: 120,
-      double: 120,
-    },
-  },
-  orientStar: {
-    standard: {
-      single: 65,
-      double: 75,
-    },
-    triple: {
-      single: 130,
-      double: 130,
-    },
-  },
-};
+  INCREASE_HOTEL_RATES_BY
+);
 
 export const SPEED_TRAIN_RATES: Record<
   TrainRoute,
   Record<TrainClass, number>
 > = {
-  tashkentToSamarkand: { economy: 30, business: 40 },
-  tashkentToBukhara: { economy: 40, business: 60 },
-  samarkandToBukhara: { economy: 30, business: 40 },
+  tashkentToSamarkand: {
+    economy: 30 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
+  tashkentToBukhara: {
+    economy: 40 + INCREASE_SERVICES_RATES_BY,
+    business: 60 + INCREASE_SERVICES_RATES_BY,
+  },
+  samarkandToBukhara: {
+    economy: 30 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
 };
 
 export const REGULAR_TRAIN_RATES: Record<
   TrainRoute,
   Record<TrainClass, number>
 > = {
-  tashkentToSamarkand: { economy: 20, business: 30 },
-  tashkentToBukhara: { economy: 25, business: 40 },
-  samarkandToBukhara: { economy: 20, business: 30 },
+  tashkentToSamarkand: {
+    economy: 20 + INCREASE_SERVICES_RATES_BY,
+    business: 30 + INCREASE_SERVICES_RATES_BY,
+  },
+  tashkentToBukhara: {
+    economy: 25 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
+  samarkandToBukhara: {
+    economy: 20 + INCREASE_SERVICES_RATES_BY,
+    business: 30 + INCREASE_SERVICES_RATES_BY,
+  },
 };
 
-export const GUIDE_RATE = 70;
+export const GUIDE_RATE = 70 + INCREASE_SERVICES_RATES_BY;
 
 export const CAR_RATES = {
-  oneDay: 60,
-  mountain: 100,
-  airport: 20,
+  oneDay: 60 + INCREASE_SERVICES_RATES_BY,
+  mountain: 100 + INCREASE_SERVICES_RATES_BY,
+  airport: 20 + INCREASE_SERVICES_RATES_BY,
 };
 
 export const MINI_BUS_RATES = {
-  oneDay: 100,
-  mountain: 150,
-  airport: 30,
+  oneDay: 100 + INCREASE_SERVICES_RATES_BY,
+  mountain: 150 + INCREASE_SERVICES_RATES_BY,
+  airport: 30 + INCREASE_SERVICES_RATES_BY,
 };
