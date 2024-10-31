@@ -24,7 +24,7 @@ jobs:
       - name: Build the React app
         env:
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
-           CI: false
+          CI: false
 
         run: npm run build
 
