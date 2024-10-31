@@ -31,7 +31,14 @@ const OtherServices = () => {
                 English speaking guide 1 day sightseeing
               </Typography>
               <Typography variant="body1">
+                Number of days: {formData.numberOfDaysForGuide}
+              </Typography>
+              <Typography variant="body1">
                 4-5 hours per group in - Price: (${GUIDE_RATE.toFixed(2)})
+              </Typography>
+              <Typography variant="body1">
+                Total cost $
+                {(GUIDE_RATE * formData.numberOfDaysForGuide).toFixed(2)}
               </Typography>
             </Paper>
           </Grid>
@@ -71,7 +78,17 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${CAR_RATES.oneDay.toFixed(2)})
+                  Price for one day: (${CAR_RATES.oneDay.toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForCarOneDay}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>
@@ -122,7 +139,18 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${MINI_BUS_RATES.oneDay.toFixed(2)})
+                  Price for one day: (${MINI_BUS_RATES.oneDay.toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForCarOneDay}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    MINI_BUS_RATES.oneDay *
+                    formData.numberOfDaysForMiniBusOneDay
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>

@@ -540,6 +540,18 @@ export const SPEED_TRAIN_RATES: Record<
     economy: 30 + INCREASE_SERVICES_RATES_BY,
     business: 40 + INCREASE_SERVICES_RATES_BY,
   },
+  samarkandToTashkent: {
+    economy: 30 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
+  bukharaToTashkent: {
+    economy: 40 + INCREASE_SERVICES_RATES_BY,
+    business: 60 + INCREASE_SERVICES_RATES_BY,
+  },
+  bukharaToSamarkand: {
+    economy: 30 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
 };
 
 export const REGULAR_TRAIN_RATES: Record<
@@ -555,6 +567,18 @@ export const REGULAR_TRAIN_RATES: Record<
     business: 40 + INCREASE_SERVICES_RATES_BY,
   },
   samarkandToBukhara: {
+    economy: 20 + INCREASE_SERVICES_RATES_BY,
+    business: 30 + INCREASE_SERVICES_RATES_BY,
+  },
+  samarkandToTashkent: {
+    economy: 20 + INCREASE_SERVICES_RATES_BY,
+    business: 30 + INCREASE_SERVICES_RATES_BY,
+  },
+  bukharaToTashkent: {
+    economy: 25 + INCREASE_SERVICES_RATES_BY,
+    business: 40 + INCREASE_SERVICES_RATES_BY,
+  },
+  bukharaToSamarkand: {
     economy: 20 + INCREASE_SERVICES_RATES_BY,
     business: 30 + INCREASE_SERVICES_RATES_BY,
   },

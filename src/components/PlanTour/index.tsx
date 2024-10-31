@@ -309,12 +309,14 @@ const PlanTour = () => {
       additionalTotal += formData.additionalTrainsTotal;
     }
 
-    if (formData.englishSpeakingGuide) {
-      additionalTotal += GUIDE_RATE;
+    if (formData.englishSpeakingGuide && formData.numberOfDaysForGuide) {
+      let value = GUIDE_RATE * formData.numberOfDaysForGuide;
+      additionalTotal += value;
     }
 
-    if (formData.carOneDay) {
-      additionalTotal += CAR_RATES.oneDay;
+    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
+      let value = CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay;
+      additionalTotal += value;
     }
 
     if (formData.visa) {
@@ -331,8 +333,9 @@ const PlanTour = () => {
       additionalTotal += CAR_RATES.airport;
     }
 
-    if (formData.miniBusOneDay) {
-      additionalTotal += MINI_BUS_RATES.oneDay;
+    if (formData.miniBusOneDay && formData.numberOfDaysForMiniBusOneDay) {
+      let value = MINI_BUS_RATES.oneDay * formData.numberOfDaysForMiniBusOneDay;
+      additionalTotal += value;
     }
 
     if (formData.miniBusMountain) {
@@ -360,10 +363,13 @@ const PlanTour = () => {
     formData.numberOfRoomsInBukhara,
     formData.additionalTrainsTotal,
     formData.englishSpeakingGuide,
+    formData.numberOfDaysForGuide,
     formData.carOneDay,
+    formData.numberOfDaysForCarOneDay,
     formData.carMountain,
     formData.carAirport,
     formData.miniBusOneDay,
+    formData.numberOfDaysForMiniBusOneDay,
     formData.miniBusMountain,
     formData.miniBusAirport,
     formData.visa,
