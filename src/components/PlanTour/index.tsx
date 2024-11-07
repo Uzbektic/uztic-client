@@ -8,6 +8,7 @@ import { IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CalculatorFormData } from '../../types/calculator';
+import Step0 from './Steps/Step0';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
@@ -25,6 +26,7 @@ import {
   SPEED_TRAIN_RATES,
   steps,
   TASHKENT_HOTEL_RATES,
+  TOURIST_TYPES,
   VISA_FEE,
 } from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
@@ -37,12 +39,17 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 import Step4 from './Steps/Step4';
 import { HotelRates, RoomType, SelectedHotel } from '../../types/hotels';
 import { TrainClass, TrainRoute, TrainService } from '../../types/trains';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Step5 from './Steps/Step5';
 
 const stepIcons: { [key: number]: JSX.Element } = {
-  1: <ContentPasteIcon />,
-  2: <HotelIcon />,
-  3: <DirectionsCarIcon />,
-  4: <CalculateIcon />,
+  1: <PersonAddIcon />,
+  2: <ContentPasteIcon />,
+  3: <HotelIcon />,
+  4: <DirectionsCarIcon />,
+  5: <CalculateIcon />,
+  6: <CameraAltIcon />,
 };
 
 const CustomStepIcon: React.FC<StepIconProps> = (props) => {
@@ -88,6 +95,7 @@ const PlanTour = () => {
     watch,
     reset,
     setValue,
+    setError,
   } = methods;
 
   const handleBack = () => {
@@ -101,7 +109,27 @@ const PlanTour = () => {
     const isValid = await trigger();
 
     if (isValid) {
-      if (currentStep === 2) {
+      if (currentStep === 0) {
+        if (!formData.touristType) {
+          setError('touristType', {
+            type: 'required',
+            message: 'Tourist type is required',
+          });
+          return;
+        }
+
+        if (formData.touristType === TOURIST_TYPES.AGENCY) {
+          if (formData.password !== 'Password123.') {
+            setError('password', {
+              type: 'required',
+              message: 'Password is incorrect',
+            });
+            return;
+          }
+        }
+      }
+
+      if (currentStep === 3) {
         // if (formData?.organisation_structure) {
         //   setValue('organisation_structure_image', '');
         // } else {
@@ -379,21 +407,37 @@ const PlanTour = () => {
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <Step1 />;
+        return <Step0 />;
       case 1:
-        return <Step2 />;
+        return <Step1 />;
       case 2:
-        return <Step3 />;
+        return <Step2 />;
       case 3:
+        return <Step3 />;
+      case 4:
         return (
           <Step4
             selectedHotels={selectedHotels}
             selectedTrains={selectedTrains}
           />
         );
+      case 5:
+        return <Step5 />;
       default:
         return null;
     }
+  };
+
+  const showButtonLabel = (currentStep: number) => {
+    if (currentStep === steps.length - 1) {
+      return 'Thanks';
+    }
+
+    if (currentStep === steps.length - 2) {
+      return 'Confirm your reservation';
+    }
+
+    return 'Next';
   };
 
   return (
@@ -472,9 +516,7 @@ const PlanTour = () => {
               disabled={isSubmitting || loading}
               onClick={handleNext}
             >
-              {currentStep === steps.length - 1
-                ? 'Confirm your reservation'
-                : 'Next'}
+              {showButtonLabel(currentStep)}
             </Button>
           </DialogActions>
         </FormProvider>

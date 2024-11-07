@@ -8,10 +8,14 @@ export interface CalculatorFormData {
   additionalTrainsTotal: number;
   additionalServicesTotal: number;
 
+  touristType: string;
+  password: string;
+
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
+  companyName: string;
 
   numberOfNightsInTashkent: number;
   numberOfNightsInSamarkand: number;

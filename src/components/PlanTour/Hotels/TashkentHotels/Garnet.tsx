@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalculatorFormData } from '../../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styles } from '../../styles';
@@ -11,9 +11,19 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import {
+  INCREASE_HOTEL_RATES_FOR_AGENCY,
+  INCREASE_HOTEL_RATES_FOR_TOURISTS,
+  ROOM_SIZES,
+  TASHKENT_HOTEL_RATES,
+  TOURIST_TYPES,
+} from '../../constants';
 
 const GarnetHotel = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_HOTEL_RATES_FOR_TOURISTS
+  );
+
   const previousChargesRef = useRef({
     tashkentHotel__garnet__standard: 0,
     tashkentHotel__garnet__deluxe: 0,
@@ -40,9 +50,9 @@ const GarnetHotel = () => {
         if (formData[hotelKey]) {
           const roomCharge =
             formData[`${hotelKey}__room`] === ROOM_SIZES.SINGLE
-              ? rates.single
+              ? rates.single + priceIncrease
               : formData[`${hotelKey}__room`] === ROOM_SIZES.DOUBLE
-              ? rates.double
+              ? rates.double + priceIncrease
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[hotelKey];
@@ -91,6 +101,14 @@ const GarnetHotel = () => {
     setValue,
   ]);
 
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   return (
     <>
       <Grid xs={12} item>
@@ -128,12 +146,18 @@ const GarnetHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.standard.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.standard.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -174,12 +198,18 @@ const GarnetHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.deluxe.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.deluxe.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.deluxe.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.deluxe.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -220,7 +250,10 @@ const GarnetHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.triple.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.triple.single +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -261,12 +294,18 @@ const GarnetHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.garnet.suite.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.suite.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.garnet.suite.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.garnet.suite.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
