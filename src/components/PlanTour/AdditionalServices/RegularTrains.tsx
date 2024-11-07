@@ -18,6 +18,9 @@ const RegularTrains = () => {
     tashkentToSamarkandRegularTrain: 0,
     tashkentToBukharaRegularTrain: 0,
     samarkandToBukharaRegularTrain: 0,
+    samarkandToTashkentRegularTrain: 0,
+    bukharaToTashkentRegularTrain: 0,
+    bukharaToSamarkandRegularTrain: 0,
   });
 
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -32,7 +35,10 @@ const RegularTrains = () => {
         key:
           | 'tashkentToSamarkandRegularTrain'
           | 'tashkentToBukharaRegularTrain'
-          | 'samarkandToBukharaRegularTrain',
+          | 'samarkandToBukharaRegularTrain'
+          | 'samarkandToTashkentRegularTrain'
+          | 'bukharaToTashkentRegularTrain'
+          | 'bukharaToSamarkandRegularTrain',
         rates: { economy: number; business: number }
       ) => {
         if (formData[key]) {
@@ -67,6 +73,21 @@ const RegularTrains = () => {
         REGULAR_TRAIN_RATES.samarkandToBukhara
       );
 
+      updateCharge(
+        'samarkandToTashkentRegularTrain',
+        REGULAR_TRAIN_RATES.samarkandToTashkent
+      );
+
+      updateCharge(
+        'bukharaToTashkentRegularTrain',
+        REGULAR_TRAIN_RATES.bukharaToTashkent
+      );
+
+      updateCharge(
+        'bukharaToSamarkandRegularTrain',
+        REGULAR_TRAIN_RATES.bukharaToSamarkand
+      );
+
       const currentTotal = formData.additionalTrainsTotal || 0;
       setValue('additionalTrainsTotal', currentTotal + additionalCharge);
     };
@@ -79,6 +100,12 @@ const RegularTrains = () => {
     formData.tashkentToBukharaRegularTrain__class,
     formData.samarkandToBukharaRegularTrain,
     formData.samarkandToBukharaRegularTrain__class,
+    formData.samarkandToTashkentRegularTrain,
+    formData.samarkandToTashkentRegularTrain__class,
+    formData.bukharaToTashkentRegularTrain,
+    formData.bukharaToTashkentRegularTrain__class,
+    formData.bukharaToSamarkandRegularTrain,
+    formData.bukharaToSamarkandRegularTrain__class,
     setValue,
   ]);
 
@@ -137,6 +164,52 @@ const RegularTrains = () => {
             )}
 
             <Controller
+              name="samarkandToTashkentRegularTrain"
+              control={control}
+              defaultValue={false}
+              render={({ field: { onChange, value } }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => onChange(e.target.checked)}
+                    />
+                  }
+                  label="Samarkand - Tashkent one way"
+                />
+              )}
+            />
+
+            {formData.samarkandToTashkentRegularTrain && (
+              <Grid xs={12} item>
+                <div style={styles.input}>
+                  <Typography variant="h4">Train Class</Typography>
+                  <Controller
+                    name="samarkandToTashkentRegularTrain__class"
+                    control={control}
+                    defaultValue={false}
+                    render={({ field }) => (
+                      <div style={{ paddingLeft: 20 }}>
+                        <RadioGroup {...field}>
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.ECONOMY}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.samarkandToTashkent.economy}`}
+                          />
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.BUSINESS}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.samarkandToTashkent.business}`}
+                          />
+                        </RadioGroup>
+                      </div>
+                    )}
+                  />
+                </div>
+              </Grid>
+            )}
+
+            <Controller
               name="tashkentToBukharaRegularTrain"
               control={control}
               defaultValue={false}
@@ -183,6 +256,52 @@ const RegularTrains = () => {
             )}
 
             <Controller
+              name="bukharaToTashkentRegularTrain"
+              control={control}
+              defaultValue={false}
+              render={({ field: { onChange, value } }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => onChange(e.target.checked)}
+                    />
+                  }
+                  label="Bukhara - Tashkent one way"
+                />
+              )}
+            />
+
+            {formData.bukharaToTashkentRegularTrain && (
+              <Grid xs={12} item>
+                <div style={styles.input}>
+                  <Typography variant="h4">Train Class</Typography>
+                  <Controller
+                    name="bukharaToTashkentRegularTrain__class"
+                    control={control}
+                    defaultValue={false}
+                    render={({ field }) => (
+                      <div style={{ paddingLeft: 20 }}>
+                        <RadioGroup {...field}>
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.ECONOMY}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.bukharaToTashkent.economy}`}
+                          />
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.BUSINESS}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.bukharaToTashkent.business}`}
+                          />
+                        </RadioGroup>
+                      </div>
+                    )}
+                  />
+                </div>
+              </Grid>
+            )}
+
+            <Controller
               name="samarkandToBukharaRegularTrain"
               control={control}
               defaultValue={false}
@@ -219,6 +338,52 @@ const RegularTrains = () => {
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
                             label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.samarkandToBukhara.business}`}
+                          />
+                        </RadioGroup>
+                      </div>
+                    )}
+                  />
+                </div>
+              </Grid>
+            )}
+
+            <Controller
+              name="bukharaToSamarkandRegularTrain"
+              control={control}
+              defaultValue={false}
+              render={({ field: { onChange, value } }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => onChange(e.target.checked)}
+                    />
+                  }
+                  label="Bukhara - Samarkand one way"
+                />
+              )}
+            />
+
+            {formData.bukharaToSamarkandRegularTrain && (
+              <Grid xs={12} item>
+                <div style={styles.input}>
+                  <Typography variant="h4">Train Class</Typography>
+                  <Controller
+                    name="bukharaToSamarkandRegularTrain__class"
+                    control={control}
+                    defaultValue={false}
+                    render={({ field }) => (
+                      <div style={{ paddingLeft: 20 }}>
+                        <RadioGroup {...field}>
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.ECONOMY}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.bukharaToSamarkand.economy}`}
+                          />
+                          <FormControlLabel
+                            value={TRAIN_CLASSES.BUSINESS}
+                            control={<Radio />}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.bukharaToSamarkand.business}`}
                           />
                         </RadioGroup>
                       </div>

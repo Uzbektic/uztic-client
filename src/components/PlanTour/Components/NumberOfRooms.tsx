@@ -4,7 +4,7 @@ import { styles } from '../styles';
 import { CalculatorFormData } from '../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 
-const NumberOfNights = () => {
+const NumberOfRooms = () => {
   const {
     control,
     watch,
@@ -18,12 +18,12 @@ const NumberOfNights = () => {
       {formData.tashkent && (
         <Grid style={styles.item} xs={12} item>
           <div style={styles.input}>
-            <Typography variant="h4">Number of nights in Tashkent</Typography>
+            <Typography variant="h4">Number of rooms in Tashkent</Typography>
             <Controller
-              name="numberOfNightsInTashkent"
+              name="numberOfRoomsInTashkent"
               control={control}
               rules={{
-                required: 'Number of nights in Tashkent are required',
+                required: 'Number of rooms in Tashkent are required',
                 min: {
                   value: 1,
                   message: 'Minimum is 1',
@@ -33,12 +33,12 @@ const NumberOfNights = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  placeholder="Number of nights in Tashkent"
+                  placeholder="Number of rooms in Tashkent"
                   variant="outlined"
                   fullWidth
                   type="number"
-                  error={!!errors?.numberOfNightsInTashkent}
-                  helperText={errors?.numberOfNightsInTashkent?.message}
+                  error={!!errors?.numberOfRoomsInTashkent}
+                  helperText={errors?.numberOfRoomsInTashkent?.message}
                 />
               )}
             />
@@ -49,12 +49,12 @@ const NumberOfNights = () => {
       {formData.samarkand && (
         <Grid style={styles.item} xs={12} item>
           <div style={styles.input}>
-            <Typography variant="h4">Number of nights in Samarkand</Typography>
+            <Typography variant="h4">Number of rooms in Samarkand</Typography>
             <Controller
-              name="numberOfNightsInSamarkand"
+              name="numberOfRoomsInSamarkand"
               control={control}
               rules={{
-                required: 'Number of nights in Samarkand are required',
+                required: 'Number of rooms in Samarkand are required',
                 min: {
                   value: 1,
                   message: 'Minimum is 1',
@@ -64,12 +64,12 @@ const NumberOfNights = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  placeholder="Number of nights in Samarkand"
+                  placeholder="Number of rooms in Samarkand"
                   variant="outlined"
                   fullWidth
                   type="number"
-                  error={!!errors?.numberOfNightsInSamarkand}
-                  helperText={errors?.numberOfNightsInSamarkand?.message}
+                  error={!!errors?.numberOfRoomsInSamarkand}
+                  helperText={errors?.numberOfRoomsInSamarkand?.message}
                 />
               )}
             />
@@ -80,12 +80,12 @@ const NumberOfNights = () => {
       {formData.bukhara && (
         <Grid style={styles.item} xs={12} item>
           <div style={styles.input}>
-            <Typography variant="h4">Number of nights in Bukhara</Typography>
+            <Typography variant="h4">Number of rooms in Bukhara</Typography>
             <Controller
-              name="numberOfNightsInBukhara"
+              name="numberOfRoomsInBukhara"
               control={control}
               rules={{
-                required: 'Number of nights in Bukhara are required',
+                required: 'Number of rooms in Bukhara are required',
                 min: {
                   value: 1,
                   message: 'Minimum is 1',
@@ -95,12 +95,12 @@ const NumberOfNights = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  placeholder="Number of nights in Bukhara"
+                  placeholder="Number of rooms in Bukhara"
                   variant="outlined"
                   fullWidth
                   type="number"
-                  error={!!errors?.numberOfNightsInBukhara}
-                  helperText={errors?.numberOfNightsInBukhara?.message}
+                  error={!!errors?.numberOfRoomsInBukhara}
+                  helperText={errors?.numberOfRoomsInBukhara?.message}
                 />
               )}
             />
@@ -111,12 +111,12 @@ const NumberOfNights = () => {
       {formData.khiva && (
         <Grid style={styles.item} xs={12} item>
           <div style={styles.input}>
-            <Typography variant="h4">Number of nights in Khiva</Typography>
+            <Typography variant="h4">Number of rooms in Khiva</Typography>
             <Controller
-              name="numberOfNightsInKhiva"
+              name="numberOfRoomsInKhiva"
               control={control}
               rules={{
-                required: 'Number of nights in Khiva are required',
+                required: 'Number of rooms in Khiva are required',
                 min: {
                   value: 1,
                   message: 'Minimum is 1',
@@ -126,12 +126,12 @@ const NumberOfNights = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  placeholder="Number of nights in Khiva"
+                  placeholder="Number of rooms in Khiva"
                   variant="outlined"
                   fullWidth
                   type="number"
-                  error={!!errors?.numberOfNightsInKhiva}
-                  helperText={errors?.numberOfNightsInKhiva?.message}
+                  error={!!errors?.numberOfRoomsInKhiva}
+                  helperText={errors?.numberOfRoomsInKhiva?.message}
                 />
               )}
             />
@@ -142,4 +142,4 @@ const NumberOfNights = () => {
   );
 };
 
-export default NumberOfNights;
+export default NumberOfRooms;

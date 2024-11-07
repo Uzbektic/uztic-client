@@ -2,7 +2,13 @@ import React from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../types/calculator';
-import { CAR_RATES, GUIDE_RATE, MINI_BUS_RATES } from '../constants';
+import {
+  CAR_RATES,
+  GUIDE_RATE,
+  MINI_BUS_RATES,
+  OPTIONS,
+  VISA_FEE,
+} from '../constants';
 
 const OtherServices = () => {
   const { watch } = useFormContext<CalculatorFormData>();
@@ -25,7 +31,32 @@ const OtherServices = () => {
                 English speaking guide 1 day sightseeing
               </Typography>
               <Typography variant="body1">
+                Number of days: {formData.numberOfDaysForGuide}
+              </Typography>
+              <Typography variant="body1">
                 4-5 hours per group in - Price: (${GUIDE_RATE.toFixed(2)})
+              </Typography>
+              <Typography variant="body1">
+                Total cost $
+                {(GUIDE_RATE * formData.numberOfDaysForGuide).toFixed(2)}
+              </Typography>
+            </Paper>
+          </Grid>
+        </>
+      )}
+
+      {formData.visa && formData.visa === OPTIONS.YES && (
+        <>
+          <Grid item xs={12}>
+            <Typography variant="h5" color="primary">
+              Visa
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Paper elevation={3} style={{ padding: '16px' }}>
+              <Typography variant="body1">
+                Visa - Price: (${VISA_FEE.toFixed(2)})
               </Typography>
             </Paper>
           </Grid>
@@ -47,7 +78,17 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${CAR_RATES.oneDay.toFixed(2)})
+                  Price for one day: (${CAR_RATES.oneDay.toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForCarOneDay}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>
@@ -98,7 +139,18 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${MINI_BUS_RATES.oneDay.toFixed(2)})
+                  Price for one day: (${MINI_BUS_RATES.oneDay.toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForCarOneDay}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    MINI_BUS_RATES.oneDay *
+                    formData.numberOfDaysForMiniBusOneDay
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>

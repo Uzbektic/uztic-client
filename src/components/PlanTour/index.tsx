@@ -19,11 +19,13 @@ import {
   HOTEL_CITIES,
   KHIVA_HOTEL_RATES,
   MINI_BUS_RATES,
+  OPTIONS,
   REGULAR_TRAIN_RATES,
   SAMARKAND_HOTEL_RATES,
   SPEED_TRAIN_RATES,
   steps,
   TASHKENT_HOTEL_RATES,
+  VISA_FEE,
 } from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { CustomColors } from '../../theme';
@@ -255,25 +257,51 @@ const PlanTour = () => {
     let total = 0;
     let additionalTotal = 0;
 
-    if (formData.hotelTotalTashkent && formData.numberOfNightsInTashkent) {
+    if (
+      formData.hotelTotalTashkent &&
+      formData.numberOfNightsInTashkent &&
+      formData.numberOfRoomsInTashkent
+    ) {
       let value =
-        formData.hotelTotalTashkent * formData.numberOfNightsInTashkent;
+        formData.hotelTotalTashkent *
+        formData.numberOfNightsInTashkent *
+        formData.numberOfRoomsInTashkent;
       total += value;
     }
 
-    if (formData.hotelTotalSamarkand && formData.numberOfNightsInSamarkand) {
+    if (
+      formData.hotelTotalSamarkand &&
+      formData.numberOfNightsInSamarkand &&
+      formData.numberOfRoomsInSamarkand
+    ) {
       let value =
-        formData.hotelTotalSamarkand * formData.numberOfNightsInSamarkand;
+        formData.hotelTotalSamarkand *
+        formData.numberOfNightsInSamarkand *
+        formData.numberOfRoomsInSamarkand;
       total += value;
     }
 
-    if (formData.hotelTotalBukhara && formData.numberOfNightsInBukhara) {
-      let value = formData.hotelTotalBukhara * formData.numberOfNightsInBukhara;
+    if (
+      formData.hotelTotalBukhara &&
+      formData.numberOfNightsInBukhara &&
+      formData.numberOfRoomsInBukhara
+    ) {
+      let value =
+        formData.hotelTotalBukhara *
+        formData.numberOfNightsInBukhara *
+        formData.numberOfRoomsInBukhara;
       total += value;
     }
 
-    if (formData.hotelTotalKhiva && formData.numberOfNightsInKhiva) {
-      let value = formData.hotelTotalKhiva * formData.numberOfNightsInKhiva;
+    if (
+      formData.hotelTotalKhiva &&
+      formData.numberOfNightsInKhiva &&
+      formData.numberOfRoomsInKhiva
+    ) {
+      let value =
+        formData.hotelTotalKhiva *
+        formData.numberOfNightsInKhiva *
+        formData.numberOfRoomsInKhiva;
       total += value;
     }
 
@@ -281,12 +309,20 @@ const PlanTour = () => {
       additionalTotal += formData.additionalTrainsTotal;
     }
 
-    if (formData.englishSpeakingGuide) {
-      additionalTotal += GUIDE_RATE;
+    if (formData.englishSpeakingGuide && formData.numberOfDaysForGuide) {
+      let value = GUIDE_RATE * formData.numberOfDaysForGuide;
+      additionalTotal += value;
     }
 
-    if (formData.carOneDay) {
-      additionalTotal += CAR_RATES.oneDay;
+    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
+      let value = CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay;
+      additionalTotal += value;
+    }
+
+    if (formData.visa) {
+      if (formData.visa === OPTIONS.YES) {
+        additionalTotal += VISA_FEE;
+      }
     }
 
     if (formData.carMountain) {
@@ -297,8 +333,9 @@ const PlanTour = () => {
       additionalTotal += CAR_RATES.airport;
     }
 
-    if (formData.miniBusOneDay) {
-      additionalTotal += MINI_BUS_RATES.oneDay;
+    if (formData.miniBusOneDay && formData.numberOfDaysForMiniBusOneDay) {
+      let value = MINI_BUS_RATES.oneDay * formData.numberOfDaysForMiniBusOneDay;
+      additionalTotal += value;
     }
 
     if (formData.miniBusMountain) {
@@ -314,20 +351,28 @@ const PlanTour = () => {
   }, [
     formData.hotelTotalTashkent,
     formData.numberOfNightsInTashkent,
+    formData.numberOfRoomsInTashkent,
     formData.hotelTotalSamarkand,
     formData.numberOfNightsInSamarkand,
+    formData.numberOfRoomsInSamarkand,
     formData.hotelTotalKhiva,
     formData.numberOfNightsInKhiva,
+    formData.numberOfRoomsInKhiva,
     formData.hotelTotalBukhara,
     formData.numberOfNightsInBukhara,
+    formData.numberOfRoomsInBukhara,
     formData.additionalTrainsTotal,
     formData.englishSpeakingGuide,
+    formData.numberOfDaysForGuide,
     formData.carOneDay,
+    formData.numberOfDaysForCarOneDay,
     formData.carMountain,
     formData.carAirport,
     formData.miniBusOneDay,
+    formData.numberOfDaysForMiniBusOneDay,
     formData.miniBusMountain,
     formData.miniBusAirport,
+    formData.visa,
     setValue,
   ]);
 
@@ -364,7 +409,7 @@ const PlanTour = () => {
 
       <Dialog fullWidth={true} maxWidth={'lg'} open={open}>
         <FormProvider {...methods}>
-          <DialogTitle variant="h4">Plan your tour</DialogTitle>
+          <DialogTitle variant="h3">Plan your tour</DialogTitle>
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -427,7 +472,9 @@ const PlanTour = () => {
               disabled={isSubmitting || loading}
               onClick={handleNext}
             >
-              {currentStep === steps.length - 1 ? 'Done' : 'Next'}
+              {currentStep === steps.length - 1
+                ? 'Confirm your reservation'
+                : 'Next'}
             </Button>
           </DialogActions>
         </FormProvider>

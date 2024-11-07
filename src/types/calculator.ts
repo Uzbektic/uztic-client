@@ -18,6 +18,11 @@ export interface CalculatorFormData {
   numberOfNightsInBukhara: number;
   numberOfNightsInKhiva: number;
 
+  numberOfRoomsInTashkent: number;
+  numberOfRoomsInSamarkand: number;
+  numberOfRoomsInBukhara: number;
+  numberOfRoomsInKhiva: number;
+
   tashkent: boolean;
   samarkand: boolean;
   bukhara: boolean;
@@ -264,6 +269,12 @@ export interface CalculatorFormData {
   tashkentToBukharaSpeedTrain__class: boolean | undefined | string;
   samarkandToBukharaSpeedTrain: boolean;
   samarkandToBukharaSpeedTrain__class: boolean | undefined | string;
+  samarkandToTashkentSpeedTrain: boolean;
+  samarkandToTashkentSpeedTrain__class: boolean | undefined | string;
+  bukharaToTashkentSpeedTrain: boolean;
+  bukharaToTashkentSpeedTrain__class: boolean | undefined | string;
+  bukharaToSamarkandSpeedTrain: boolean;
+  bukharaToSamarkandSpeedTrain__class: boolean | undefined | string;
 
   // Regular Trains
   tashkentToSamarkandRegularTrain: boolean;
@@ -272,17 +283,29 @@ export interface CalculatorFormData {
   tashkentToBukharaRegularTrain__class: boolean | undefined | string;
   samarkandToBukharaRegularTrain: boolean;
   samarkandToBukharaRegularTrain__class: boolean | undefined | string;
+  samarkandToTashkentRegularTrain: boolean;
+  samarkandToTashkentRegularTrain__class: boolean | undefined | string;
+  bukharaToTashkentRegularTrain: boolean;
+  bukharaToTashkentRegularTrain__class: boolean | undefined | string;
+  bukharaToSamarkandRegularTrain: boolean;
+  bukharaToSamarkandRegularTrain__class: boolean | undefined | string;
 
   // Guide
   englishSpeakingGuide: boolean;
+  numberOfDaysForGuide: number;
 
   // Car
   carOneDay: boolean;
+  numberOfDaysForCarOneDay: number;
   carMountain: boolean;
   carAirport: boolean;
 
   // MiniBus
   miniBusOneDay: boolean;
+  numberOfDaysForMiniBusOneDay: number;
   miniBusMountain: boolean;
   miniBusAirport: boolean;
+
+  // Visa
+  visa: string;
 }

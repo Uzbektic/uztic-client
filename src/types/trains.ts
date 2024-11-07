@@ -1,7 +1,10 @@
 export type TrainRoute =
   | 'tashkentToSamarkand'
   | 'tashkentToBukhara'
-  | 'samarkandToBukhara';
+  | 'samarkandToBukhara'
+  | 'samarkandToTashkent'
+  | 'bukharaToTashkent'
+  | 'bukharaToSamarkand';
 
 export type TrainClass = 'economy' | 'business';
 

@@ -15,6 +15,7 @@ import BukharaHotels from '../Hotels/BukharaHotels';
 import KhivaHotels from '../Hotels/KhivaHotels';
 import { HOTEL_CITIES } from '../constants';
 import NumberOfNights from '../Components/NumberOfNights';
+import NumberOfRooms from '../Components/NumberOfRooms';
 
 const Step2 = () => {
   const { control, watch, setValue } = useFormContext<CalculatorFormData>();
@@ -144,7 +145,13 @@ const Step2 = () => {
         </div>
       </Grid>
 
-      <NumberOfNights />
+      <Grid xs={6} item>
+        <NumberOfNights />
+      </Grid>
+      <Grid xs={6} item>
+        <NumberOfRooms />
+      </Grid>
+
       {formData.tashkent && <TashkentHotels />}
       {formData.samarkand && <SamarkandHotels />}
       {formData.bukhara && <BukharaHotels />}
