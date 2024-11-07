@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalculatorFormData } from '../../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styles } from '../../styles';
@@ -11,9 +11,19 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, SAMARKAND_HOTEL_RATES } from '../../constants';
+import {
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  ROOM_SIZES,
+  SAMARKAND_HOTEL_RATES,
+  TOURIST_TYPES,
+} from '../../constants';
 
 const MalikaPrimeHotel = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const previousChargesRef = useRef({
     samarkandHotel__malikaPrime__standard: 0,
     samarkandHotel__malikaPrime__triple: 0,
@@ -36,9 +46,9 @@ const MalikaPrimeHotel = () => {
         if (formData[hotelKey]) {
           const roomCharge =
             formData[`${hotelKey}__room`] === ROOM_SIZES.SINGLE
-              ? rates.single
+              ? rates.single + priceIncrease
               : formData[`${hotelKey}__room`] === ROOM_SIZES.DOUBLE
-              ? rates.double
+              ? rates.double + priceIncrease
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[hotelKey];
@@ -72,6 +82,14 @@ const MalikaPrimeHotel = () => {
     formData.samarkandHotel__malikaPrime__triple__room,
     setValue,
   ]);
+
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
 
   return (
     <>
@@ -110,12 +128,18 @@ const MalikaPrimeHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.malikaPrime.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              SAMARKAND_HOTEL_RATES.malikaPrime.standard
+                                .single + priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${SAMARKAND_HOTEL_RATES.malikaPrime.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              SAMARKAND_HOTEL_RATES.malikaPrime.standard
+                                .double + priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -156,7 +180,10 @@ const MalikaPrimeHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${SAMARKAND_HOTEL_RATES.malikaPrime.triple.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              SAMARKAND_HOTEL_RATES.malikaPrime.triple.single +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>

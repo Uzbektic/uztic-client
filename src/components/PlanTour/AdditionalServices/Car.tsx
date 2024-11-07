@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Checkbox,
   FormControlLabel,
@@ -10,9 +10,18 @@ import {
 import { styles } from '../styles';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../types/calculator';
-import { CAR_RATES } from '../constants';
+import {
+  CAR_RATES,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  TOURIST_TYPES,
+} from '../constants';
 
 const Car = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const {
     control,
     watch,
@@ -21,9 +30,17 @@ const Car = () => {
 
   const formData = watch();
 
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   return (
     <>
-      <Grid xs={formData.carOneDay ? 6 : 12} item>
+      <Grid xs={6} item>
         <div style={styles.input}>
           <Typography variant="h4">Sedan car (2-3 pax) per car in $</Typography>
           <FormGroup>
@@ -39,7 +56,9 @@ const Car = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label={`One day sightseeng (4-5 hours) - $${CAR_RATES.oneDay}`}
+                  label={`One day sightseeng (4-5 hours) - $${
+                    CAR_RATES.oneDay + priceIncrease
+                  }`}
                 />
               )}
             />
@@ -55,7 +74,9 @@ const Car = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label={`Mountain trip 1 day  - $${CAR_RATES.mountain}`}
+                  label={`Mountain trip 1 day  - $${
+                    CAR_RATES.mountain + priceIncrease
+                  }`}
                 />
               )}
             />
@@ -71,15 +92,18 @@ const Car = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label={`Airport pick up and drop off one way  - $${CAR_RATES.airport}`}
+                  label={`Airport/Railway pick up and drop off one way  - $${
+                    CAR_RATES.airport + priceIncrease
+                  }`}
                 />
               )}
             />
           </FormGroup>
         </div>
       </Grid>
-      {formData.carOneDay && (
-        <Grid style={styles.item} xs={6} item>
+
+      <Grid style={styles.item} xs={6} item>
+        {formData.carOneDay && (
           <div style={styles.input}>
             <Typography variant="h4">
               How many days would you like Sedan car for?
@@ -109,8 +133,40 @@ const Car = () => {
               )}
             />
           </div>
-        </Grid>
-      )}
+        )}
+
+        {formData.carAirport && (
+          <div style={styles.input}>
+            <Typography variant="h4">
+              How many times Airport/Railway pick up and drop off?
+            </Typography>
+            <Controller
+              name="numberOfDaysForCarAirport"
+              control={control}
+              rules={{
+                required:
+                  'How many times Airport/Railway pick up and drop off are required',
+                min: {
+                  value: 1,
+                  message: 'Minimum is 1',
+                },
+              }}
+              defaultValue={1}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="How many times Airport/Railway pick up and drop off?"
+                  variant="outlined"
+                  fullWidth
+                  type="number"
+                  error={!!errors?.numberOfDaysForCarAirport}
+                  helperText={errors?.numberOfDaysForCarAirport?.message}
+                />
+              )}
+            />
+          </div>
+        )}
+      </Grid>
     </>
   );
 };

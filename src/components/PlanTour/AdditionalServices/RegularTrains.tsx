@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalculatorFormData } from '../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styles } from '../styles';
@@ -11,9 +11,19 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { REGULAR_TRAIN_RATES, TRAIN_CLASSES } from '../constants';
+import {
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  REGULAR_TRAIN_RATES,
+  TOURIST_TYPES,
+  TRAIN_CLASSES,
+} from '../constants';
 
 const RegularTrains = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const previousChargesRef = useRef({
     tashkentToSamarkandRegularTrain: 0,
     tashkentToBukharaRegularTrain: 0,
@@ -44,9 +54,9 @@ const RegularTrains = () => {
         if (formData[key]) {
           const roomCharge =
             formData[`${key}__class`] === TRAIN_CLASSES.ECONOMY
-              ? rates.economy
+              ? rates.economy + priceIncrease
               : formData[`${key}__class`] === TRAIN_CLASSES.BUSINESS
-              ? rates.business
+              ? rates.business + priceIncrease
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[key];
@@ -109,6 +119,14 @@ const RegularTrains = () => {
     setValue,
   ]);
 
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   return (
     <>
       <Grid xs={12} item>
@@ -148,12 +166,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.tashkentToSamarkand.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.tashkentToSamarkand.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.tashkentToSamarkand.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.tashkentToSamarkand.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -194,12 +218,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.samarkandToTashkent.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.samarkandToTashkent.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.samarkandToTashkent.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.samarkandToTashkent.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -240,12 +270,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.tashkentToBukhara.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.tashkentToBukhara.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.tashkentToBukhara.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.tashkentToBukhara.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -286,12 +322,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.bukharaToTashkent.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.bukharaToTashkent.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.bukharaToTashkent.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.bukharaToTashkent.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -332,12 +374,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.samarkandToBukhara.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.samarkandToBukhara.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.samarkandToBukhara.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.samarkandToBukhara.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -378,12 +426,18 @@ const RegularTrains = () => {
                           <FormControlLabel
                             value={TRAIN_CLASSES.ECONOMY}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.ECONOMY} - $${REGULAR_TRAIN_RATES.bukharaToSamarkand.economy}`}
+                            label={`${TRAIN_CLASSES.ECONOMY} - $${
+                              REGULAR_TRAIN_RATES.bukharaToSamarkand.economy +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={TRAIN_CLASSES.BUSINESS}
                             control={<Radio />}
-                            label={`${TRAIN_CLASSES.BUSINESS} - $${REGULAR_TRAIN_RATES.bukharaToSamarkand.business}`}
+                            label={`${TRAIN_CLASSES.BUSINESS} - $${
+                              REGULAR_TRAIN_RATES.bukharaToSamarkand.business +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>

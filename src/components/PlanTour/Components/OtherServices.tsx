@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../types/calculator';
 import {
   CAR_RATES,
   GUIDE_RATE,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
   MINI_BUS_RATES,
   OPTIONS,
+  TOURIST_TYPES,
   VISA_FEE,
 } from '../constants';
 
 const OtherServices = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const { watch } = useFormContext<CalculatorFormData>();
 
   const formData = watch();
+
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
 
   return (
     <>
@@ -34,11 +49,15 @@ const OtherServices = () => {
                 Number of days: {formData.numberOfDaysForGuide}
               </Typography>
               <Typography variant="body1">
-                4-5 hours per group in - Price: (${GUIDE_RATE.toFixed(2)})
+                4-5 hours per group in - Price: ($
+                {(GUIDE_RATE + priceIncrease).toFixed(2)})
               </Typography>
               <Typography variant="body1">
                 Total cost $
-                {(GUIDE_RATE * formData.numberOfDaysForGuide).toFixed(2)}
+                {(
+                  (GUIDE_RATE + priceIncrease) *
+                  formData.numberOfDaysForGuide
+                ).toFixed(2)}
               </Typography>
             </Paper>
           </Grid>
@@ -78,7 +97,8 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price for one day: (${CAR_RATES.oneDay.toFixed(2)})
+                  Price for one day: ($
+                  {(CAR_RATES.oneDay + priceIncrease).toFixed(2)})
                 </Typography>
                 <Typography variant="body1">
                   Number of days: {formData.numberOfDaysForCarOneDay}
@@ -86,7 +106,8 @@ const OtherServices = () => {
                 <Typography variant="body1">
                   Total: ($
                   {(
-                    CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay
+                    (CAR_RATES.oneDay + priceIncrease) *
+                    formData.numberOfDaysForCarOneDay
                   ).toFixed(2)}
                   )
                 </Typography>
@@ -101,7 +122,7 @@ const OtherServices = () => {
                   Mountain trip 1 day
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${CAR_RATES.mountain.toFixed(2)})
+                  Price: (${(CAR_RATES.mountain + priceIncrease).toFixed(2)})
                 </Typography>
               </Paper>
             </Grid>
@@ -111,10 +132,22 @@ const OtherServices = () => {
             <Grid item xs={12}>
               <Paper elevation={3} style={{ padding: '16px' }}>
                 <Typography variant="h6" color="primary">
-                  Airport pick up and drop off one way
+                  One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${CAR_RATES.airport.toFixed(2)})
+                  Price for one day: ($
+                  {(CAR_RATES.airport + priceIncrease).toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForCarAirport}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    (CAR_RATES.airport + priceIncrease) *
+                    formData.numberOfDaysForCarAirport
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>
@@ -139,7 +172,8 @@ const OtherServices = () => {
                   One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price for one day: (${MINI_BUS_RATES.oneDay.toFixed(2)})
+                  Price for one day: ($
+                  {(MINI_BUS_RATES.oneDay + priceIncrease).toFixed(2)})
                 </Typography>
                 <Typography variant="body1">
                   Number of days: {formData.numberOfDaysForCarOneDay}
@@ -147,7 +181,7 @@ const OtherServices = () => {
                 <Typography variant="body1">
                   Total: ($
                   {(
-                    MINI_BUS_RATES.oneDay *
+                    (MINI_BUS_RATES.oneDay + priceIncrease) *
                     formData.numberOfDaysForMiniBusOneDay
                   ).toFixed(2)}
                   )
@@ -163,7 +197,8 @@ const OtherServices = () => {
                   Mountain trip 1 day
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${MINI_BUS_RATES.mountain.toFixed(2)})
+                  Price: ($
+                  {(MINI_BUS_RATES.mountain + priceIncrease).toFixed(2)})
                 </Typography>
               </Paper>
             </Grid>
@@ -173,10 +208,22 @@ const OtherServices = () => {
             <Grid item xs={12}>
               <Paper elevation={3} style={{ padding: '16px' }}>
                 <Typography variant="h6" color="primary">
-                  Airport pick up and drop off one way
+                  One day sightseeing (4-5 hours)
                 </Typography>
                 <Typography variant="body1">
-                  Price: (${MINI_BUS_RATES.airport.toFixed(2)})
+                  Price for one day: ($
+                  {(MINI_BUS_RATES.airport + priceIncrease).toFixed(2)})
+                </Typography>
+                <Typography variant="body1">
+                  Number of days: {formData.numberOfDaysForMiniBusAirport}
+                </Typography>
+                <Typography variant="body1">
+                  Total: ($
+                  {(
+                    (MINI_BUS_RATES.airport + priceIncrease) *
+                    formData.numberOfDaysForMiniBusAirport
+                  ).toFixed(2)}
+                  )
                 </Typography>
               </Paper>
             </Grid>

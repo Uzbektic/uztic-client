@@ -12,8 +12,8 @@ import {
   Typography,
 } from '@mui/material';
 import {
-  INCREASE_HOTEL_RATES_FOR_AGENCY,
-  INCREASE_HOTEL_RATES_FOR_TOURISTS,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
   ROOM_SIZES,
   TASHKENT_HOTEL_RATES,
   TOURIST_TYPES,
@@ -21,7 +21,7 @@ import {
 
 const HyattRegencyHotel = () => {
   const [priceIncrease, setPriceIncrease] = useState(
-    INCREASE_HOTEL_RATES_FOR_TOURISTS
+    INCREASE_RATES_FOR_TOURISTS
   );
   const previousChargesRef = useRef({
     tashkentHotel__hyattRegency__standardKing: 0,
@@ -93,9 +93,9 @@ const HyattRegencyHotel = () => {
 
   useEffect(() => {
     if (formData.touristType === TOURIST_TYPES.AGENCY) {
-      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_AGENCY);
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
     } else {
-      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_TOURISTS);
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
     }
   }, [formData.touristType]);
 

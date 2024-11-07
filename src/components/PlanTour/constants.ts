@@ -10,10 +10,8 @@ export const TOURIST_TYPES = {
   AGENCY: 'Agency',
 };
 
-export const INCREASE_HOTEL_RATES_FOR_TOURISTS = 10;
-export const INCREASE_SERVICES_RATES_FOR_TOURISTS = 10;
-export const INCREASE_HOTEL_RATES_FOR_AGENCY = 5;
-export const INCREASE_SERVICES_RATES_FOR_AGENCY = 5;
+export const INCREASE_RATES_FOR_TOURISTS = 10;
+export const INCREASE_RATES_FOR_AGENCY = 5;
 
 export const VISA_FEE = 90;
 export const visaOptions = [OPTIONS.YES, OPTIONS.NO];

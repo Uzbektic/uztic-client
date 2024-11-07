@@ -18,6 +18,8 @@ import {
   CAR_RATES,
   GUIDE_RATE,
   HOTEL_CITIES,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
   KHIVA_HOTEL_RATES,
   MINI_BUS_RATES,
   OPTIONS,
@@ -71,6 +73,9 @@ const CustomStepIcon: React.FC<StepIconProps> = (props) => {
 };
 
 const PlanTour = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -173,6 +178,36 @@ const PlanTour = () => {
     setOpen(false);
   };
 
+  const handleReset = () => {
+    const currentValues = watch();
+
+    reset({
+      touristType: currentValues.touristType,
+      grandTotal: 0,
+      hotelTotal: 0,
+      additionalTrainsTotal: 0,
+      additionalServicesTotal: 0,
+      hotelTotalTashkent: 0,
+      hotelTotalSamarkand: 0,
+      hotelTotalBukhara: 0,
+      hotelTotalKhiva: 0,
+    });
+  };
+
+  useEffect(() => {
+    if (formData.touristType) {
+      handleReset();
+    }
+  }, [formData.touristType]);
+
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   const getSelectedHotelsAndRooms = (): SelectedHotel[] => {
     const selectedHotels: SelectedHotel[] = [];
 
@@ -223,7 +258,7 @@ const PlanTour = () => {
             ? SPEED_TRAIN_RATES[route]
             : REGULAR_TRAIN_RATES[route];
           // @ts-ignore
-          let priceCalculates = price[lowerClassType];
+          let priceCalculates = price[lowerClassType] + priceIncrease;
           if (price) {
             selectedTrains.push({
               route,
@@ -272,7 +307,7 @@ const PlanTour = () => {
       if (roomRates && roomValue) {
         let lowerCaseValue = roomValue?.toLowerCase();
         //@ts-ignore
-        return roomRates[lowerCaseValue] || 0;
+        return roomRates[lowerCaseValue] + priceIncrease || 0;
       }
     }
     return 0;
@@ -338,12 +373,8 @@ const PlanTour = () => {
     }
 
     if (formData.englishSpeakingGuide && formData.numberOfDaysForGuide) {
-      let value = GUIDE_RATE * formData.numberOfDaysForGuide;
-      additionalTotal += value;
-    }
-
-    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
-      let value = CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay;
+      let guidePrice = GUIDE_RATE + priceIncrease;
+      let value = guidePrice * formData.numberOfDaysForGuide;
       additionalTotal += value;
     }
 
@@ -352,26 +383,38 @@ const PlanTour = () => {
         additionalTotal += VISA_FEE;
       }
     }
-
-    if (formData.carMountain) {
-      additionalTotal += CAR_RATES.mountain;
+    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
+      let price = CAR_RATES.oneDay + priceIncrease;
+      let value = price * formData.numberOfDaysForCarOneDay;
+      additionalTotal += value;
     }
 
-    if (formData.carAirport) {
-      additionalTotal += CAR_RATES.airport;
+    if (formData.carMountain) {
+      let price = CAR_RATES.mountain + priceIncrease;
+      additionalTotal += price;
+    }
+
+    if (formData.carAirport && formData.numberOfDaysForCarAirport) {
+      let price = CAR_RATES.airport + priceIncrease;
+      let value = price * formData.numberOfDaysForCarAirport;
+      additionalTotal += value;
     }
 
     if (formData.miniBusOneDay && formData.numberOfDaysForMiniBusOneDay) {
-      let value = MINI_BUS_RATES.oneDay * formData.numberOfDaysForMiniBusOneDay;
+      let price = MINI_BUS_RATES.oneDay + priceIncrease;
+      let value = price * formData.numberOfDaysForMiniBusOneDay;
       additionalTotal += value;
     }
 
     if (formData.miniBusMountain) {
-      additionalTotal += MINI_BUS_RATES.mountain;
+      let price = MINI_BUS_RATES.mountain + priceIncrease;
+      additionalTotal += price;
     }
 
-    if (formData.miniBusAirport) {
-      additionalTotal += MINI_BUS_RATES.airport;
+    if (formData.miniBusAirport && formData.numberOfDaysForMiniBusAirport) {
+      let price = MINI_BUS_RATES.airport + priceIncrease;
+      let value = price * formData.numberOfDaysForMiniBusAirport;
+      additionalTotal += value;
     }
 
     setValue('hotelTotal', total);
@@ -396,11 +439,14 @@ const PlanTour = () => {
     formData.numberOfDaysForCarOneDay,
     formData.carMountain,
     formData.carAirport,
+    formData.numberOfDaysForCarAirport,
     formData.miniBusOneDay,
     formData.numberOfDaysForMiniBusOneDay,
     formData.miniBusMountain,
     formData.miniBusAirport,
+    formData.numberOfDaysForMiniBusAirport,
     formData.visa,
+
     setValue,
   ]);
 

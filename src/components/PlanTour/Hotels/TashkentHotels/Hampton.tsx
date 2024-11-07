@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../../types/calculator';
 import {
-  INCREASE_HOTEL_RATES_FOR_AGENCY,
-  INCREASE_HOTEL_RATES_FOR_TOURISTS,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
   ROOM_SIZES,
   TASHKENT_HOTEL_RATES,
   TOURIST_TYPES,
@@ -21,7 +21,7 @@ import { styles } from '../../styles';
 
 const HamptonHotel = () => {
   const [priceIncrease, setPriceIncrease] = useState(
-    INCREASE_HOTEL_RATES_FOR_TOURISTS
+    INCREASE_RATES_FOR_TOURISTS
   );
 
   const previousChargesRef = useRef({
@@ -94,9 +94,9 @@ const HamptonHotel = () => {
 
   useEffect(() => {
     if (formData.touristType === TOURIST_TYPES.AGENCY) {
-      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_AGENCY);
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
     } else {
-      setPriceIncrease(INCREASE_HOTEL_RATES_FOR_TOURISTS);
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
     }
   }, [formData.touristType]);
 

@@ -303,12 +303,14 @@ export interface CalculatorFormData {
   numberOfDaysForCarOneDay: number;
   carMountain: boolean;
   carAirport: boolean;
+  numberOfDaysForCarAirport: number;
 
   // MiniBus
   miniBusOneDay: boolean;
   numberOfDaysForMiniBusOneDay: number;
   miniBusMountain: boolean;
   miniBusAirport: boolean;
+  numberOfDaysForMiniBusAirport: number;
 
   // Visa
   visa: string;
