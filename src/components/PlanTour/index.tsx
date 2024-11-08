@@ -44,6 +44,7 @@ import { TrainClass, TrainRoute, TrainService } from '../../types/trains';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Step5 from './Steps/Step5';
+import { sendDataToBackend } from '../../mutations';
 
 const stepIcons: { [key: number]: JSX.Element } = {
   1: <PersonAddIcon />,
@@ -134,17 +135,9 @@ const PlanTour = () => {
         }
       }
 
-      if (currentStep === 3) {
-        // if (formData?.organisation_structure) {
-        //   setValue('organisation_structure_image', '');
-        // } else {
-        //   setValue('organisation_structure_files', '');
-        // }
-        // setValue('isDraft', false);
-        // handleSubmit(onSubmit)();
-        // return;
-
-        console.log('WILL SUBMIT HERE');
+      if (currentStep === 4) {
+        handleSubmit(onSubmit)();
+        return;
       }
 
       if (currentStep === steps.length - 1) {
@@ -160,7 +153,14 @@ const PlanTour = () => {
   const onSubmit: SubmitHandler<CalculatorFormData> = async (data) => {
     try {
       setLoading(true);
-      // await createNewApplication(data, user?.sub);
+
+      const response = await sendDataToBackend(
+        data,
+        selectedHotels,
+        selectedTrains
+      );
+      console.log(response);
+      return;
       setLoading(false);
       reset();
       setCurrentStep(0);
