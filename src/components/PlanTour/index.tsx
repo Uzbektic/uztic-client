@@ -157,13 +157,12 @@ const PlanTour = () => {
       const response = await sendDataToBackend(
         data,
         selectedHotels,
-        selectedTrains
+        selectedTrains,
+        priceIncrease
       );
       console.log(response);
-      return;
       setLoading(false);
-      reset();
-      setCurrentStep(0);
+      setCurrentStep(currentStep + 1);
     } catch (error) {
       setLoading(false);
       console.log(error);

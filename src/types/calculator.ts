@@ -8,6 +8,8 @@ export interface CalculatorFormData {
   additionalTrainsTotal: number;
   additionalServicesTotal: number;
 
+  priceIncrease: number;
+
   touristType: string;
   password: string;
 
