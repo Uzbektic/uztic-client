@@ -475,7 +475,7 @@ const PlanTour = () => {
 
   const showButtonLabel = (currentStep: number) => {
     if (currentStep === steps.length - 1) {
-      return 'Thanks';
+      return 'Done';
     }
 
     if (currentStep === steps.length - 2) {
