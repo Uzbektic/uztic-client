@@ -1,7 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../../types/calculator';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import {
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  ROOM_SIZES,
+  TASHKENT_HOTEL_RATES,
+  TOURIST_TYPES,
+} from '../../constants';
 import {
   Checkbox,
   FormControlLabel,
@@ -14,6 +20,10 @@ import {
 import { styles } from '../../styles';
 
 const HiltonHotel = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const previousChargesRef = useRef({
     tashkentHotel__hilton__guestRoom: 0,
     tashkentHotel__hilton__executiveRoom: 0,
@@ -38,9 +48,9 @@ const HiltonHotel = () => {
         if (formData[hotelKey]) {
           const roomCharge =
             formData[`${hotelKey}__room`] === ROOM_SIZES.SINGLE
-              ? rates.single
+              ? rates.single + priceIncrease
               : formData[`${hotelKey}__room`] === ROOM_SIZES.DOUBLE
-              ? rates.double
+              ? rates.double + priceIncrease
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[hotelKey];
@@ -82,6 +92,14 @@ const HiltonHotel = () => {
     setValue,
   ]);
 
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   return (
     <>
       <Grid xs={12} item>
@@ -119,12 +137,18 @@ const HiltonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.guestRoom.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.guestRoom.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.guestRoom.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.guestRoom.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -165,12 +189,18 @@ const HiltonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.executiveRoom.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.executiveRoom.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.executiveRoom.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.executiveRoom.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -211,12 +241,18 @@ const HiltonHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.hilton.cornerSuite.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.cornerSuite.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.hilton.cornerSuite.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.hilton.cornerSuite.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>

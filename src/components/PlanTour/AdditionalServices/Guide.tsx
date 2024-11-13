@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Checkbox,
   FormControlLabel,
@@ -10,9 +10,18 @@ import {
 import { styles } from '../styles';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CalculatorFormData } from '../../../types/calculator';
-import { GUIDE_RATE } from '../constants';
+import {
+  GUIDE_RATE,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  TOURIST_TYPES,
+} from '../constants';
 
 const Guide = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const {
     control,
     watch,
@@ -20,6 +29,14 @@ const Guide = () => {
   } = useFormContext<CalculatorFormData>();
 
   const formData = watch();
+
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
 
   return (
     <>
@@ -41,7 +58,7 @@ const Guide = () => {
                       onChange={(e) => onChange(e.target.checked)}
                     />
                   }
-                  label={GUIDE_RATE}
+                  label={GUIDE_RATE + priceIncrease}
                 />
               )}
             />

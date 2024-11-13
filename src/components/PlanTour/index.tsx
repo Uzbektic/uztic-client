@@ -8,6 +8,7 @@ import { IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CalculatorFormData } from '../../types/calculator';
+import Step0 from './Steps/Step0';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
 import Step3 from './Steps/Step3';
@@ -17,6 +18,8 @@ import {
   CAR_RATES,
   GUIDE_RATE,
   HOTEL_CITIES,
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
   KHIVA_HOTEL_RATES,
   MINI_BUS_RATES,
   OPTIONS,
@@ -25,6 +28,7 @@ import {
   SPEED_TRAIN_RATES,
   steps,
   TASHKENT_HOTEL_RATES,
+  TOURIST_TYPES,
   VISA_FEE,
 } from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
@@ -37,12 +41,18 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 import Step4 from './Steps/Step4';
 import { HotelRates, RoomType, SelectedHotel } from '../../types/hotels';
 import { TrainClass, TrainRoute, TrainService } from '../../types/trains';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Step5 from './Steps/Step5';
+import { sendDataToBackend } from '../../mutations';
 
 const stepIcons: { [key: number]: JSX.Element } = {
-  1: <ContentPasteIcon />,
-  2: <HotelIcon />,
-  3: <DirectionsCarIcon />,
-  4: <CalculateIcon />,
+  1: <PersonAddIcon />,
+  2: <ContentPasteIcon />,
+  3: <HotelIcon />,
+  4: <DirectionsCarIcon />,
+  5: <CalculateIcon />,
+  6: <CameraAltIcon />,
 };
 
 const CustomStepIcon: React.FC<StepIconProps> = (props) => {
@@ -64,6 +74,9 @@ const CustomStepIcon: React.FC<StepIconProps> = (props) => {
 };
 
 const PlanTour = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -88,6 +101,7 @@ const PlanTour = () => {
     watch,
     reset,
     setValue,
+    setError,
   } = methods;
 
   const handleBack = () => {
@@ -101,17 +115,29 @@ const PlanTour = () => {
     const isValid = await trigger();
 
     if (isValid) {
-      if (currentStep === 2) {
-        // if (formData?.organisation_structure) {
-        //   setValue('organisation_structure_image', '');
-        // } else {
-        //   setValue('organisation_structure_files', '');
-        // }
-        // setValue('isDraft', false);
-        // handleSubmit(onSubmit)();
-        // return;
+      if (currentStep === 0) {
+        if (!formData.touristType) {
+          setError('touristType', {
+            type: 'required',
+            message: 'Tourist type is required',
+          });
+          return;
+        }
 
-        console.log('WILL SUBMIT HERE');
+        if (formData.touristType === TOURIST_TYPES.AGENCY) {
+          if (formData.password !== 'Uztic123.') {
+            setError('password', {
+              type: 'required',
+              message: 'Password is incorrect',
+            });
+            return;
+          }
+        }
+      }
+
+      if (currentStep === 4) {
+        handleSubmit(onSubmit)();
+        return;
       }
 
       if (currentStep === steps.length - 1) {
@@ -127,10 +153,16 @@ const PlanTour = () => {
   const onSubmit: SubmitHandler<CalculatorFormData> = async (data) => {
     try {
       setLoading(true);
-      // await createNewApplication(data, user?.sub);
+
+      const response = await sendDataToBackend(
+        data,
+        selectedHotels,
+        selectedTrains,
+        priceIncrease
+      );
+      console.log(response);
       setLoading(false);
-      reset();
-      setCurrentStep(0);
+      setCurrentStep(currentStep + 1);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -144,6 +176,36 @@ const PlanTour = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleReset = () => {
+    const currentValues = watch();
+
+    reset({
+      touristType: currentValues.touristType,
+      grandTotal: 0,
+      hotelTotal: 0,
+      additionalTrainsTotal: 0,
+      additionalServicesTotal: 0,
+      hotelTotalTashkent: 0,
+      hotelTotalSamarkand: 0,
+      hotelTotalBukhara: 0,
+      hotelTotalKhiva: 0,
+    });
+  };
+
+  useEffect(() => {
+    if (formData.touristType) {
+      handleReset();
+    }
+  }, [formData.touristType]);
+
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
 
   const getSelectedHotelsAndRooms = (): SelectedHotel[] => {
     const selectedHotels: SelectedHotel[] = [];
@@ -195,7 +257,7 @@ const PlanTour = () => {
             ? SPEED_TRAIN_RATES[route]
             : REGULAR_TRAIN_RATES[route];
           // @ts-ignore
-          let priceCalculates = price[lowerClassType];
+          let priceCalculates = price[lowerClassType] + priceIncrease;
           if (price) {
             selectedTrains.push({
               route,
@@ -244,7 +306,7 @@ const PlanTour = () => {
       if (roomRates && roomValue) {
         let lowerCaseValue = roomValue?.toLowerCase();
         //@ts-ignore
-        return roomRates[lowerCaseValue] || 0;
+        return roomRates[lowerCaseValue] + priceIncrease || 0;
       }
     }
     return 0;
@@ -310,12 +372,8 @@ const PlanTour = () => {
     }
 
     if (formData.englishSpeakingGuide && formData.numberOfDaysForGuide) {
-      let value = GUIDE_RATE * formData.numberOfDaysForGuide;
-      additionalTotal += value;
-    }
-
-    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
-      let value = CAR_RATES.oneDay * formData.numberOfDaysForCarOneDay;
+      let guidePrice = GUIDE_RATE + priceIncrease;
+      let value = guidePrice * formData.numberOfDaysForGuide;
       additionalTotal += value;
     }
 
@@ -324,26 +382,38 @@ const PlanTour = () => {
         additionalTotal += VISA_FEE;
       }
     }
-
-    if (formData.carMountain) {
-      additionalTotal += CAR_RATES.mountain;
+    if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
+      let price = CAR_RATES.oneDay + priceIncrease;
+      let value = price * formData.numberOfDaysForCarOneDay;
+      additionalTotal += value;
     }
 
-    if (formData.carAirport) {
-      additionalTotal += CAR_RATES.airport;
+    if (formData.carMountain) {
+      let price = CAR_RATES.mountain + priceIncrease;
+      additionalTotal += price;
+    }
+
+    if (formData.carAirport && formData.numberOfDaysForCarAirport) {
+      let price = CAR_RATES.airport + priceIncrease;
+      let value = price * formData.numberOfDaysForCarAirport;
+      additionalTotal += value;
     }
 
     if (formData.miniBusOneDay && formData.numberOfDaysForMiniBusOneDay) {
-      let value = MINI_BUS_RATES.oneDay * formData.numberOfDaysForMiniBusOneDay;
+      let price = MINI_BUS_RATES.oneDay + priceIncrease;
+      let value = price * formData.numberOfDaysForMiniBusOneDay;
       additionalTotal += value;
     }
 
     if (formData.miniBusMountain) {
-      additionalTotal += MINI_BUS_RATES.mountain;
+      let price = MINI_BUS_RATES.mountain + priceIncrease;
+      additionalTotal += price;
     }
 
-    if (formData.miniBusAirport) {
-      additionalTotal += MINI_BUS_RATES.airport;
+    if (formData.miniBusAirport && formData.numberOfDaysForMiniBusAirport) {
+      let price = MINI_BUS_RATES.airport + priceIncrease;
+      let value = price * formData.numberOfDaysForMiniBusAirport;
+      additionalTotal += value;
     }
 
     setValue('hotelTotal', total);
@@ -368,32 +438,51 @@ const PlanTour = () => {
     formData.numberOfDaysForCarOneDay,
     formData.carMountain,
     formData.carAirport,
+    formData.numberOfDaysForCarAirport,
     formData.miniBusOneDay,
     formData.numberOfDaysForMiniBusOneDay,
     formData.miniBusMountain,
     formData.miniBusAirport,
+    formData.numberOfDaysForMiniBusAirport,
     formData.visa,
+
     setValue,
   ]);
 
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <Step1 />;
+        return <Step0 />;
       case 1:
-        return <Step2 />;
+        return <Step1 />;
       case 2:
-        return <Step3 />;
+        return <Step2 />;
       case 3:
+        return <Step3 />;
+      case 4:
         return (
           <Step4
             selectedHotels={selectedHotels}
             selectedTrains={selectedTrains}
           />
         );
+      case 5:
+        return <Step5 />;
       default:
         return null;
     }
+  };
+
+  const showButtonLabel = (currentStep: number) => {
+    if (currentStep === steps.length - 1) {
+      return 'Done';
+    }
+
+    if (currentStep === steps.length - 2) {
+      return 'Confirm your reservation';
+    }
+
+    return 'Next';
   };
 
   return (
@@ -472,9 +561,7 @@ const PlanTour = () => {
               disabled={isSubmitting || loading}
               onClick={handleNext}
             >
-              {currentStep === steps.length - 1
-                ? 'Confirm your reservation'
-                : 'Next'}
+              {showButtonLabel(currentStep)}
             </Button>
           </DialogActions>
         </FormProvider>

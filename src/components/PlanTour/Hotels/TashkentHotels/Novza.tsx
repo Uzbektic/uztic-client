@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalculatorFormData } from '../../../../types/calculator';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styles } from '../../styles';
@@ -11,9 +11,19 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { ROOM_SIZES, TASHKENT_HOTEL_RATES } from '../../constants';
+import {
+  INCREASE_RATES_FOR_AGENCY,
+  INCREASE_RATES_FOR_TOURISTS,
+  ROOM_SIZES,
+  TASHKENT_HOTEL_RATES,
+  TOURIST_TYPES,
+} from '../../constants';
 
 const NovzaHotel = () => {
+  const [priceIncrease, setPriceIncrease] = useState(
+    INCREASE_RATES_FOR_TOURISTS
+  );
+
   const previousChargesRef = useRef({
     tashkentHotel__novza__standard: 0,
     tashkentHotel__novza__deluxe: 0,
@@ -38,9 +48,9 @@ const NovzaHotel = () => {
         if (formData[hotelKey]) {
           const roomCharge =
             formData[`${hotelKey}__room`] === ROOM_SIZES.SINGLE
-              ? rates.single
+              ? rates.single + priceIncrease
               : formData[`${hotelKey}__room`] === ROOM_SIZES.DOUBLE
-              ? rates.double
+              ? rates.double + priceIncrease
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[hotelKey];
@@ -82,6 +92,14 @@ const NovzaHotel = () => {
     setValue,
   ]);
 
+  useEffect(() => {
+    if (formData.touristType === TOURIST_TYPES.AGENCY) {
+      setPriceIncrease(INCREASE_RATES_FOR_AGENCY);
+    } else {
+      setPriceIncrease(INCREASE_RATES_FOR_TOURISTS);
+    }
+  }, [formData.touristType]);
+
   return (
     <>
       <Grid xs={12} item>
@@ -119,12 +137,18 @@ const NovzaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.standard.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.standard.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.standard.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.standard.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -165,12 +189,18 @@ const NovzaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.deluxe.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.deluxe.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.deluxe.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.deluxe.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
@@ -211,12 +241,18 @@ const NovzaHotel = () => {
                           <FormControlLabel
                             value={ROOM_SIZES.SINGLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.SINGLE} - $${TASHKENT_HOTEL_RATES.novza.superior.single}`}
+                            label={`${ROOM_SIZES.SINGLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.superior.single +
+                              priceIncrease
+                            }`}
                           />
                           <FormControlLabel
                             value={ROOM_SIZES.DOUBLE}
                             control={<Radio />}
-                            label={`${ROOM_SIZES.DOUBLE} - $${TASHKENT_HOTEL_RATES.novza.superior.double}`}
+                            label={`${ROOM_SIZES.DOUBLE} - $${
+                              TASHKENT_HOTEL_RATES.novza.superior.double +
+                              priceIncrease
+                            }`}
                           />
                         </RadioGroup>
                       </div>
