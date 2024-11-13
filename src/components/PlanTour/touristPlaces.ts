@@ -27,6 +27,15 @@ export const touristPlaces = [
   {
     category: 'Bukhara',
     places: [
+      'Ark (1-5th cent.).',
+      'Bolo Khauz Mosque.',
+      'Mausoleum of Ismail Samani.',
+      'Chashmai Ayub.',
+      'Poyi Kalon Ensemble.',
+      'Madrassah of Ulugbek.',
+      'Madrassah of Abdulazizkhan.',
+      'Magoki Attori Mosque.',
+      'Lyabi Khauz Complex.',
       'Khodja Abdul Khalik Gijduvani.',
       'Khodja Muhammad Orif Rigvari.',
       'Khodja Makhmud Anjir Fagnavi.',
