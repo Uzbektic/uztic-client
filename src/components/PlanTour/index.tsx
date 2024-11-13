@@ -125,7 +125,7 @@ const PlanTour = () => {
         }
 
         if (formData.touristType === TOURIST_TYPES.AGENCY) {
-          if (formData.password !== 'Password123.') {
+          if (formData.password !== 'Uztic123.') {
             setError('password', {
               type: 'required',
               message: 'Password is incorrect',
