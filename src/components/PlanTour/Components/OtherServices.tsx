@@ -132,7 +132,7 @@ const OtherServices = () => {
             <Grid item xs={12}>
               <Paper elevation={3} style={{ padding: '16px' }}>
                 <Typography variant="h6" color="primary">
-                  One day sightseeing (4-5 hours)
+                  Airport/Railway pick up and drop off
                 </Typography>
                 <Typography variant="body1">
                   Price for one day: ($
@@ -208,7 +208,7 @@ const OtherServices = () => {
             <Grid item xs={12}>
               <Paper elevation={3} style={{ padding: '16px' }}>
                 <Typography variant="h6" color="primary">
-                  One day sightseeing (4-5 hours)
+                  Airport/Railway pick up and drop off
                 </Typography>
                 <Typography variant="body1">
                   Price for one day: ($

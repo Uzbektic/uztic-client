@@ -45,6 +45,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Step5 from './Steps/Step5';
 import { sendDataToBackend } from '../../mutations';
+import backgroundImage from '../../assets/images/tour-planner/step1.jpeg';
 
 const stepIcons: { [key: number]: JSX.Element } = {
   1: <PersonAddIcon />,
@@ -498,72 +499,115 @@ const PlanTour = () => {
 
       <Dialog fullWidth={true} maxWidth={'lg'} open={open}>
         <FormProvider {...methods}>
-          <DialogTitle variant="h3">Plan your tour</DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
+          <div
+            style={
+              currentStep === 0
+                ? {
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    height: '100%',
+                  }
+                : {}
+            }
           >
-            <CloseIcon />
-          </IconButton>
-          <DialogContent>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Container maxWidth="lg">
-                <>
-                  <Typography
-                    variant="h4"
-                    textAlign={'center'}
-                    style={{ marginBottom: 20 }}
-                  >
-                    Grand Total
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    textAlign={'center'}
-                    style={{ marginBottom: 50 }}
-                  >
-                    $ {formData.hotelTotal + formData.additionalServicesTotal}
-                  </Typography>
-                </>
-
-                <Stepper activeStep={currentStep} alternativeLabel>
-                  {steps.map((label, index) => (
-                    <Step key={index}>
-                      <StepLabel StepIconComponent={CustomStepIcon}>
-                        <p style={{ fontWeight: 'bold' }}>{label}</p>
-                      </StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-
-                <div>{renderStepContent(currentStep)}</div>
-              </Container>
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={loading || currentStep === 0}
-              onClick={handleBack}
+            <DialogTitle
+              variant="h3"
+              style={{
+                color:
+                  currentStep === 0 ? CustomColors.white : CustomColors.black,
+              }}
             >
-              Back
-            </Button>
-            <Button
-              type="button"
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting || loading}
-              onClick={handleNext}
+              Plan your tour
+            </DialogTitle>
+            <IconButton
+              aria-label="close"
+              onClick={handleClose}
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
             >
-              {showButtonLabel(currentStep)}
-            </Button>
-          </DialogActions>
+              <CloseIcon />
+            </IconButton>
+            <DialogContent>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Container maxWidth="lg">
+                  <>
+                    <Typography
+                      variant="h4"
+                      textAlign={'center'}
+                      style={{
+                        marginBottom: 20,
+                        color:
+                          currentStep === 0
+                            ? CustomColors.white
+                            : CustomColors.black,
+                      }}
+                    >
+                      Grand Total
+                    </Typography>
+                    <Typography
+                      variant="h2"
+                      textAlign={'center'}
+                      style={{
+                        marginBottom: 50,
+                        color:
+                          currentStep === 0
+                            ? CustomColors.white
+                            : CustomColors.black,
+                      }}
+                    >
+                      $ {formData.hotelTotal + formData.additionalServicesTotal}
+                    </Typography>
+                  </>
+
+                  <Stepper activeStep={currentStep} alternativeLabel>
+                    {steps.map((label, index) => (
+                      <Step key={index}>
+                        <StepLabel StepIconComponent={CustomStepIcon}>
+                          <p
+                            style={{
+                              fontWeight: 'bold',
+                              color:
+                                currentStep === 0
+                                  ? CustomColors.white
+                                  : CustomColors.black,
+                            }}
+                          >
+                            {label}
+                          </p>
+                        </StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+
+                  <div>{renderStepContent(currentStep)}</div>
+                </Container>
+              </form>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={loading || currentStep === 0}
+                onClick={handleBack}
+              >
+                Back
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting || loading}
+                onClick={handleNext}
+              >
+                {showButtonLabel(currentStep)}
+              </Button>
+            </DialogActions>
+          </div>
         </FormProvider>
       </Dialog>
     </>
