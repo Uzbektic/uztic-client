@@ -153,11 +153,11 @@ const OtherServices = () => {
                   Airport/Railway pick up and drop off
                 </Typography>
                 <Typography variant="body1">
-                  Price for one day: ($
+                  Price for per pickup or drop: ($
                   {(CAR_RATES.airport + priceIncrease).toFixed(2)})
                 </Typography>
                 <Typography variant="body1">
-                  Number of days: {formData.numberOfDaysForCarAirport}
+                  Number of pickups: {formData.numberOfDaysForCarAirport}
                 </Typography>
                 <Typography variant="body1">
                   Total: ($
@@ -229,11 +229,11 @@ const OtherServices = () => {
                   Airport/Railway pick up and drop off
                 </Typography>
                 <Typography variant="body1">
-                  Price for one day: ($
+                  Price for per pickup or drop: ($
                   {(MINI_BUS_RATES.airport + priceIncrease).toFixed(2)})
                 </Typography>
                 <Typography variant="body1">
-                  Number of days: {formData.numberOfDaysForMiniBusAirport}
+                  Number of pickups: {formData.numberOfDaysForMiniBusAirport}
                 </Typography>
                 <Typography variant="body1">
                   Total: ($

@@ -91,7 +91,7 @@ const Visa = () => {
                       <FormControlLabel
                         value={VISA_TYPES.GROUP}
                         control={<Radio />}
-                        label={VISA_TYPES.GROUP}
+                        label={`${VISA_TYPES.GROUP} (Minimum 5 persons are required to get group visa)`}
                       />
                     </RadioGroup>
                   </div>
