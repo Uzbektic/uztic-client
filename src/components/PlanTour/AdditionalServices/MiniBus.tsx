@@ -138,14 +138,15 @@ const MiniBus = () => {
         {formData.miniBusAirport && (
           <div style={styles.input}>
             <Typography variant="h4">
-              How many times Airport/Railway pick up and drop off?
+              How many times will you need Airport or Railway pick-up and
+              drop-off?
             </Typography>
             <Controller
               name="numberOfDaysForMiniBusAirport"
               control={control}
               rules={{
                 required:
-                  'How many times Airport/Railway pick up and drop off are required',
+                  'How many times will you need Airport or Railway pick-up and drop-off are required',
                 min: {
                   value: 1,
                   message: 'Minimum is 1',
@@ -155,7 +156,8 @@ const MiniBus = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  placeholder="How many times Airport/Railway pick up and drop off?"
+                  placeholder="How many times will you need Airport or Railway pick-up and
+              drop-off?"
                   variant="outlined"
                   fullWidth
                   type="number"

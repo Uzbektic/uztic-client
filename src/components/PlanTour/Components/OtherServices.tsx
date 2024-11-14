@@ -10,7 +10,9 @@ import {
   MINI_BUS_RATES,
   OPTIONS,
   TOURIST_TYPES,
-  VISA_FEE,
+  VISA_FEE_GROUP,
+  VISA_FEE_INDIVIDUAL,
+  VISA_TYPES,
 } from '../constants';
 
 const OtherServices = () => {
@@ -75,7 +77,23 @@ const OtherServices = () => {
           <Grid item xs={12}>
             <Paper elevation={3} style={{ padding: '16px' }}>
               <Typography variant="body1">
-                Visa - Price: (${VISA_FEE.toFixed(2)})
+                Number of visas: {formData.numberOfVisas}
+              </Typography>
+              <Typography variant="body1">
+                Price per visa: ($
+                {(formData.visaType === VISA_TYPES.INDIVIDUAL
+                  ? VISA_FEE_INDIVIDUAL
+                  : VISA_FEE_GROUP
+                ).toFixed(2)}
+                )
+              </Typography>
+              <Typography variant="body1">
+                Total cost $
+                {(
+                  (formData.visaType === VISA_TYPES.INDIVIDUAL
+                    ? VISA_FEE_INDIVIDUAL
+                    : VISA_FEE_GROUP) * formData.numberOfVisas
+                ).toFixed(2)}
               </Typography>
             </Paper>
           </Grid>

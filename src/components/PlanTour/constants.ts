@@ -13,7 +13,14 @@ export const TOURIST_TYPES = {
 export const INCREASE_RATES_FOR_TOURISTS = 10;
 export const INCREASE_RATES_FOR_AGENCY = 5;
 
-export const VISA_FEE = 90;
+export const VISA_FEE_INDIVIDUAL = 90;
+export const VISA_FEE_GROUP = 40;
+
+export const VISA_TYPES = {
+  INDIVIDUAL: 'Individual',
+  GROUP: 'Group',
+};
+
 export const visaOptions = [OPTIONS.YES, OPTIONS.NO];
 
 export const steps = [
@@ -217,6 +224,42 @@ export const TASHKENT_HOTEL_RATES = {
       double: 130,
     },
   },
+  alAnvarHalol: {
+    standard: {
+      single: 55,
+      double: 80,
+    },
+  },
+  uzbekistan: {
+    standard: {
+      single: 42,
+      double: 57,
+    },
+  },
+  shamsan: {
+    standard: {
+      single: 52,
+      double: 65,
+    },
+  },
+  wyndhamGarden: {
+    standard: {
+      single: 65,
+      double: 90,
+    },
+  },
+  international: {
+    standard: {
+      single: 120,
+      double: 147,
+    },
+  },
+  rayyan: {
+    standard: {
+      single: 70,
+      double: 90,
+    },
+  },
 };
 
 export const SAMARKAND_HOTEL_RATES = {
@@ -352,6 +395,47 @@ export const SAMARKAND_HOTEL_RATES = {
       double: 115,
     },
   },
+  jahongirPremium: {
+    standard: {
+      single: 40,
+      double: 60,
+    },
+  },
+  asiaSamarkand: {
+    standard: {
+      single: 45,
+      double: 65,
+    },
+  },
+  hiltonGarden: {
+    standard: {
+      single: 165,
+      double: 170,
+    },
+  },
+  hiltonGardenInn: {
+    standard: {
+      single: 85,
+      double: 120,
+    },
+  },
+
+  hiltonSamarkandRegency: {
+    standard: {
+      single: 170,
+      double: 180,
+    },
+  },
+  rayyan: {
+    standard: {
+      single: 70,
+      double: 80,
+    },
+    triple: {
+      single: 85,
+      double: 85,
+    },
+  },
 };
 
 export const BUKHARA_HOTEL_RATES = {
@@ -481,6 +565,34 @@ export const BUKHARA_HOTEL_RATES = {
     standard: {
       single: 50,
       double: 80,
+    },
+  },
+  hiltonSamarakand: {
+    standard: {
+      single: 50,
+      double: 70,
+    },
+  },
+  asiaBukhara: {
+    standard: {
+      single: 100,
+      double: 120,
+    },
+  },
+  lyabiHouse: {
+    standard: {
+      single: 60,
+      double: 80,
+    },
+  },
+  rayyan: {
+    standard: {
+      single: 45,
+      double: 60,
+    },
+    triple: {
+      single: 70,
+      double: 70,
     },
   },
 };

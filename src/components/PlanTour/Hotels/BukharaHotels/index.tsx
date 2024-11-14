@@ -13,6 +13,10 @@ import WyndhamHotel from './Wyndham';
 import DunyoHotel from './Dunyo';
 import GumbazHotel from './Gumbaz';
 import LyabiHotel from './Lyabi';
+import HiltonHotel from './Hilton';
+import AsiaHotel from './Asia';
+import LyabiHouseHotel from './LyabiHouse';
+import RayyanHotel from './Rayyan';
 
 const BukharaHotels = () => {
   return (
@@ -43,6 +47,10 @@ const BukharaHotels = () => {
       <DunyoHotel />
       <GumbazHotel />
       <LyabiHotel />
+      <HiltonHotel />
+      <AsiaHotel />
+      <LyabiHouseHotel />
+      <RayyanHotel />
     </>
   );
 };

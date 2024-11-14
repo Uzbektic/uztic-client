@@ -13,6 +13,12 @@ import DilshodaHotel from './Dilshoda';
 import WellfortHotel from './Wellfort';
 import BravoHotel from './Bravo';
 import EastStarHotel from './EastStar';
+import JahongirPremiumHotel from './JahongirPremium';
+import AsiaHotel from './Asia';
+import HiltonGardenHotel from './HiltonGarden';
+import HiltonGardenInnHotel from './HiltonGardenInn';
+import HiltonSamarkandHotel from './HiltonSamarkand';
+import RayyanHotel from './Rayyan';
 
 const SamarkandHotels = () => {
   return (
@@ -43,6 +49,12 @@ const SamarkandHotels = () => {
       <WellfortHotel />
       <BravoHotel />
       <EastStarHotel />
+      <JahongirPremiumHotel />
+      <AsiaHotel />
+      <HiltonGardenHotel />
+      <HiltonGardenInnHotel />
+      <HiltonSamarkandHotel />
+      <RayyanHotel />
     </>
   );
 };

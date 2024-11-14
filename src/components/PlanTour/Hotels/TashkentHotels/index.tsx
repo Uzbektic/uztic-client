@@ -14,6 +14,12 @@ import GreenParkHotel from './GreenPark';
 import StayInnHotel from './StayInn';
 import KrokusHotel from './Krokus';
 import DsfGardenHotel from './DsfGarden';
+import AlAnvarHalolHotel from './AlAnvarHalol';
+import UzbekistanHotel from './Uzbekistan';
+import ShamsanHotel from './Shamsan';
+import WyndhamGardenHotel from './WyndhamGarden';
+import InternationalHotel from './International';
+import RayyanHotel from './Rayyan';
 
 const TashkentHotels = () => {
   return (
@@ -45,6 +51,12 @@ const TashkentHotels = () => {
       <StayInnHotel />
       <KrokusHotel />
       <DsfGardenHotel />
+      <AlAnvarHalolHotel />
+      <UzbekistanHotel />
+      <ShamsanHotel />
+      <WyndhamGardenHotel />
+      <InternationalHotel />
+      <RayyanHotel />
     </>
   );
 };

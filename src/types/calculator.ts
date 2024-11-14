@@ -35,6 +35,8 @@ export interface CalculatorFormData {
   khiva: boolean;
 
   // HOTELS
+
+  // TASHKENT HOTELS
   tashkentHotel__hyattRegency__standardKing: boolean;
   tashkentHotel__hyattRegency__standardKing__room: boolean | undefined | string;
   tashkentHotel__hyattRegency__deluxeKing: boolean;
@@ -122,6 +124,25 @@ export interface CalculatorFormData {
   tashkentHotel__dsfGarden__triple: boolean;
   tashkentHotel__dsfGarden__triple__room: boolean | undefined | string;
 
+  tashkentHotel__alAnvarHalol__standard: boolean;
+  tashkentHotel__alAnvarHalol__standard__room: boolean | undefined | string;
+
+  tashkentHotel__uzbekistan__standard: boolean;
+  tashkentHotel__uzbekistan__standard__room: boolean | undefined | string;
+
+  tashkentHotel__shamsan__standard: boolean;
+  tashkentHotel__shamsan__standard__room: boolean | undefined | string;
+
+  tashkentHotel__wyndhamGarden__standard: boolean;
+  tashkentHotel__wyndhamGarden__standard__room: boolean | undefined | string;
+
+  tashkentHotel__international__standard: boolean;
+  tashkentHotel__international__standard__room: boolean | undefined | string;
+
+  tashkentHotel__rayyan__standard: boolean;
+  tashkentHotel__rayyan__standard__room: boolean | undefined | string;
+
+  // SAMARKAND HOTELS
   samarkandHotel__movenPick__standard: boolean;
   samarkandHotel__movenPick__standard__room: boolean | undefined | string;
   samarkandHotel__movenPick__executive: boolean;
@@ -188,6 +209,30 @@ export interface CalculatorFormData {
   samarkandHotel__eastStar__deluxe: boolean;
   samarkandHotel__eastStar__deluxe__room: boolean | undefined | string;
 
+  samarkandHotel__jahongirPremium__standard: boolean;
+  samarkandHotel__jahongirPremium__standard__room: boolean | undefined | string;
+
+  samarkandHotel__asiaSamarkand__standard: boolean;
+  samarkandHotel__asiaSamarkand__standard__room: boolean | undefined | string;
+
+  samarkandHotel__hiltonGarden__standard: boolean;
+  samarkandHotel__hiltonGarden__standard__room: boolean | undefined | string;
+
+  samarkandHotel__hiltonGardenInn__standard: boolean;
+  samarkandHotel__hiltonGardenInn__standard__room: boolean | undefined | string;
+
+  samarkandHotel__hiltonSamarkandRegency__standard: boolean;
+  samarkandHotel__hiltonSamarkandRegency__standard__room:
+    | boolean
+    | undefined
+    | string;
+
+  samarkandHotel__rayyan__standard: boolean;
+  samarkandHotel__rayyan__standard__room: boolean | undefined | string;
+  samarkandHotel__rayyan__triple: boolean;
+  samarkandHotel__rayyan__triple__room: boolean | undefined | string;
+
+  // BUKHARA HOTELS
   bukharaHotel__malikaBukhara__standard: boolean;
   bukharaHotel__malikaBukhara__standard__room: boolean | undefined | string;
   bukharaHotel__malikaBukhara__triple: boolean;
@@ -252,6 +297,21 @@ export interface CalculatorFormData {
   bukharaHotel__lyabi__standard: boolean;
   bukharaHotel__lyabi__standard__room: boolean | undefined | string;
 
+  bukharaHotel__hiltonSamarakand__standard: boolean;
+  bukharaHotel__hiltonSamarakand__standard__room: boolean | undefined | string;
+
+  bukharaHotel__asiaBukhara__standard: boolean;
+  bukharaHotel__asiaBukhara__standard__room: boolean | undefined | string;
+
+  bukharaHotel__lyabiHouse__standard: boolean;
+  bukharaHotel__lyabiHouse__standard__room: boolean | undefined | string;
+
+  bukharaHotel__rayyan__standard: boolean;
+  bukharaHotel__rayyan__standard__room: boolean | undefined | string;
+  bukharaHotel__rayyan__triple: boolean;
+  bukharaHotel__rayyan__triple__room: boolean | undefined | string;
+
+  // KHIVA HOTELS
   khivaHotel__asia__standard: boolean;
   khivaHotel__asia__standard__room: boolean | undefined | string;
   khivaHotel__asia__triple: boolean;
@@ -316,4 +376,6 @@ export interface CalculatorFormData {
 
   // Visa
   visa: string;
+  visaType: string;
+  numberOfVisas: number;
 }

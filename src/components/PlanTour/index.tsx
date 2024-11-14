@@ -29,7 +29,9 @@ import {
   steps,
   TASHKENT_HOTEL_RATES,
   TOURIST_TYPES,
-  VISA_FEE,
+  VISA_FEE_GROUP,
+  VISA_FEE_INDIVIDUAL,
+  VISA_TYPES,
 } from './constants';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { CustomColors } from '../../theme';
@@ -380,7 +382,21 @@ const PlanTour = () => {
 
     if (formData.visa) {
       if (formData.visa === OPTIONS.YES) {
-        additionalTotal += VISA_FEE;
+        if (
+          formData.visaType &&
+          formData.visaType === VISA_TYPES.INDIVIDUAL &&
+          formData.numberOfVisas
+        ) {
+          let value = VISA_FEE_INDIVIDUAL * formData.numberOfVisas;
+          additionalTotal += value;
+        } else if (
+          formData.visaType &&
+          formData.visaType === VISA_TYPES.GROUP &&
+          formData.numberOfVisas
+        ) {
+          let value = VISA_FEE_GROUP * formData.numberOfVisas;
+          additionalTotal += value;
+        }
       }
     }
     if (formData.carOneDay && formData.numberOfDaysForCarOneDay) {
@@ -446,7 +462,9 @@ const PlanTour = () => {
     formData.miniBusAirport,
     formData.numberOfDaysForMiniBusAirport,
     formData.visa,
-
+    formData.visaType,
+    formData.numberOfVisas,
+    currentStep,
     setValue,
   ]);
 
