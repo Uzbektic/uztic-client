@@ -45,14 +45,6 @@ const Step4 = ({
           title: 'Additional Services Total',
           amount: formData.additionalServicesTotal,
         },
-        {
-          title: 'Speed Train Total',
-          amount: formData.additionalSpeedTrainsTotal,
-        },
-        {
-          title: 'Regular Train Total',
-          amount: formData.additionalRegularTrainsTotal,
-        },
       ].map((section, index) => (
         <Grid item xs={12} md={6} key={index}>
           <Paper elevation={3} style={{ padding: '16px' }}>
