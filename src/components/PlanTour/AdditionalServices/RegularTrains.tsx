@@ -9,6 +9,7 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  TextField,
   Typography,
 } from '@mui/material';
 import {
@@ -33,7 +34,12 @@ const RegularTrains = () => {
     bukharaToSamarkandRegularTrain: 0,
   });
 
-  const { control, watch, setValue } = useFormContext<CalculatorFormData>();
+  const {
+    control,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext<CalculatorFormData>();
 
   const formData = watch();
 
@@ -54,9 +60,11 @@ const RegularTrains = () => {
         if (formData[key]) {
           const roomCharge =
             formData[`${key}__class`] === TRAIN_CLASSES.ECONOMY
-              ? rates.economy + priceIncrease
+              ? (rates.economy + priceIncrease) *
+                formData.numberOfRegularTrainTickets
               : formData[`${key}__class`] === TRAIN_CLASSES.BUSINESS
-              ? rates.business + priceIncrease
+              ? (rates.business + priceIncrease) *
+                formData.numberOfRegularTrainTickets
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[key];
@@ -98,8 +106,8 @@ const RegularTrains = () => {
         REGULAR_TRAIN_RATES.bukharaToSamarkand
       );
 
-      const currentTotal = formData.additionalTrainsTotal || 0;
-      setValue('additionalTrainsTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.additionalRegularTrainsTotal || 0;
+      setValue('additionalRegularTrainsTotal', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
@@ -116,6 +124,7 @@ const RegularTrains = () => {
     formData.bukharaToTashkentRegularTrain__class,
     formData.bukharaToSamarkandRegularTrain,
     formData.bukharaToSamarkandRegularTrain__class,
+    formData.numberOfRegularTrainTickets,
     setValue,
   ]);
 
@@ -129,7 +138,7 @@ const RegularTrains = () => {
 
   return (
     <>
-      <Grid xs={12} item>
+      <Grid xs={6} item>
         <div style={styles.input}>
           <Typography variant="h4">
             Sharq regular train per person in $
@@ -449,6 +458,46 @@ const RegularTrains = () => {
           </FormGroup>
         </div>
       </Grid>
+
+      {formData.tashkentToSamarkandRegularTrain ||
+      formData.tashkentToBukharaRegularTrain ||
+      formData.samarkandToBukharaRegularTrain ||
+      formData.samarkandToTashkentRegularTrain ||
+      formData.bukharaToTashkentRegularTrain ||
+      formData.bukharaToSamarkandRegularTrain ? (
+        <Grid style={styles.item} xs={6} item>
+          <div style={styles.input}>
+            <Typography variant="h4">
+              Number Of Regular Train Tickets
+            </Typography>
+            <Controller
+              name="numberOfRegularTrainTickets"
+              control={control}
+              rules={{
+                required: 'Number Of Regular Train Tickets are required',
+                min: {
+                  value: 1,
+                  message: 'Minimum is 1',
+                },
+              }}
+              defaultValue={1}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="Number Of Regular Train Tickets?"
+                  variant="outlined"
+                  fullWidth
+                  type="number"
+                  error={!!errors?.numberOfRegularTrainTickets}
+                  helperText={errors?.numberOfRegularTrainTickets?.message}
+                />
+              )}
+            />
+          </div>
+        </Grid>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

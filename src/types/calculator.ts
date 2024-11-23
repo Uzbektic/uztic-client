@@ -6,6 +6,8 @@ export interface CalculatorFormData {
   hotelTotalBukhara: number;
   hotelTotalKhiva: number;
   additionalTrainsTotal: number;
+  additionalSpeedTrainsTotal: number;
+  additionalRegularTrainsTotal: number;
   additionalServicesTotal: number;
 
   priceIncrease: number;
@@ -341,6 +343,7 @@ export interface CalculatorFormData {
   bukharaToTashkentSpeedTrain__class: boolean | undefined | string;
   bukharaToSamarkandSpeedTrain: boolean;
   bukharaToSamarkandSpeedTrain__class: boolean | undefined | string;
+  numberOfSpeedTrainTickets: number;
 
   // Regular Trains
   tashkentToSamarkandRegularTrain: boolean;
@@ -355,6 +358,7 @@ export interface CalculatorFormData {
   bukharaToTashkentRegularTrain__class: boolean | undefined | string;
   bukharaToSamarkandRegularTrain: boolean;
   bukharaToSamarkandRegularTrain__class: boolean | undefined | string;
+  numberOfRegularTrainTickets: number;
 
   // Guide
   englishSpeakingGuide: boolean;

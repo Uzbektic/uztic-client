@@ -9,6 +9,7 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  TextField,
   Typography,
 } from '@mui/material';
 import {
@@ -33,7 +34,12 @@ const SpeedTrains = () => {
     bukharaToSamarkandSpeedTrain: 0,
   });
 
-  const { control, watch, setValue } = useFormContext<CalculatorFormData>();
+  const {
+    control,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext<CalculatorFormData>();
 
   const formData = watch();
 
@@ -54,9 +60,11 @@ const SpeedTrains = () => {
         if (formData[key]) {
           const roomCharge =
             formData[`${key}__class`] === TRAIN_CLASSES.ECONOMY
-              ? rates.economy + priceIncrease
+              ? (rates.economy + priceIncrease) *
+                formData.numberOfSpeedTrainTickets
               : formData[`${key}__class`] === TRAIN_CLASSES.BUSINESS
-              ? rates.business + priceIncrease
+              ? (rates.business + priceIncrease) *
+                formData.numberOfSpeedTrainTickets
               : 0;
 
           additionalCharge += roomCharge - previousChargesRef.current[key];
@@ -98,8 +106,8 @@ const SpeedTrains = () => {
         SPEED_TRAIN_RATES.bukharaToSamarkand
       );
 
-      const currentTotal = formData.additionalTrainsTotal || 0;
-      setValue('additionalTrainsTotal', currentTotal + additionalCharge);
+      const currentTotal = formData.additionalSpeedTrainsTotal || 0;
+      setValue('additionalSpeedTrainsTotal', currentTotal + additionalCharge);
     };
 
     calculateAndUpdateTotal();
@@ -116,6 +124,7 @@ const SpeedTrains = () => {
     formData.bukharaToTashkentSpeedTrain__class,
     formData.bukharaToSamarkandSpeedTrain,
     formData.bukharaToSamarkandSpeedTrain__class,
+    formData.numberOfSpeedTrainTickets,
     setValue,
   ]);
 
@@ -129,7 +138,7 @@ const SpeedTrains = () => {
 
   return (
     <>
-      <Grid xs={12} item>
+      <Grid xs={6} item>
         <div style={styles.input}>
           <Typography variant="h4">
             Afrosiab speed train per person in $
@@ -449,6 +458,44 @@ const SpeedTrains = () => {
           </FormGroup>
         </div>
       </Grid>
+
+      {formData.tashkentToSamarkandSpeedTrain ||
+      formData.tashkentToBukharaSpeedTrain ||
+      formData.samarkandToBukharaSpeedTrain ||
+      formData.samarkandToTashkentSpeedTrain ||
+      formData.bukharaToTashkentSpeedTrain ||
+      formData.bukharaToSamarkandSpeedTrain ? (
+        <Grid style={styles.item} xs={6} item>
+          <div style={styles.input}>
+            <Typography variant="h4">Number Of Speed Train Tickets</Typography>
+            <Controller
+              name="numberOfSpeedTrainTickets"
+              control={control}
+              rules={{
+                required: 'Number Of Speed Train Tickets are required',
+                min: {
+                  value: 1,
+                  message: 'Minimum is 1',
+                },
+              }}
+              defaultValue={1}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="Number Of Speed Train Tickets?"
+                  variant="outlined"
+                  fullWidth
+                  type="number"
+                  error={!!errors?.numberOfSpeedTrainTickets}
+                  helperText={errors?.numberOfSpeedTrainTickets?.message}
+                />
+              )}
+            />
+          </div>
+        </Grid>
+      ) : (
+        <Grid xs={12} item></Grid>
+      )}
     </>
   );
 };

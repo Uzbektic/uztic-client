@@ -89,6 +89,8 @@ const PlanTour = () => {
       grandTotal: 0,
       hotelTotal: 0,
       additionalTrainsTotal: 0,
+      additionalRegularTrainsTotal: 0,
+      additionalSpeedTrainsTotal: 0,
       additionalServicesTotal: 0,
       hotelTotalTashkent: 0,
       hotelTotalSamarkand: 0,
@@ -156,7 +158,6 @@ const PlanTour = () => {
   const onSubmit: SubmitHandler<CalculatorFormData> = async (data) => {
     try {
       setLoading(true);
-
       const response = await sendDataToBackend(
         data,
         selectedHotels,
@@ -187,6 +188,8 @@ const PlanTour = () => {
       touristType: currentValues.touristType,
       grandTotal: 0,
       hotelTotal: 0,
+      additionalRegularTrainsTotal: 0,
+      additionalSpeedTrainsTotal: 0,
       additionalTrainsTotal: 0,
       additionalServicesTotal: 0,
       hotelTotalTashkent: 0,
@@ -370,8 +373,12 @@ const PlanTour = () => {
       total += value;
     }
 
-    if (formData.additionalTrainsTotal) {
-      additionalTotal += formData.additionalTrainsTotal;
+    if (formData.additionalSpeedTrainsTotal) {
+      additionalTotal += formData.additionalSpeedTrainsTotal;
+    }
+
+    if (formData.additionalRegularTrainsTotal) {
+      additionalTotal += formData.additionalRegularTrainsTotal;
     }
 
     if (formData.englishSpeakingGuide && formData.numberOfDaysForGuide) {
@@ -448,7 +455,6 @@ const PlanTour = () => {
     formData.hotelTotalBukhara,
     formData.numberOfNightsInBukhara,
     formData.numberOfRoomsInBukhara,
-    formData.additionalTrainsTotal,
     formData.englishSpeakingGuide,
     formData.numberOfDaysForGuide,
     formData.carOneDay,
@@ -464,6 +470,8 @@ const PlanTour = () => {
     formData.visa,
     formData.visaType,
     formData.numberOfVisas,
+    formData.additionalRegularTrainsTotal,
+    formData.additionalSpeedTrainsTotal,
     currentStep,
     setValue,
   ]);
