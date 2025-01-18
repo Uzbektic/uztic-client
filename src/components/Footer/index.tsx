@@ -2,6 +2,7 @@ import React from 'react';
 import SocialLinks from '../SocialLinks';
 import PlanTour from '../PlanTour';
 import ApplyVisa from '../ApplyVisa';
+import Chat from '../Chat';
 
 const Footer = () => {
   return (
@@ -9,6 +10,7 @@ const Footer = () => {
       <SocialLinks />
       <PlanTour />
       <ApplyVisa />
+      <Chat />
     </div>
   );
 };
