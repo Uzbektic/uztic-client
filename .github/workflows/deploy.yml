@@ -24,6 +24,8 @@ jobs:
       - name: Build the React app
         env:
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
+          REACT_APP_CHATGPT_KEY: ${{ secrets.REACT_APP_CHATGPT_KEY }}
+          REACT_APP_MIX_PANEL_KEY: ${{ secrets.REACT_APP_MIX_PANEL_KEY }}
           CI: false
         run: npm run build
 

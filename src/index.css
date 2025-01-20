@@ -19,3 +19,7 @@ code {
 .ps-container > .ps-scrollbar-y-rail {
   opacity: 0.6 !important;
 }
+
+.rcw-widget-container {
+  z-index: 1300 !important; /* Ensure it's higher than MUI's default modal z-index */
+}

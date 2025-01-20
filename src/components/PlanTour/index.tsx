@@ -4,7 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Tooltip, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CalculatorFormData } from '../../types/calculator';
@@ -514,14 +514,16 @@ const PlanTour = () => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ marginRight: 2 }}
-        onClick={handleClickOpen}
-      >
-        Plan Tour
-      </Button>
+      <Tooltip title="Plan your tour" placement="top">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginRight: 2 }}
+          onClick={handleClickOpen}
+        >
+          Plan Tour
+        </Button>
+      </Tooltip>
 
       <Dialog fullWidth={true} maxWidth={'lg'} open={open}>
         <FormProvider {...methods}>

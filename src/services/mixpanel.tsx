@@ -1,5 +1,5 @@
 import mixpanel from 'mixpanel-browser';
 
-mixpanel.init('9b989904a8badca0d2760a0f2763b464');
+mixpanel.init(process.env.REACT_APP_MIX_PANEL_KEY || '');
 
 export let Mixpanel = mixpanel;
