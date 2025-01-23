@@ -10,7 +10,6 @@ import {
   Alert,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { getChatGptResponse } from '../../services/chatgpt';
 import { ChatMessage } from '../../types/chat';
 import { CustomColors, theme } from '../../theme';
 import SendIcon from '@mui/icons-material/Send';
@@ -19,6 +18,7 @@ import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { useMediaQuery } from '@mui/material';
 import './chat.css';
+import { getChatGptResponse } from '../../mutations';
 
 const ChatWidget = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -58,7 +58,8 @@ const ChatWidget = () => {
       setIsTyping(true);
 
       try {
-        const response = await getChatGptResponse(updatedMessages);
+        let secret = process.env.REACT_APP_SECRET || '';
+        const response = await getChatGptResponse(updatedMessages, secret);
         if (response && response.length > 0) {
           const chatGptMessage: ChatMessage = {
             role: 'assistant',

@@ -10,7 +10,7 @@ const Footer = () => {
       <SocialLinks />
       <PlanTour />
       <ApplyVisa />
-      {/* <Chat /> */}
+      <Chat />
     </div>
   );
 };
