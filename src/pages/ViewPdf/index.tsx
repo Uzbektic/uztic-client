@@ -1,23 +1,12 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
 import { useParams } from 'react-router-dom';
-
-const listings: { [key: string]: string } = {
-  '0': 'https://online.fliphtml5.com/xjgcf/erhs',
-  '1': 'https://online.fliphtml5.com/xjgcf/gtiy',
-  '2': 'https://online.fliphtml5.com/xjgcf/ukxg',
-  '3': 'https://online.fliphtml5.com/xjgcf/yfgk',
-  '4': 'https://online.fliphtml5.com/xjgcf/ikcv',
-  '5': 'https://online.fliphtml5.com/xjgcf/fjyj/',
-  '6': 'https://online.fliphtml5.com/xjgcf/rlby/',
-  '7': 'https://online.fliphtml5.com/xjgcf/vxmy/',
-  '8': 'https://online.fliphtml5.com/xjgcf/ofqz/',
-};
+import { newsLettersUrls } from './constants';
 
 const PDF = () => {
   const { newsletter } = useParams();
 
-  const url = listings[newsletter ?? '0'];
+  const url = newsLettersUrls[newsletter ?? '0'];
 
   return (
     <>

@@ -2,18 +2,12 @@ import React from 'react';
 import { Button, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import InteractiveTooltip from '../Tooltip';
-
-interface NewsLetterItemProps {
-  image: string;
-  title: string;
-  date: string;
-  pdfPath: string;
-  viewLink: string;
-}
+import { NewsLetterItemProps } from '../../types/news-letter';
 
 const NewsLetterItem: React.FC<NewsLetterItemProps> = ({
   image,
   title,
+  tooltipText,
   date,
   pdfPath,
   viewLink,
@@ -26,7 +20,7 @@ const NewsLetterItem: React.FC<NewsLetterItemProps> = ({
         style={{ padding: 20 }}
         className="animate__animated animate__fadeIn"
       >
-        <InteractiveTooltip title={`Click to view ${title}`}>
+        <InteractiveTooltip title={`Click to view ${tooltipText}`}>
           <img
             src={image}
             alt={title}
