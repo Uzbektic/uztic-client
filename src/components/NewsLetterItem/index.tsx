@@ -28,7 +28,7 @@ const NewsLetterItem: React.FC<NewsLetterItemProps> = ({
             onClick={() => navigate(viewLink)}
           />
         </InteractiveTooltip>
-        <p>{date}</p>
+        <p>{title}</p>
         <a href={pdfPath} rel="noreferrer" download>
           <Button variant="contained" style={{ width: '100%', marginTop: 10 }}>
             Download
