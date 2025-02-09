@@ -11,14 +11,21 @@ import { CustomColors } from '../../theme';
 import Navbar from '../../components/Navbar';
 import NewsLetterItem from '../../components/NewsLetterItem';
 import { newsletters } from './constants';
+import { parseDate } from './helpers';
 
 const NewsLetter = () => {
   const [sortOrder, setSortOrder] = useState<'new' | 'old'>('new');
-  const sortedNewsletters = [...newsletters].sort((a, b) =>
-    sortOrder === 'new'
-      ? new Date(b.date).getTime() - new Date(a.date).getTime()
-      : new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
+
+  const sortedNewsletters = [...newsletters].sort((a, b) => {
+    const dateA = parseDate(a.date);
+    const dateB = parseDate(b.date);
+
+    if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) return 0;
+
+    return sortOrder === 'new'
+      ? dateB.getTime() - dateA.getTime()
+      : dateA.getTime() - dateB.getTime();
+  });
   return (
     <>
       <Navbar bgPrimary={true} />
