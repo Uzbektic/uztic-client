@@ -86,8 +86,8 @@ const ChatWidget = () => {
           size="large"
           style={{
             backgroundColor: CustomColors.primary,
-            marginLeft: 2,
-            marginBottom: 5,
+            height: 60,
+            width: 60,
           }}
         >
           {isOpen ? (

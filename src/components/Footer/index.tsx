@@ -6,12 +6,16 @@ import Chat from '../Chat';
 
 const Footer = () => {
   return (
-    <div className="apply-visa">
-      <SocialLinks />
-      <PlanTour />
-      <ApplyVisa />
-      <Chat />
-    </div>
+    <>
+      <div className="apply-visa">
+        <SocialLinks />
+        <PlanTour />
+        <ApplyVisa />
+      </div>
+      <div style={{ position: 'absolute', top: 190, left: 110 }}>
+        <Chat />
+      </div>
+    </>
   );
 };
 

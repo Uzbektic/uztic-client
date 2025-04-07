@@ -102,7 +102,7 @@ const Slider = ({
       <div
         style={{
           position: 'absolute',
-          bottom: isSmallScreen ? '10%' : '10%',
+          bottom: isSmallScreen ? '-10%' : '10%',
           left: isSmallScreen ? '10%' : '5%',
         }}
       >
