@@ -20,6 +20,14 @@
     />
     <meta property="og:image" content="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <style>
+      elevenlabs-convai {
+        position: fixed;
+        bottom: 2px;
+        right: 10px;
+        z-index: 1000;
+      }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,5 +41,11 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <elevenlabs-convai agent-id="lTFKqQhjzLXcVIDQ39bo"></elevenlabs-convai>
+    <script
+      src="https://elevenlabs.io/convai-widget/index.js"
+      async
+      type="text/javascript"
+    ></script>
   </body>
 </html>
