@@ -12,7 +12,7 @@ const Footer = () => {
         <PlanTour />
         <ApplyVisa />
       </div>
-      <div style={{ position: 'absolute', top: 190, left: 110 }}>
+      <div style={{ position: 'absolute', top: 190, left: 120 }}>
         <Chat />
       </div>
     </>
