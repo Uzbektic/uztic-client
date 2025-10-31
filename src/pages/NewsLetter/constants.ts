@@ -10,6 +10,7 @@ import NewsLetter8Image from '../../assets/images/news-letters/8.png';
 import NewsLetter9Image from '../../assets/images/news-letters/9.png';
 import NewsLetter10Image from '../../assets/images/news-letters/10.png';
 import NewsLetter11Image from '../../assets/images/news-letters/11.png';
+import NewsLetter12Image from '../../assets/images/news-letters/12.png';
 
 export const newsletters: NewsLetterItemProps[] = [
   {
@@ -99,5 +100,13 @@ export const newsletters: NewsLetterItemProps[] = [
     date: '2025-04-01',
     pdfPath: require('../../pdfs/apr-2025.pdf'),
     viewLink: '/view-pdf/10',
+  },
+  {
+    image: NewsLetter12Image,
+    tooltipText: 'News Letter For September, 2025',
+    title: 'September, 2025',
+    date: '2025-10-01',
+    pdfPath: require('../../pdfs/sept-2025.pdf'),
+    viewLink: '/view-pdf/11',
   },
 ];

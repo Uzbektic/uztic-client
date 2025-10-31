@@ -10,4 +10,5 @@ export const newsLettersUrls: { [key: string]: string } = {
   '8': 'https://online.fliphtml5.com/xjgcf/ofqz/',
   '9': 'https://online.fliphtml5.com/xjgcf/mrwy/',
   '10': 'https://online.fliphtml5.com/xjgcf/cqaf/',
+  '11': 'https://online.fliphtml5.com/bosnf/wbjo/',
 };
